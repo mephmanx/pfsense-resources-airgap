@@ -7,8 +7,7 @@ RUN yum install -y wget
 
 ARG PFSENSE_VERSION
 ENV PF_VER=${PFSENSE_VERSION}
-RUN wget -O /out/pfSense-CE-memstick-ADI.img.gz https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-memstick-ADI-"$PF_VER"-RELEASE-amd64.img.gz
-RUN gunzip -f /out/pfSense-CE-memstick-ADI.img.gz
+RUN wget -O /tmp/pfSense-CE-memstick-ADI.img.gz https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-memstick-ADI-"$PF_VER"-RELEASE-amd64.img.gz
 
 WORKDIR /
 COPY init.sh /
