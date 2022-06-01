@@ -33,7 +33,7 @@ create_line+="--autostart --wait 0"
 eval "$create_line"
 
 sleep 30;
-(echo open host.docker.internal 4568;
+(echo open localhost 4568;
   sleep 60;
   echo "ansi";
   sleep 5;
