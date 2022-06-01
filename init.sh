@@ -34,7 +34,7 @@ create_line+="--autostart --wait 0"
 eval "$create_line"
 
 sleep 30;
-(echo open 127.0.0.1 4568;
+(echo open host.docker.internal 4568;
   sleep 60;
   echo "ansi";
   sleep 5;
@@ -63,7 +63,7 @@ sleep 30;
 ) | telnet
 
 ## remove install disk from pfsense
-virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+virsh detach-disk --domain pfsense /out/pfSense-CE-memstick-ADI.img --persistent --config --live
 virsh reboot pfsense
 
 sleep 120;
