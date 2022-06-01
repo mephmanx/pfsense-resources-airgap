@@ -24,7 +24,7 @@ create_line+="--os-type=freebsd "
 create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
 create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
 create_line+="--network network=default "
-create_line+="--os-variant=freebsd11.0 "
+create_line+="--os-variant=freebsd12.0 "
 create_line+="--graphics=vnc "
 
 create_line+="--channel unix,target.type=virtio,target.name='org.qemu.guest_agent.0' "
@@ -71,3 +71,6 @@ sleep 120;
 ### cleanup
 runuser -l root -c  "rm -rf /tmp/usb"
 #####
+
+
+virsh undefine --domain pfsense --remove-all-storage
