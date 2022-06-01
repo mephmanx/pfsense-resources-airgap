@@ -6,6 +6,7 @@ set -x
 gunzip -f /tmp/pfSense-CE-memstick-ADI.img.gz
 cp /tmp/pfSense-CE-memstick-ADI.img /out
 
+systemctl enable --now libvirtd
 #start pfsense vm to gather packages to build offline resources
 
 virsh pool-define-as "images" dir - - - - "/images"

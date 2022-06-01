@@ -1,7 +1,7 @@
 FROM quay.io/centos/centos:stream8
 
 RUN mkdir /out
-RUN dnf module install -y virt
+RUN yum install -y @virt
 RUN dnf install -y virt-install virt-viewer libguestfs-tools
 RUN yum install -y wget telnet setroubleshoot setools
 
