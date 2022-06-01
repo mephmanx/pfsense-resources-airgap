@@ -6,7 +6,6 @@ set -x
 gunzip -f /tmp/pfSense-CE-memstick-ADI.img.gz
 cp /tmp/pfSense-CE-memstick-ADI.img /out
 
-systemctl enable --now libvirtd
 #start pfsense vm to gather packages to build offline resources
 
 create_line="virt-install "
@@ -25,7 +24,7 @@ create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
 create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
 create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
-create_line+="--network type=direct,source=default,model=virtio,source_mode=bridge "
+create_line+="--network network=default "
 create_line+="--os-variant=freebsd11.0 "
 create_line+="--graphics=vnc "
 
