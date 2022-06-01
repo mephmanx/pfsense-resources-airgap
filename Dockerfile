@@ -12,5 +12,4 @@ RUN gunzip -f /out/pfSense-CE-memstick-ADI.img.gz
 
 ADD init.sh /init.sh
 RUN chmod 777 /init.sh
-RUN init.sh
-CMD ["/bin/bash", "-l"]
+CMD ["/bin/bash", "-l", "./init.sh"]
