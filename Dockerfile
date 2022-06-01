@@ -10,6 +10,8 @@ ENV PF_VER=${PFSENSE_VERSION}
 RUN wget -O /out/pfSense-CE-memstick-ADI.img.gz https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-memstick-ADI-"$PF_VER"-RELEASE-amd64.img.gz
 RUN gunzip -f /out/pfSense-CE-memstick-ADI.img.gz
 
-ADD init.sh /init.sh
+WORKDIR /
+COPY init.sh /
 RUN chmod 777 /init.sh
-CMD ["/bin/bash", "-l", "./init.sh"]
+RUN ./init.sh
+CMD ["/bin/bash", "-l"]
