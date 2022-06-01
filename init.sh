@@ -9,11 +9,6 @@ cp /tmp/pfSense-CE-memstick-ADI.img /out
 systemctl enable --now libvirtd
 #start pfsense vm to gather packages to build offline resources
 
-virsh pool-define-as "images" dir - - - - "/images"
-virsh pool-build "images"
-virsh pool-autostart "images"
-virsh pool-start "images"
-
 create_line="virt-install "
 create_line+="--hvm "
 create_line+="--virt-type=kvm "
@@ -25,14 +20,12 @@ create_line+="--memorybacking hugepages=yes "
 create_line+="--vcpus=8 "
 create_line+="--boot hd,menu=off,useserial=off "
 create_line+="--disk /tmp/pfSense-CE-memstick-ADI.img "
-create_line+="--disk pool=images,size=40,bus=virtio,sparse=no "
+create_line+="--disk pool=default,size=40,bus=virtio,sparse=no "
 create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
 create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
 create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
-create_line+="--network type=direct,source=ext-con,model=virtio,source_mode=bridge "
-create_line+="--network type=bridge,source=loc-static,model=virtio "
-create_line+="--network type=bridge,source=amp-net,model=virtio "
+create_line+="--network type=direct,source=default,model=virtio,source_mode=bridge "
 create_line+="--os-variant=freebsd11.0 "
 create_line+="--graphics=vnc "
 
