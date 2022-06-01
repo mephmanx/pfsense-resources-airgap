@@ -61,6 +61,7 @@ sleep 30;
   sleep 5;
 ) | telnet
 
+
 ## remove install disk from pfsense
 virsh detach-disk --domain pfsense /out/pfSense-CE-memstick-ADI.img --persistent --config --live
 virsh reboot pfsense
@@ -71,5 +72,5 @@ sleep 120;
 runuser -l root -c  "rm -rf /tmp/usb"
 #####
 
-
+virsh destroy pfsense
 virsh undefine --domain pfsense --remove-all-storage
