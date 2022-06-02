@@ -16,7 +16,7 @@ offset=$(($startsector * 512))
 
 rm -rf /temp/usb
 mkdir /temp/usb
-runuser -l root -c  "mount -o loop,offset=$offset /temp/pfSense-CE-memstick-ADI.img /tmp/usb"
+runuser -l root -c  "mount -o loop,offset=$offset /temp/pfSense-CE-memstick-ADI.img /temp/usb"
 rm -rf /temp/usb/config.xml
 cp /openstack-pfsense.xml /temp/usb
 mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
