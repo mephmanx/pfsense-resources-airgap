@@ -7,17 +7,17 @@ source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/project_config.sh
 source /tmp/openstack-env.sh
 
-gunzip -f /tmp/pfSense-CE-memstick-ADI.img.gz
+gunzip -f /out/pfsense/pfSense-CE-memstick-ADI.img.gz
 
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
 ## watch this logic on update and make sure it gets the last fat32 partition
-startsector=$(file /tmp/pfSense-CE-memstick-ADI.img | sed -n -e 's/.* startsector *\([0-9]*\),.*/\1/p')
+startsector=$(file /out/pfsense/pfSense-CE-memstick-ADI.img | sed -n -e 's/.* startsector *\([0-9]*\),.*/\1/p')
 offset=$(($startsector * 512))
 
 rm -rf /tmp/usb
 mkdir /tmp/usb
-runuser -l root -c  "mount -o loop,offset=$offset /tmp/pfSense-CE-memstick-ADI.img /tmp/usb"
+runuser -l root -c  "mount -o loop,offset=$offset /out/pfsense/pfSense-CE-memstick-ADI.img /tmp/usb"
 rm -rf /tmp/usb/config.xml
 cp /openstack-pfsense.xml /tmp/usb
 mv /tmp/usb/openstack-pfsense.xml /tmp/usb/config.xml
@@ -84,8 +84,6 @@ sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /tmp/usb/config.xml
 
 runuser -l root -c  'umount /tmp/usb'
 
-cp /tmp/pfSense-CE-memstick-ADI.img /out
-
 #start pfsense vm to gather packages to build offline resources
 
 create_line="virt-install "
@@ -96,7 +94,7 @@ create_line+="--memory=1000 "
 create_line+="--cpu=host-passthrough,cache.mode=passthrough "
 create_line+="--vcpus=8 "
 create_line+="--boot hd,menu=off,useserial=off "
-create_line+="--disk /out/pfSense-CE-memstick-ADI.img "
+create_line+="--disk /out/pfsense/pfSense-CE-memstick-ADI.img "
 create_line+="--disk pool=default,size=40,bus=virtio,sparse=no "
 create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
@@ -143,7 +141,7 @@ sleep 30;
 
 
 ## remove install disk from pfsense
-virsh detach-disk --domain pfsense /out/pfSense-CE-memstick-ADI.img --persistent --config --live
+virsh detach-disk --domain pfsense /out/pfsense/pfSense-CE-memstick-ADI.img --persistent --config --live
 virsh reboot pfsense
 
 sleep 120;
