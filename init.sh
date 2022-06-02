@@ -7,6 +7,7 @@ source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/project_config.sh
 source /tmp/openstack-env.sh
 
+rm -rf /tmp/pfSense-CE-memstick-ADI.img
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
