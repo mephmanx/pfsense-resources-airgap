@@ -1,5 +1,6 @@
 FROM quay.io/centos/centos:stream8
 
+RUN mkdir /out
 RUN mkdir /out/pfsense
 RUN yum install -y @virt
 RUN dnf install -y virt-install virt-viewer libguestfs-tools
