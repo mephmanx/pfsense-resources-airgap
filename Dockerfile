@@ -13,4 +13,9 @@ WORKDIR /
 COPY init.sh /
 RUN chmod 777 /init.sh
 
+COPY openstack-pfsense.xml /
+RUN chmod 777 openstack-pfsense.xml
+
+
+
 ENTRYPOINT ["./init.sh"]
