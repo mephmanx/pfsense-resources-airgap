@@ -101,7 +101,7 @@ create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
 create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
 create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
-create_line+="--network network=default "
+create_line+="--network network=default --network network=default --network network=default "
 create_line+="--os-variant=freebsd12.0 "
 create_line+="--graphics=vnc "
 
