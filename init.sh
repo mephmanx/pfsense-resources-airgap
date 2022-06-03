@@ -151,5 +151,5 @@ sleep 120;
 runuser -l root -c  "rm -rf /temp/usb"
 #####
 
-virsh destroy pfsense
-virsh undefine --domain pfsense --remove-all-storage
+#virsh destroy pfsense
+#virsh undefine --domain pfsense --remove-all-storage
