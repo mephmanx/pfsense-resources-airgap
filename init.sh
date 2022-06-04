@@ -151,8 +151,6 @@ sleep 30;
   echo 'N';
   sleep 5;
   echo 'S';
-  sleep 5;
-  echo 'Y';
   echo "touch /root/openstack-env.sh; touch /root/openstack-env.sh.enc;";
   sleep 10;
   for element in "${openstack_env_array[@]}"
