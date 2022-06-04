@@ -152,16 +152,7 @@ sleep 30;
   sleep 5;
   echo 'S';
   sleep 5;
-) | telnet
-
-## remove install disk from pfsense
-virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
-#virsh reboot pfsense
-
-sleep 120;
-
-(echo open 127.0.0.1 4568;
-  sleep 120
+  echo 'Y';
   echo "touch /root/openstack-env.sh; touch /root/openstack-env.sh.enc;";
   sleep 10;
   for element in "${openstack_env_array[@]}"
@@ -208,6 +199,12 @@ sleep 120;
   sleep 10;
   echo "reboot"
 ) | telnet
+
+## remove install disk from pfsense
+virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+#virsh reboot pfsense
+
+sleep 120;
 
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
