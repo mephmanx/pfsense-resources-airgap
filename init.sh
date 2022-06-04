@@ -143,9 +143,110 @@ sleep 30;
 
 ## remove install disk from pfsense
 virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
-virsh reboot pfsense
+
+(echo open localhost 4568;
+  sleep 10;
+  echo "R";
+) | telnet
+
 
 sleep 120;
+
+
+
+root_pw=$(generate_random_pwd 31)
+
+### base64 files
+#HYPERVISOR_KEY=$(cat </tmp/pf_key | base64 | tr -d '\n\r')
+#HYPERVISOR_PUB_KEY=$(cat </tmp/pf_key.pub | base64 | tr -d '\n\r')
+OPENSTACK_ENV=$(cat </tmp/openstack-env.sh | base64 | tr -d '\n\r')
+PF_FUNCTIONS=$(cat </tmp/pf_functions.sh | base64 | tr -d '\n\r')
+PROJECT_CONFIG=$(cat </tmp/project_config.sh | base64 | tr -d '\n\r')
+PFSENSE_INIT=$(cat </tmp/pfsense-init.sh | base64 | tr -d '\n\r')
+IP_OUT=$(cat </tmp/ip_out_update | base64 | tr -d '\n\r')
+
+### pfsense prep
+#hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
+#hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
+openstack_env_array=( $(echo $OPENSTACK_ENV | fold -c250 ))
+pf_functions_array=( $(echo $PF_FUNCTIONS | fold -c250 ))
+project_config_array=( $(echo $PROJECT_CONFIG | fold -c250 ))
+pfsense_init_array=( $(echo $PFSENSE_INIT | fold -c250 ))
+ip_out_array=( $(echo $IP_OUT | fold -c250 ))
+
+(echo open 127.0.0.1 4568;
+  sleep 120;
+#  echo "mkdir /root/.ssh";
+#  sleep 20;
+#  echo "touch /root/.ssh/id_rsa; touch /root/.ssh/id_rsa.pub; touch /root/.ssh/id_rsa.pub.enc; touch /root/.ssh/id_rsa.enc;";
+#  sleep 10;
+#  for element in "${hypervisor_pub_array[@]}"
+#  do
+#    echo "echo '$element' >> /root/.ssh/id_rsa.pub.enc";
+#    sleep 5;
+#  done
+#  for element in "${hypervisor_key_array[@]}"
+#  do
+#    echo "echo '$element' >> /root/.ssh/id_rsa.enc";
+#    sleep 5;
+#  done
+#  echo "openssl base64 -d -in /root/.ssh/id_rsa.pub.enc -out /root/.ssh/id_rsa.pub;";
+#  sleep 10;
+#  echo "openssl base64 -d -in /root/.ssh/id_rsa.enc -out /root/.ssh/id_rsa;";
+#  sleep 10;
+#  echo "chmod 600 /root/.ssh/*";
+#  sleep 10;
+#  echo "ssh-keyscan -H $LAN_CENTOS_IP >> ~/.ssh/known_hosts;";
+#  sleep 30;
+
+  echo "touch /root/openstack-env.sh; touch /root/openstack-env.sh.enc;";
+  sleep 10;
+  for element in "${openstack_env_array[@]}"
+  do
+    echo "echo '$element' >> /root/openstack-env.sh.enc";
+    sleep 5;
+  done
+  echo "openssl base64 -d -in /root/openstack-env.sh.enc -out /root/openstack-env.sh;";
+  sleep 10;
+
+  echo "touch /root/pf_functions.sh; touch /root/pf_functions.sh.enc;";
+  sleep 10;
+  for element in "${pf_functions_array[@]}"
+  do
+    echo "echo '$element' >> /root/pf_functions.sh.enc";
+    sleep 5;
+  done
+  echo "openssl base64 -d -in /root/pf_functions.sh.enc -out /root/pf_functions.sh;";
+  sleep 10;
+
+  echo "touch /root/project_config.sh; touch /root/project_config.sh.enc;";
+  sleep 10;
+  for element in "${project_config_array[@]}"
+  do
+    echo "echo '$element' >> /root/project_config.sh.enc";
+    sleep 5;
+  done
+  echo "openssl base64 -d -in /root/project_config.sh.enc -out /root/project_config.sh;";
+  sleep 10;
+
+  echo "touch /root/pfsense-init.sh; touch /root/pfsense-init.sh.enc;";
+  sleep 10;
+  for element in "${pfsense_init_array[@]}"
+  do
+    echo "echo '$element' >> /root/pfsense-init.sh.enc";
+    sleep 5;
+  done
+  echo "openssl base64 -d -in /root/pfsense-init.sh.enc -out /root/pfsense-init.sh;";
+  sleep 10;
+  echo "rm -rf /root/*.enc";
+  sleep 10;
+
+  echo "chmod 777 /root/*.sh"
+  sleep 10;
+  echo "reboot"
+) | telnet
+
+
 
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
