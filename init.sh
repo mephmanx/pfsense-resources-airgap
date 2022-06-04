@@ -143,12 +143,7 @@ sleep 30;
 
 ## remove install disk from pfsense
 virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
-
-(echo open localhost 4568;
-  sleep 10;
-  echo "R";
-) | telnet
-
+virsh reboot pfsense
 
 sleep 120;
 
