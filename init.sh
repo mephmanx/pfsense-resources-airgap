@@ -154,7 +154,7 @@ sleep 30;
   sleep 10;
   echo 'mount -u -o rw /'
   sleep 10;
-  echo "touch /mtn/root/openstack-env.sh; touch /mnt/root/openstack-env.sh.enc;";
+  echo "touch /mnt/root/openstack-env.sh; touch /mnt/root/openstack-env.sh.enc;";
   sleep 10;
   for element in "${openstack_env_array[@]}"
   do
