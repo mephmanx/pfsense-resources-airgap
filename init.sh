@@ -151,51 +151,54 @@ sleep 30;
   echo 'N';
   sleep 5;
   echo 'S';
-  echo "touch /root/openstack-env.sh; touch /root/openstack-env.sh.enc;";
+  sleep 10;
+  echo 'mount -u -o rw /'
+  sleep 10;
+  echo "touch /mtn/root/openstack-env.sh; touch /mnt/root/openstack-env.sh.enc;";
   sleep 10;
   for element in "${openstack_env_array[@]}"
   do
-    echo "echo '$element' >> /root/openstack-env.sh.enc";
+    echo "echo '$element' >> /mnt/root/openstack-env.sh.enc";
     sleep 5;
   done
-  echo "openssl base64 -d -in /root/openstack-env.sh.enc -out /root/openstack-env.sh;";
+  echo "openssl base64 -d -in /mnt/root/openstack-env.sh.enc -out /mnt/root/openstack-env.sh;";
   sleep 10;
 
-  echo "touch /root/pf_functions.sh; touch /root/pf_functions.sh.enc;";
+  echo "touch /mnt/root/pf_functions.sh; touch /mnt/root/pf_functions.sh.enc;";
   sleep 10;
   for element in "${pf_functions_array[@]}"
   do
-    echo "echo '$element' >> /root/pf_functions.sh.enc";
+    echo "echo '$element' >> /mnt/root/pf_functions.sh.enc";
     sleep 5;
   done
-  echo "openssl base64 -d -in /root/pf_functions.sh.enc -out /root/pf_functions.sh;";
+  echo "openssl base64 -d -in /mnt/root/pf_functions.sh.enc -out /mnt/root/pf_functions.sh;";
   sleep 10;
 
-  echo "touch /root/project_config.sh; touch /root/project_config.sh.enc;";
+  echo "touch /mnt/root/project_config.sh; touch /mnt/root/project_config.sh.enc;";
   sleep 10;
   for element in "${project_config_array[@]}"
   do
-    echo "echo '$element' >> /root/project_config.sh.enc";
+    echo "echo '$element' >> /mnt/root/project_config.sh.enc";
     sleep 5;
   done
-  echo "openssl base64 -d -in /root/project_config.sh.enc -out /root/project_config.sh;";
+  echo "openssl base64 -d -in /mnt/root/project_config.sh.enc -out /mnt/root/project_config.sh;";
   sleep 10;
 
-  echo "touch /root/pfsense-init.sh; touch /root/pfsense-init.sh.enc;";
+  echo "touch /mnt/root/pfsense-init.sh; touch /mnt/root/pfsense-init.sh.enc;";
   sleep 10;
   for element in "${pfsense_init_array[@]}"
   do
-    echo "echo '$element' >> /root/pfsense-init.sh.enc";
+    echo "echo '$element' >> /mnt/root/pfsense-init.sh.enc";
     sleep 5;
   done
-  echo "openssl base64 -d -in /root/pfsense-init.sh.enc -out /root/pfsense-init.sh;";
+  echo "openssl base64 -d -in /mnt/root/pfsense-init.sh.enc -out /mnt/root/pfsense-init.sh;";
   sleep 10;
-  echo "rm -rf /root/*.enc";
+  echo "rm -rf /mnt/root/*.enc";
   sleep 10;
 
-  echo "chmod 777 /root/*.sh"
+  echo "chmod 777 /mnt/root/*.sh"
   sleep 10;
-#  echo "reboot"
+  echo "reboot"
 ) | telnet
 
 ## remove install disk from pfsense
