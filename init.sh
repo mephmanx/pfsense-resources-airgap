@@ -198,17 +198,17 @@ sleep 30;
 
   echo "chmod 777 /mnt/root/*.sh"
   sleep 10;
-  echo "reboot"
+#  echo "reboot"
 ) | telnet
 
 ## remove install disk from pfsense
-#virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
-#virsh reboot pfsense
+virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+virsh reboot pfsense
 
-#sleep 120;
+sleep 120;
 
 ### cleanup
-#runuser -l root -c  "rm -rf /temp/usb"
+runuser -l root -c  "rm -rf /temp/usb"
 #####
 
 #virsh destroy pfsense
