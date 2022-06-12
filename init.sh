@@ -101,7 +101,7 @@ create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
 create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
 create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
-create_line+="--network network=default --network type=direct,source=enp4s0f1,model=virtio,source_mode=bridge --network network=default "
+create_line+="--network --network type=direct,source=enp4s0f0,model=virtio,source_mode=bridge --network type=direct,source=enp4s0f1,model=virtio,source_mode=bridge --network network=default "
 create_line+="--os-variant=freebsd12.0 "
 create_line+="--graphics=vnc "
 
