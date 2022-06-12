@@ -22,6 +22,11 @@ rm -rf /temp/usb/config.xml
 cp /openstack-pfsense.xml /temp/usb
 mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 
+cp /tmp/openstack-env.sh /temp/usb/
+cp /tmp/openstack-scripts/pf_functions.sh /temp/usb/
+cp /tmp/project_config.sh /temp/usb/
+cp /tmp/openstack-scripts/pfsense-init.sh /temp/usb/
+
 ## generate OpenVPN TLS secret key
 runuser -l root -c  'openvpn --genkey --secret /temp/openvpn-secret.key'
 
@@ -82,10 +87,7 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
-cp /tmp/* /temp/usb
-
 runuser -l root -c  'umount /temp/usb'
-ls -al /temp/usb
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp
 #start pfsense vm to gather packages to build offline resources
@@ -155,50 +157,20 @@ sleep 30;
   sleep 5;
   echo 'S';
   sleep 10;
-  echo 'mount -u -o rw /'
+  echo 'mount -u -o rw /';
   sleep 10;
-  echo "touch /mnt/root/openstack-env.sh; touch /mnt/root/openstack-env.sh.enc;";
+  echo 'mkdir /tmp/test-mnt';
   sleep 10;
-  for element in "${openstack_env_array[@]}"
-  do
-    echo "echo '$element' >> /mnt/root/openstack-env.sh.enc";
-    sleep 5;
-  done
-  echo "openssl base64 -d -in /mnt/root/openstack-env.sh.enc -out /mnt/root/openstack-env.sh;";
+  echo 'mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt';
   sleep 10;
-
-  echo "touch /mnt/root/pf_functions.sh; touch /mnt/root/pf_functions.sh.enc;";
+  echo 'cp /tmp/test-mnt/openstack-env.sh /mnt/root/openstack-env.sh';
   sleep 10;
-  for element in "${pf_functions_array[@]}"
-  do
-    echo "echo '$element' >> /mnt/root/pf_functions.sh.enc";
-    sleep 5;
-  done
-  echo "openssl base64 -d -in /mnt/root/pf_functions.sh.enc -out /mnt/root/pf_functions.sh;";
+  echo 'cp /tmp/test-mnt/pf_functions.sh /mnt/root/pf_functions.sh';
   sleep 10;
-
-  echo "touch /mnt/root/project_config.sh; touch /mnt/root/project_config.sh.enc;";
+  echo 'cp /tmp/test-mnt/project_config.sh /mnt/root/project_config.sh';
   sleep 10;
-  for element in "${project_config_array[@]}"
-  do
-    echo "echo '$element' >> /mnt/root/project_config.sh.enc";
-    sleep 5;
-  done
-  echo "openssl base64 -d -in /mnt/root/project_config.sh.enc -out /mnt/root/project_config.sh;";
+  echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
   sleep 10;
-
-  echo "touch /mnt/root/pfsense-init.sh; touch /mnt/root/pfsense-init.sh.enc;";
-  sleep 10;
-  for element in "${pfsense_init_array[@]}"
-  do
-    echo "echo '$element' >> /mnt/root/pfsense-init.sh.enc";
-    sleep 5;
-  done
-  echo "openssl base64 -d -in /mnt/root/pfsense-init.sh.enc -out /mnt/root/pfsense-init.sh;";
-  sleep 10;
-  echo "rm -rf /mnt/root/*.enc";
-  sleep 10;
-
   echo "chmod 777 /mnt/root/*.sh"
   sleep 10;
 ) | telnet
