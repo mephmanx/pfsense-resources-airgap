@@ -196,7 +196,7 @@
             <enable></enable>
             <if>vtnet1</if>
             <descr><![CDATA[LAN]]></descr>
-            <ipaddr>{GATEWAY_ROUTER_IP}</ipaddr>
+            <ipaddr>dhcp</ipaddr>
             <subnet>24</subnet>
             <spoofmac></spoofmac>
             <gateway></gateway>
