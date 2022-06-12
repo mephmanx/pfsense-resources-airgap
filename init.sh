@@ -82,6 +82,8 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
+cp /tmp/* /temp/usb
+
 runuser -l root -c  'umount /temp/usb'
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp
