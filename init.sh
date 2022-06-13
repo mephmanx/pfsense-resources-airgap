@@ -169,7 +169,7 @@ sleep 30;
   sleep 10;
   echo "cd /mnt/root";
   sleep 5;
-  echo "./pfsense.sh";
+  echo "./init.sh";
   sleep 10;
 ) | telnet
 
