@@ -31,7 +31,7 @@ cp /openstack-pfsense.xml /temp/usb
 mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 
 cp /tmp/openstack-env.sh /temp/usb/
-cp /pf_functions.sh /temp/usb/
+cp /pf-functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
 cp /temp/init.sh /temp/usb/
 
@@ -159,7 +159,7 @@ sleep 30;
   sleep 10;
   echo 'cp /tmp/test-mnt/openstack-env.sh /mnt/root/openstack-env.sh';
   sleep 10;
-  echo 'cp /tmp/test-mnt/pf_functions.sh /mnt/root/pf_functions.sh';
+  echo 'cp /tmp/test-mnt/pf-functions.sh /mnt/root/pf_functions.sh';
   sleep 10;
   echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
   sleep 10;
