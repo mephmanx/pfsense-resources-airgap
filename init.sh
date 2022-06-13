@@ -16,7 +16,6 @@ startsector=$(file /temp/pfSense-CE-memstick-ADI.img | sed -n -e 's/.* startsect
 offset=$(($startsector * 512))
 
 ### initial cfg script
-#perl -pi.back -e "s/{CACHE_SIZE}/$DRIVE_SIZE/g;" /mnt/cf/conf/config.xml
 cat > /temp/init.sh <<EOF
 DRIVE_KB=\`geom disk list | grep Mediasize | sed 1d | awk '{ print \$2 }'\`
 DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
