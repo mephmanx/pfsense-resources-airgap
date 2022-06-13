@@ -116,20 +116,6 @@ create_line+="--autostart --wait 0"
 
 eval "$create_line"
 
-### base64 files
-OPENSTACK_ENV=$(cat </tmp/openstack-env.sh | base64 | tr -d '\n\r')
-PF_FUNCTIONS=$(cat </tmp/pf_functions.sh | base64 | tr -d '\n\r')
-PROJECT_CONFIG=$(cat </tmp/project_config.sh | base64 | tr -d '\n\r')
-PFSENSE_INIT=$(cat </tmp/pfsense-init.sh | base64 | tr -d '\n\r')
-IP_OUT=$(cat </tmp/ip_out_update | base64 | tr -d '\n\r')
-
-### pfsense prep
-openstack_env_array=( $(echo $OPENSTACK_ENV | fold -c250 ))
-pf_functions_array=( $(echo $PF_FUNCTIONS | fold -c250 ))
-project_config_array=( $(echo $PROJECT_CONFIG | fold -c250 ))
-pfsense_init_array=( $(echo $PFSENSE_INIT | fold -c250 ))
-ip_out_array=( $(echo $IP_OUT | fold -c250 ))
-
 sleep 30;
 (echo open localhost 4568;
   sleep 60;
@@ -178,8 +164,6 @@ sleep 30;
 ## remove install disk from pfsense
 #virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
 #virsh reboot pfsense
-
-sleep 120;
 
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
