@@ -32,7 +32,7 @@ mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 
 cp /tmp/openstack-env.sh /temp/usb/
 cp /pf_functions.sh /temp/usb/
-cp pfsense-init.sh /temp/usb/
+cp /pfsense-init.sh /temp/usb/
 cp /temp/init.sh /temp/usb/
 
 ## generate OpenVPN TLS secret key
