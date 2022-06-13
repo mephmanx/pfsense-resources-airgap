@@ -16,8 +16,9 @@ COPY init.sh /
 RUN chmod 777 /init.sh
 
 COPY openstack-pfsense.xml /
+COPY pfsense-init.sh /
+COPY pf-functions.sh /
+
 RUN chmod 777 openstack-pfsense.xml
-
-
 
 ENTRYPOINT ["./init.sh"]

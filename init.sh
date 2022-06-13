@@ -31,9 +31,8 @@ cp /openstack-pfsense.xml /temp/usb
 mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 
 cp /tmp/openstack-env.sh /temp/usb/
-cp /tmp/openstack-scripts/pf_functions.sh /temp/usb/
-cp /tmp/project_config.sh /temp/usb/
-cp /tmp/openstack-scripts/pfsense-init.sh /temp/usb/
+cp /pf_functions.sh /temp/usb/
+cp pfsense-init.sh /temp/usb/
 cp /temp/init.sh /temp/usb/
 
 ## generate OpenVPN TLS secret key
@@ -161,8 +160,6 @@ sleep 30;
   echo 'cp /tmp/test-mnt/openstack-env.sh /mnt/root/openstack-env.sh';
   sleep 10;
   echo 'cp /tmp/test-mnt/pf_functions.sh /mnt/root/pf_functions.sh';
-  sleep 10;
-  echo 'cp /tmp/test-mnt/project_config.sh /mnt/root/project_config.sh';
   sleep 10;
   echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
   sleep 10;
