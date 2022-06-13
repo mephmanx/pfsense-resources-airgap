@@ -15,6 +15,14 @@ gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 startsector=$(file /temp/pfSense-CE-memstick-ADI.img | sed -n -e 's/.* startsector *\([0-9]*\),.*/\1/p')
 offset=$(($startsector * 512))
 
+### initial cfg script
+cat > /temp/init.sh <<EOF
+DRIVE_KB=`geom disk list | grep Mediasize | sed 1d | awk '{ print $2 }'`
+DRIVE_SIZE=$((DRIVE_KB / 1024 / 1024 * 75/100))
+
+perl -pi.back -e "s/{CACHE_SIZE}/$DRIVE_SIZE/g;" /mnt/cf/conf/config.xml
+EOF
+
 rm -rf /temp/usb
 mkdir /temp/usb
 runuser -l root -c  "mount -o loop,offset=$offset /temp/pfSense-CE-memstick-ADI.img /temp/usb"
@@ -26,6 +34,7 @@ cp /tmp/openstack-env.sh /temp/usb/
 cp /tmp/openstack-scripts/pf_functions.sh /temp/usb/
 cp /tmp/project_config.sh /temp/usb/
 cp /tmp/openstack-scripts/pfsense-init.sh /temp/usb/
+cp /temp/init.sh /temp/usb/
 
 ## generate OpenVPN TLS secret key
 runuser -l root -c  'openvpn --genkey --secret /temp/openvpn-secret.key'
@@ -156,6 +165,8 @@ sleep 30;
   echo 'cp /tmp/test-mnt/project_config.sh /mnt/root/project_config.sh';
   sleep 10;
   echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
+  sleep 10;
+  echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
   sleep 10;
   echo "chmod 777 /mnt/root/*.sh"
   sleep 10;
