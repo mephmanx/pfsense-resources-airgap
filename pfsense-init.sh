@@ -10,14 +10,14 @@ exec 1>/root/init-install.log 2>&1 # send stdout and stderr from rc.local to a l
 IP_DATA=$(ifconfig vtnet0 | grep inet | awk -F' ' '{ print $2 }' | head -2 | tail -1)
 telegram_notify  "PFSense initialization script beginning... \n\nCloud DMZ IP: $IP_DATA"
 ####  initial actions
-install_pkg "pfsense-pkg-squid"
-install_pkg "pfsense-pkg-haproxy-devel"
-install_pkg "pfsense-pkg-openvpn-client-export"
-install_pkg "pfsense-pkg-pfBlockerNG-devel"
-install_pkg "pfsense-pkg-snort"
-install_pkg "pfsense-pkg-cron"
-install_pkg "pfsense-pkg-Telegraf"
-install_pkg "qemu-guest-agent"
+#install_pkg "pfsense-pkg-squid"
+#install_pkg "pfsense-pkg-haproxy-devel"
+#install_pkg "pfsense-pkg-openvpn-client-export"
+#install_pkg "pfsense-pkg-pfBlockerNG-devel"
+#install_pkg "pfsense-pkg-snort"
+#install_pkg "pfsense-pkg-cron"
+#install_pkg "pfsense-pkg-Telegraf"
+#install_pkg "qemu-guest-agent"
 
 rm -rf /root/pfsense-init.sh
 telegram_notify  "PFSense init: init complete!"
