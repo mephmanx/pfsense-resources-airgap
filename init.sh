@@ -11,12 +11,12 @@ rm -rf /tmp/pfSense-CE-memstick-ADI.img
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
+mkdir /temp/usb
 dd if=/dev/zero bs=1M count=400 >> /temp/pfSense-CE-memstick-ADI.img
-parted /temp/pfSense-CE-memstick-ADI.img resizepart 3 1300M
-
-## watch this logic on update and make sure it gets the last fat32 partition
-startsector=$(file /temp/pfSense-CE-memstick-ADI.img | sed -n -e 's/.* startsector *\([0-9]*\),.*/\1/p')
-offset=$(($startsector * 512))
+parted /temp/pfSense-CE-memstick-ADI.img resizepart 3 1300MB
+loop_Device=$(sudo losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
+sudo mkfs -t vfat "$loop_Device"p3
+mount "$loop_Device"p3 /temp/usb
 
 ### initial cfg script
 cat > /temp/init.sh <<EOF
@@ -25,10 +25,6 @@ DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
 
 sed -i -e 's/{CACHE_SIZE}/'\$DRIVE_SIZE'/g' /mnt/cf/conf/config.xml
 EOF
-
-rm -rf /temp/usb
-mkdir /temp/usb
-runuser -l root -c  "mount -o loop,offset=$offset /temp/pfSense-CE-memstick-ADI.img /temp/usb"
 
 cp /tmp/openstack-env.sh /temp/usb/
 rm -rf /temp/usb/config.xml
