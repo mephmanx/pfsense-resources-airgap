@@ -7,12 +7,15 @@ source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/project_config.sh
 source /tmp/openstack-env.sh
 
-rm -rf /tmp/pfSense-CE-memstick-ADI.img
-gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
+rm -rf /tmp/pfSense-CE-memstick-serial.img
+gunzip -f /temp/pfSense-CE-memstick-serial.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
+dd if=/dev/zero bs=1M count=400 >> /temp/pfSense-CE-memstick-serial.img
+parted /temp/pfSense-CE-memstick-serial.img resizepart 3 1300M
+
 ## watch this logic on update and make sure it gets the last fat32 partition
-startsector=$(file /temp/pfSense-CE-memstick-ADI.img | sed -n -e 's/.* startsector *\([0-9]*\),.*/\1/p')
+startsector=$(file /temp/pfSense-CE-memstick-serial.img | sed -n -e 's/.* startsector *\([0-9]*\),.*/\1/p')
 offset=$(($startsector * 512))
 
 ### initial cfg script
@@ -25,7 +28,7 @@ EOF
 
 rm -rf /temp/usb
 mkdir /temp/usb
-runuser -l root -c  "mount -o loop,offset=$offset /temp/pfSense-CE-memstick-ADI.img /temp/usb"
+runuser -l root -c  "mount -o loop,offset=$offset /temp/pfSense-CE-memstick-serial.img /temp/usb"
 
 cp /tmp/openstack-env.sh /temp/usb/
 rm -rf /temp/usb/config.xml
@@ -99,7 +102,7 @@ sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 
 runuser -l root -c  'umount /temp/usb'
 
-cp /temp/pfSense-CE-memstick-ADI.img /tmp
+cp /temp/pfSense-CE-memstick-serial.img /tmp
 #start pfsense vm to gather packages to build offline resources
 
 create_line="virt-install "
@@ -110,7 +113,7 @@ create_line+="--memory=1000 "
 create_line+="--cpu=host-passthrough,cache.mode=passthrough "
 create_line+="--vcpus=8 "
 create_line+="--boot hd,menu=off,useserial=off "
-create_line+="--disk /tmp/pfSense-CE-memstick-ADI.img "
+create_line+="--disk /tmp/pfSense-CE-memstick-serial.img "
 create_line+="--disk pool=default,size=40,bus=virtio,sparse=no "
 create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
@@ -173,11 +176,10 @@ sleep 30;
   sleep 5;
   echo "./init.sh";
   sleep 10;
-
 ) | telnet
 
 ## remove install disk from pfsense
-#virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+#virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-serial.img --persistent --config --live
 #virsh reboot pfsense
 
 ### cleanup
