@@ -9,7 +9,7 @@ RUN yum install -y wget telnet setroubleshoot setools
 
 ARG PFSENSE_VERSION
 ENV PF_VER=${PFSENSE_VERSION}
-RUN wget -O /temp/pfSense-CE-memstick-serial.img.gz https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-memstick-serial-"$PF_VER"-RELEASE-amd64.img.gz
+RUN wget -O /temp/pfSense-CE-memstick-ADI.img.gz https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-memstick-ADI-"$PF_VER"-RELEASE-amd64.img.gz
 
 WORKDIR /
 COPY init.sh /
