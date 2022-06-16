@@ -14,7 +14,7 @@ gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 mkdir /temp/usb
 dd if=/dev/zero bs=1M count=400 >> /temp/pfSense-CE-memstick-ADI.img
 parted /temp/pfSense-CE-memstick-ADI.img resizepart 3 1300MB
-loop_Device=$(sudo losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
+loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
