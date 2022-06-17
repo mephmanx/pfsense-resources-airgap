@@ -130,8 +130,8 @@ cmdExtract=""
 cmdCopy=""
 if [ 'prod' == $1 ]; then
   cmd="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf;"
-  cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/var/cache/pkg"
-  cmdExtract="tar xf /mnt/var/cache/pkg/repo.tar -C /mnt/var/cache/pkg"
+  cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/usr/local/share/pfSense"
+  cmdExtract="tar xf /mnt/usr/local/share/pfSense/repo.tar -C /mnt/usr/local/share/pfSense"
 fi
 
 sleep 30;
@@ -189,6 +189,7 @@ sleep 30;
   sleep 10;
 ) | telnet
 
+virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
 #####
@@ -196,7 +197,6 @@ runuser -l root -c  "rm -rf /temp/usb"
 if [ 'dev' == $1 ]; then
 
   ## remove install disk from pfsense
-  virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
   virsh destroy pfsense
   sleep 20;
   virsh start pfsense
