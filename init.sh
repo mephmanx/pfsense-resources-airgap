@@ -233,6 +233,7 @@ if [ 'dev' == $1 ]; then
     echo "ssh-keyscan -H $3 >> ~/.ssh/known_hosts;";
     sleep 10;
     echo "scp -B repo.tar $2@$3:/tmp"
+    sleep 60;
   ) | telnet
 
 fi
