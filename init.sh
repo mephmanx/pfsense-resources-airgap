@@ -198,7 +198,7 @@ hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
 hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
 ## arg $2 is buildserver scp user, $3 is ip
 
-if [ 'dev' == $3 ]; then
+if [ 'dev' == $1 ]; then
 
   sleep 6000;
   (echo open localhost 4568;
