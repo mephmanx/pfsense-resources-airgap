@@ -42,6 +42,10 @@ cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
+if [ 'prod' == $1 ]; then
+  cp /tmp/repo.zip /temp/usb/
+fi
+
 ## move generated file above to disk
 cp /temp/init.sh /temp/usb/
 
