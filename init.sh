@@ -200,7 +200,7 @@ hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
 
 if [ 'dev' == $1 ]; then
 
-  sleep 6000;
+  sleep 400;
   (echo open localhost 4568;
     sleep 30;
     echo 'cd /var/cache/pkg';
