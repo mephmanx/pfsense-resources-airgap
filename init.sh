@@ -19,6 +19,7 @@ mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
 ### initial cfg script
+##  This runs after install but before first reboot
 cat > /temp/init.sh <<EOF
 DRIVE_KB=\`geom disk list | grep Mediasize | sed 1d | awk '{ print \$2 }'\`
 DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
@@ -184,15 +185,15 @@ virsh start pfsense
 runuser -l root -c  "rm -rf /temp/usb"
 #####
 
-### base64 files
-HYPERVISOR_KEY=`cat /root/.ssh/id_rsa | base64 | tr -d '\n\r'`
-HYPERVISOR_PUB_KEY=`cat /root/.ssh/id_rsa.pub | base64 | tr -d '\n\r'`
-
-hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
-hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
-## arg $2 is buildserver scp user, $3 is ip
-
 if [ 'dev' == $1 ]; then
+
+  ### base64 files
+  HYPERVISOR_KEY=`cat /root/.ssh/id_rsa | base64 | tr -d '\n\r'`
+  HYPERVISOR_PUB_KEY=`cat /root/.ssh/id_rsa.pub | base64 | tr -d '\n\r'`
+
+  hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
+  hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
+  ## arg $2 is buildserver scp user, $3 is ip
 
   sleep 400;
   (echo open localhost 4568;
@@ -228,5 +229,5 @@ if [ 'dev' == $1 ]; then
 
 fi
 
-#virsh destroy pfsense
-#virsh undefine --domain pfsense --remove-all-storage
+virsh destroy pfsense
+virsh undefine --domain pfsense --remove-all-storage
