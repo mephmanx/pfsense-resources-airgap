@@ -189,17 +189,17 @@ sleep 30;
   sleep 10;
 ) | telnet
 
-## remove install disk from pfsense
-virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
-virsh destroy pfsense
-sleep 20;
-virsh start pfsense
-
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
 #####
 
 if [ 'dev' == $1 ]; then
+
+  ## remove install disk from pfsense
+  virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+  virsh destroy pfsense
+  sleep 20;
+  virsh start pfsense
 
   ### base64 files
   HYPERVISOR_KEY=`cat /root/.ssh/id_rsa | base64 | tr -d '\n\r'`
@@ -244,5 +244,5 @@ if [ 'dev' == $1 ]; then
 
 fi
 
-virsh destroy pfsense
-virsh undefine --domain pfsense --remove-all-storage
+#virsh destroy pfsense
+#virsh undefine --domain pfsense --remove-all-storage
