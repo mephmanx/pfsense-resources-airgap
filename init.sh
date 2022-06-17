@@ -131,7 +131,7 @@ cmdCopy=""
 if [ 'prod' == $1 ]; then
   cmd="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf;"
   cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/usr/local/share/pfSense"
-  cmdExtract="tar xf /mnt/usr/local/share/pfSense/repo.tar -C /mnt/usr/local/share/pfSense"
+  cmdExtract="tar xf /mnt/usr/local/share/pfSense/repo.tar -C /mnt/usr/local/share/pfSense/pkg"
 fi
 
 sleep 30;
