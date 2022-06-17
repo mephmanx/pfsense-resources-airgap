@@ -874,7 +874,7 @@
             <local_port>1195</local_port>
             <description><![CDATA[cloud vpn]]></description>
             <custom_options></custom_options>
-            <tls>{OPEN_VPN_TLS_KEY}</tls>
+            <tls></tls>
             <tls_type>auth</tls_type>
             <tlsauth_keydir>default</tlsauth_keydir>
             <caref>60ed826b68fa7</caref>

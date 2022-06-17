@@ -25,17 +25,10 @@ DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
 HOSTNAME_SUFFIX=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 5 ; echo);
 RANDOM_PWD=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 31 ; echo);
 HOSTNAME="$ORGANIZATION-\$HOSTNAME_SUFFIX"
-yes | pkg install pfsense-pkg-openvpn-client-export
-openvpn --genkey secret /tmp/openvpn-secret.key
-b64encode -o /tmp/ovpn.b64 /tmp/openvpn-secret.key rem
-sed -i -e '1d' /tmp/ovpn.b64
-sed -i -e '$d' /tmp/ovpn.b64
-OPEN_VPN_TLS_KEY=\$(cat </tmp/ovpn.b64 | tr -d '\n\r')
 
 sed -i -e 's/{CACHE_SIZE}/'\$DRIVE_SIZE'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{HOSTNAME}/'\$HOSTNAME'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
-sed -i -e 's/{OPEN_VPN_TLS_KEY}/'\$OPEN_VPN_TLS_KEY'/g' /mnt/cf/conf/config.xml
 EOF
 
 cp /tmp/openstack-env.sh /temp/usb/
