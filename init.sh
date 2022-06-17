@@ -25,7 +25,7 @@ DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
 HOSTNAME_SUFFIX=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 5 ; echo);
 RANDOM_PWD=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 31 ; echo);
 HOSTNAME="$ORGANIZATION-\$HOSTNAME_SUFFIX"
-yes | pkg install openvpn
+yes | pkg install pfsense-pkg-openvpn-client-export
 openvpn --genkey secret /tmp/openvpn-secret.key
 b64encode -o /tmp/ovpn.b64 /tmp/openvpn-secret.key rem
 sed -i -e '1d' /tmp/ovpn.b64
