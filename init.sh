@@ -40,8 +40,10 @@ mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 
 cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
+cp /pfSense-repo.conf /temp/usb/
+
+## move generated file above to disk
 cp /temp/init.sh /temp/usb/
-cp /temp/pfSense-repo.conf /temp/usb/
 
 ### replace variables
 ## load generated cert variables
