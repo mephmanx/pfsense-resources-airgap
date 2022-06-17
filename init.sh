@@ -120,8 +120,12 @@ eval "$create_line"
 
 ## arg $1 is build repo cache or build prod image
 cmd=""
+cmdExtract=""
+cmdCopy=""
 if [ 'prod' == $1 ]; then
-  cmd="yes | cp /mnt/root/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf"
+  cmd="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf"
+  cmdCopy="cp /tmp/test-mnt/repo.tar /var/cache/pkg"
+  cmdExtract="tar xf /var/cache/pkg/repo.tar -C /var/cache/pkg"
 fi
 
 sleep 30;
@@ -165,7 +169,11 @@ sleep 30;
   sleep 10;
   echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
   sleep 10;
-  echo "$cmd"
+  echo "$cmd";
+  sleep 10;
+  echo "$cmdCopy";
+  sleep 10;
+  echo "$cmdExtract";
   sleep 10;
   echo "chmod 777 /mnt/root/*.sh"
   sleep 10;
