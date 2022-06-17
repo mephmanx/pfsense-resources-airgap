@@ -22,8 +22,19 @@ mount "$loop_Device"p3 /temp/usb
 cat > /temp/init.sh <<EOF
 DRIVE_KB=\`geom disk list | grep Mediasize | sed 1d | awk '{ print \$2 }'\`
 DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
+HOSTNAME_SUFFIX=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 5 ; echo);
+RANDOM_PWD=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 31 ; echo);
+HOSTNAME="$ORGANIZATION-\$HOSTNAME_SUFFIX"
+openvpn --genkey secret /tmp/openvpn-secret.key
+b64encode -o /tmp/ovpn.b64 /tmp/openvpn-secret.key rem
+sed -i -e '1d' /tmp/ovpn.b64
+sed -i -e '$d' /tmp/ovpn.b64
+OPEN_VPN_TLS_KEY=\$(cat </tmp/ovpn.b64 | tr -d '\n\r')
 
 sed -i -e 's/{CACHE_SIZE}/'\$DRIVE_SIZE'/g' /mnt/cf/conf/config.xml
+sed -i -e 's/{HOSTNAME}/\$HOSTNAME/g' /mnt/cf/conf/config.xml
+sed -i -e 's/{OPENVPN_CERT_PWD}/\$RANDOM_PWD/g' /mnt/cf/conf/config.xml
+sed -i -e 's/{OPEN_VPN_TLS_KEY}/\$OPEN_VPN_TLS_KEY/g' /mnt/cf/conf/config.xml
 EOF
 
 cp /tmp/openstack-env.sh /temp/usb/
@@ -35,9 +46,7 @@ mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
 cp /temp/init.sh /temp/usb/
-
-## generate OpenVPN TLS secret key
-runuser -l root -c  'openvpn --genkey --secret /temp/openvpn-secret.key'
+cp /temp/pfSense-repo.conf /temp/usb/
 
 ### replace variables
 ## load generated cert variables
@@ -46,8 +55,6 @@ CA_CRT=$(cat </tmp/id_rsa.crt | base64 | tr -d '\n\r')
 
 INITIAL_WILDCARD_CRT=$(cat </tmp/wildcard.crt | base64 | tr -d '\n\r')
 INITIAL_WILDCARD_KEY=$(cat </tmp/wildcard.key | base64 | tr -d '\n\r')
-
-OPEN_VPN_TLS_KEY=$(cat </temp/openvpn-secret.key | base64 | tr -d '\n\r')
 #########
 
 ### cloudfoundry TCP ports
@@ -57,14 +64,7 @@ CF_TCP_END_PORT=$((CF_TCP_START_PORT + CF_TCP_PORT_COUNT))
 #### backend to change host header from whatever it comes in as to internal domain
 ADVANCED_BACKEND=$(echo "http-request replace-value Host ^(.*)(\.[^\.]+){2}$ \1.$INTERNAL_DOMAIN_NAME" | base64 | tr -d '\n\r')
 
-## generate random hostname suffix so that if multiple instances are run on the same network there are no issues
-HOWLONG=5 ## the number of characters
-HOSTNAME_SUFFIX=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c100 | head -c$((20+(RANDOM%20))) | tail -c$((20+(RANDOM%20))) | head -c${HOWLONG});
-HOSTNAME="$ORGANIZATION-$HOSTNAME_SUFFIX"
-###
-
 ##### replace PFSense template vars
-sed -i "s/{HOSTNAME}/$HOSTNAME/g" /temp/usb/config.xml
 sed -i "s/{CF_TCP_START_PORT}/$CF_TCP_START_PORT/g" /temp/usb/config.xml
 sed -i "s/{CF_TCP_END_PORT}/$CF_TCP_END_PORT/g" /temp/usb/config.xml
 sed -i "s/{INTERNAL_VIP}/$INTERNAL_VIP/g" /temp/usb/config.xml
@@ -75,7 +75,6 @@ sed -i "s/{GATEWAY_ROUTER_DHCP_START}/$GATEWAY_ROUTER_DHCP_START/g" /temp/usb/co
 sed -i "s/{GATEWAY_ROUTER_DHCP_END}/$GATEWAY_ROUTER_DHCP_END/g" /temp/usb/config.xml
 sed -i "s/{INTERNAL_DOMAIN_NAME}/$INTERNAL_DOMAIN_NAME/g" /temp/usb/config.xml
 sed -i "s/{NETWORK_PREFIX}/$NETWORK_PREFIX/g" /temp/usb/config.xml
-sed -i "s/{OPENVPN_CERT_PWD}/$(generate_random_pwd 31)/g" /temp/usb/config.xml
 sed -i "s/{TELEGRAM_API}/$TELEGRAM_API/g" /temp/usb/config.xml
 sed -i "s/{TELEGRAM_CHAT_ID}/$TELEGRAM_CHAT_ID/g" /temp/usb/config.xml
 sed -i "s/{OINKMASTER}/$OINKMASTER/g" /temp/usb/config.xml
@@ -84,7 +83,6 @@ sed -i "s/{CA_CRT}/$CA_CRT/g" /temp/usb/config.xml
 sed -i "s/{CA_KEY}/$CA_KEY/g" /temp/usb/config.xml
 sed -i "s/{INITIAL_WILDCARD_CRT}/$INITIAL_WILDCARD_CRT/g" /temp/usb/config.xml
 sed -i "s/{INITIAL_WILDCARD_KEY}/$INITIAL_WILDCARD_KEY/g" /temp/usb/config.xml
-sed -i "s/{OPEN_VPN_TLS_KEY}/$OPEN_VPN_TLS_KEY/g" /temp/usb/config.xml
 sed -i "s/{CLOUDFOUNDRY_VIP}/$CLOUDFOUNDRY_VIP/g" /temp/usb/config.xml
 sed -i "s/{IDENTITY_VIP}/$IDENTITY_VIP/g" /temp/usb/config.xml
 sed -i "s/{SUPPORT_VIP}/$SUPPORT_VIP/g" /temp/usb/config.xml
@@ -124,6 +122,12 @@ create_line+="--channel unix,target.type=virtio,target.name='org.qemu.guest_agen
 create_line+="--autostart --wait 0"
 
 eval "$create_line"
+
+## arg $1 is build repo cache or build prod image
+cmd=""
+if [ 'prod' == $1 ]; then
+  cmd="yes | cp /mnt/root/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf"
+fi
 
 sleep 30;
 (echo open localhost 4568;
@@ -166,6 +170,8 @@ sleep 30;
   sleep 10;
   echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
   sleep 10;
+  echo "$cmd"
+  sleep 10;
   echo "chmod 777 /mnt/root/*.sh"
   sleep 10;
   echo "cd /mnt/root";
@@ -175,12 +181,58 @@ sleep 30;
 ) | telnet
 
 ## remove install disk from pfsense
-#virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-serial.img --persistent --config --live
-#virsh reboot pfsense
+virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+virsh destroy pfsense
+sleep 20;
+virsh start pfsense
 
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
 #####
 
-#virsh destroy pfsense
-#virsh undefine --domain pfsense --remove-all-storage
+### base64 files
+HYPERVISOR_KEY=`cat /root/.ssh/id_rsa | base64 | tr -d '\n\r'`
+HYPERVISOR_PUB_KEY=`cat /root/.ssh/id_rsa.pub | base64 | tr -d '\n\r'`
+
+hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
+hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
+## arg $2 is buildserver scp user, $3 is ip
+
+if [ 'dev' == $3 ]; then
+
+  sleep 6000;
+  (echo open localhost 4568;
+    sleep 30;
+    echo 'cd /var/cache/pkg';
+    sleep 5;
+    echo 'tar cf repo.tar ./*';
+    sleep 10;
+    echo "mkdir /root/.ssh";
+    sleep 10;
+    echo "touch /root/.ssh/id_rsa; touch /root/.ssh/id_rsa.pub; touch /root/.ssh/id_rsa.pub.enc; touch /root/.ssh/id_rsa.enc;";
+    sleep 10;
+    for element in "${hypervisor_pub_array[@]}"
+    do
+      echo "echo '$element' >> /root/.ssh/id_rsa.pub.enc";
+      sleep 5;
+    done
+    for element in "${hypervisor_key_array[@]}"
+    do
+      echo "echo '$element' >> /root/.ssh/id_rsa.enc";
+      sleep 5;
+    done
+    echo "openssl base64 -d -in /root/.ssh/id_rsa.pub.enc -out /root/.ssh/id_rsa.pub;";
+    sleep 10;
+    echo "openssl base64 -d -in /root/.ssh/id_rsa.enc -out /root/.ssh/id_rsa;";
+    sleep 10;
+    echo "chmod 600 /root/.ssh/*";
+    sleep 10;
+    echo "ssh-keyscan -H $3 >> ~/.ssh/known_hosts;";
+    sleep 10;
+    echo "scp -B repo.tar $2@$3:/tmp"
+  ) | telnet
+
+fi
+
+virsh destroy pfsense
+virsh undefine --domain pfsense --remove-all-storage

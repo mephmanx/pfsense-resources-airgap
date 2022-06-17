@@ -18,6 +18,7 @@ RUN chmod 777 /init.sh
 COPY openstack-pfsense.xml /
 COPY pfsense-init.sh /
 COPY pf_functions.sh /
+COPY pfSense-repo.conf /
 
 RUN chmod 777 openstack-pfsense.xml
 
