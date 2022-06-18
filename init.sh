@@ -38,8 +38,9 @@ rm -rf /temp/usb/config.xml
 cp /openstack-pfsense.xml /temp/usb/
 if [ 'test' == $1 ]; then
   mv /temp/usb/openstack-pfsense-test.xml /temp/usb/config.xml
+else
+  mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 fi
-mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
 
 cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
