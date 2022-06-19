@@ -101,7 +101,7 @@ sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 
 runuser -l root -c  'umount /temp/usb'
 
-cp /temp/pfSense-CE-memstick-ADI.img /tmp
+cp /temp/pfSense-CE-memstick-ADI-$1.img /tmp
 #start pfsense vm to gather packages to build offline resources
 
 create_line="virt-install "
