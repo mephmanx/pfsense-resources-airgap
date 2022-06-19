@@ -101,7 +101,7 @@ sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 
 runuser -l root -c  'umount /temp/usb'
 
-cp /temp/pfSense-CE-memstick-ADI-$1.img /tmp
+cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-$1.img
 #start pfsense vm to gather packages to build offline resources
 
 create_line="virt-install "
@@ -112,7 +112,7 @@ create_line+="--memory=1000 "
 create_line+="--cpu=host-passthrough,cache.mode=passthrough "
 create_line+="--vcpus=8 "
 create_line+="--boot hd,menu=off,useserial=off "
-create_line+="--disk /tmp/pfSense-CE-memstick-ADI.img "
+create_line+="--disk /tmp/pfSense-CE-memstick-ADI-$1.img "
 create_line+="--disk pool=default,size=40,bus=virtio,sparse=no "
 create_line+="--connect qemu:///system "
 create_line+="--os-type=freebsd "
@@ -193,7 +193,7 @@ sleep 30;
   sleep 10;
 ) | telnet
 
-virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI.img --persistent --config --live
+virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-$1.img --persistent --config --live
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
 #####
