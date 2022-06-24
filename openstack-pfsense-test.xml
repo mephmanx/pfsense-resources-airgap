@@ -50,7 +50,6 @@
             <nodnsrebindcheck></nodnsrebindcheck>
             <loginshowhost></loginshowhost>
             <nohttpreferercheck></nohttpreferercheck>
-            <authmode>database</authmode>
             <althostnames>pfsense</althostnames>
         </webgui>
         <disablesegmentationoffloading></disablesegmentationoffloading>
