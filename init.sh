@@ -35,11 +35,10 @@ EOF
 cp /tmp/openstack-env.sh /temp/usb/
 rm -rf /temp/usb/config.xml
 
-cp /openstack-pfsense.xml /temp/usb/
 if [ 'test' == $1 ]; then
-  mv /temp/usb/openstack-pfsense-test.xml /temp/usb/config.xml
+  mv /openstack-pfsense-test.xml /temp/usb/config.xml
 else
-  mv /temp/usb/openstack-pfsense.xml /temp/usb/config.xml
+  mv /openstack-pfsense.xml /temp/usb/config.xml
 fi
 
 cp /pf_functions.sh /temp/usb/
