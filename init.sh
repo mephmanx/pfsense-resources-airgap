@@ -4,7 +4,7 @@ exec 1>/out/pfsense-build.log 2>&1
 set -x
 
 source /tmp/openstack-scripts/vm_functions.sh
-source /tmp/project_config.sh
+source /tmp/openstack-scripts/project_config.sh
 source /tmp/openstack-env.sh
 
 rm -rf /tmp/pfSense-CE-memstick-ADI.img
