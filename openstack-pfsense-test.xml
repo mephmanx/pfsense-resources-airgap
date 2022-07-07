@@ -110,7 +110,7 @@
             <alias-address></alias-address>
             <alias-subnet>32</alias-subnet>
             <spoofmac></spoofmac>
-            <ipaddr>{GATEWAY_ROUTER_IP}</ipaddr>
+            <ipaddr>dhcp</ipaddr>
             <dhcphostname></dhcphostname>
             <dhcprejectfrom></dhcprejectfrom>
             <adv_dhcp_pt_timeout></adv_dhcp_pt_timeout>
@@ -132,7 +132,7 @@
             <enable></enable>
             <if>vtnet1</if>
             <descr><![CDATA[LAN]]></descr>
-            <ipaddr>dhcp</ipaddr>
+            <ipaddr>192.168.1.200</ipaddr>
             <subnet>24</subnet>
             <spoofmac></spoofmac>
             <gateway></gateway>
