@@ -54,8 +54,6 @@ cp /temp/init.sh /temp/usb/
 
 ### replace variables
 ## load generated cert variables
-CA_KEY=$(cat </tmp/id_rsa | base64 | tr -d '\n\r')
-CA_CRT=$(cat </tmp/id_rsa.crt | base64 | tr -d '\n\r')
 
 INITIAL_WILDCARD_CRT=$(cat </tmp/wildcard.crt | base64 | tr -d '\n\r')
 INITIAL_WILDCARD_KEY=$(cat </tmp/wildcard.key | base64 | tr -d '\n\r')
@@ -83,10 +81,6 @@ sed -i "s/{TELEGRAM_API}/$TELEGRAM_API/g" /temp/usb/config.xml
 sed -i "s/{TELEGRAM_CHAT_ID}/$TELEGRAM_CHAT_ID/g" /temp/usb/config.xml
 sed -i "s/{OINKMASTER}/$OINKMASTER/g" /temp/usb/config.xml
 sed -i "s/{MAXMIND_KEY}/$MAXMIND_KEY/g" /temp/usb/config.xml
-sed -i "s/{CA_CRT}/$CA_CRT/g" /temp/usb/config.xml
-sed -i "s/{CA_KEY}/$CA_KEY/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_CRT}/$INITIAL_WILDCARD_CRT/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_KEY}/$INITIAL_WILDCARD_KEY/g" /temp/usb/config.xml
 sed -i "s/{CLOUDFOUNDRY_VIP}/$CLOUDFOUNDRY_VIP/g" /temp/usb/config.xml
 sed -i "s/{IDENTITY_VIP}/$IDENTITY_VIP/g" /temp/usb/config.xml
 sed -i "s/{SUPPORT_VIP}/$SUPPORT_VIP/g" /temp/usb/config.xml
