@@ -5,7 +5,7 @@ set -x
 
 source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/openstack-scripts/project_config.sh
-source /tmp/openstack-env.sh
+source /tmp/openstack-setup/openstack-env.sh
 
 rm -rf /tmp/pfSense-CE-memstick-ADI.img
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
@@ -32,7 +32,7 @@ sed -i -e 's/{HOSTNAME}/'\$HOSTNAME'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
 EOF
 
-cp /tmp/openstack-env.sh /temp/usb/
+cp /tmp/openstack-setup/openstack-env.sh /temp/usb/
 rm -rf /temp/usb/config.xml
 
 if [ 'test' == $1 ]; then
