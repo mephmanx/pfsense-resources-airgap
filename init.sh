@@ -52,13 +52,6 @@ fi
 ## move generated file above to disk
 cp /temp/init.sh /temp/usb/
 
-### replace variables
-## load generated cert variables
-
-INITIAL_WILDCARD_CRT=$(cat </tmp/wildcard.crt | base64 | tr -d '\n\r')
-INITIAL_WILDCARD_KEY=$(cat </tmp/wildcard.key | base64 | tr -d '\n\r')
-#########
-
 ### cloudfoundry TCP ports
 CF_TCP_START_PORT=1024
 CF_TCP_END_PORT=$((CF_TCP_START_PORT + CF_TCP_PORT_COUNT))
