@@ -85,6 +85,18 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
+### add filler values for certs and keys
+FILLER_CA_CERT="$(generate_specific_pwd 1818)"
+FILLER_CA_KEY="$(generate_specific_pwd 3247)"
+FILLER_WILDCARD_CERT="$(generate_specific_pwd 2041)"
+FILLER_WILDCARD_KEY="$(generate_specific_pwd 3247)"
+
+sed -i "s/{CA_CRT}/$FILLER_CA_CERT/g" /temp/usb/config.xml
+sed -i "s/{CA_KEY}/$FILLER_CA_KEY/g" /temp/usb/config.xml
+sed -i "s/{INITIAL_WILDCARD_CRT}/$FILLER_WILDCARD_CERT/g" /temp/usb/config.xml
+sed -i "s/{INITIAL_WILDCARD_KEY}/$FILLER_WILDCARD_KEY/g" /temp/usb/config.xml
+###
+
 runuser -l root -c  'umount /temp/usb'
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-$1.img
