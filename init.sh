@@ -87,7 +87,7 @@ sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 
 ### add filler values for certs and keys
 FILLER_CA_CERT="$(generate_specific_pwd 1818)"
-FILLER_CA_KEY="$(generate_specific_pwd 3247)"
+FILLER_CA_KEY="$(generate_specific_pwd 3243)"
 FILLER_WILDCARD_CERT="$(generate_specific_pwd 2041)"
 FILLER_WILDCARD_KEY="$(generate_specific_pwd 3247)"
 
