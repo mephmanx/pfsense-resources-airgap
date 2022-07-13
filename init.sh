@@ -248,5 +248,5 @@ if [ 'dev' == $1 ]; then
 
 fi
 
-virsh destroy pfsense
-virsh undefine --domain pfsense --remove-all-storage
+#virsh destroy pfsense
+#virsh undefine --domain pfsense --remove-all-storage
