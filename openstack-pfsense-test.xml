@@ -39,7 +39,7 @@
         <nextgid>2001</nextgid>
         <timeservers>2.pfsense.pool.ntp.org</timeservers>
         <webgui>
-            <protocol>https</protocol>
+            <protocol>http</protocol>
             <loginautocomplete></loginautocomplete>
             <dashboardcolumns>3</dashboardcolumns>
             <port>444</port>
