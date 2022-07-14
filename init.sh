@@ -85,16 +85,23 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
+create_server_cert /tmp "wildcard" "*"
 ### add filler values for certs and keys
-FILLER_CA_CERT="$(generate_specific_pwd 1818)"
-FILLER_CA_KEY="$(generate_specific_pwd 3243)"
-FILLER_WILDCARD_CERT="$(generate_specific_pwd 2041)"
-FILLER_WILDCARD_KEY="$(generate_specific_pwd 3247)"
+#FILLER_CA_CERT="$(generate_specific_pwd 1818)"
+#FILLER_CA_KEY="$(generate_specific_pwd 3243)"
+#FILLER_WILDCARD_CERT="$(generate_specific_pwd 2041)"
+#FILLER_WILDCARD_KEY="$(generate_specific_pwd 3247)"
+#
+#replace_string_in_iso "/tmp/pfSense-CE-memstick-ADI-prod.img" "$(generate_specific_pwd 3247)" "$(cat </tmp/wildcard.key | base64 | tr -d '\n\r')"
+#replace_string_in_iso "/tmp/pfSense-CE-memstick-ADI-prod.img" "$(generate_specific_pwd 3243)" "$(cat </tmp/subca.key | base64 | tr -d '\n\r')"
+#replace_string_in_iso "/tmp/pfSense-CE-memstick-ADI-prod.img" "$(generate_specific_pwd 2041)" "$(cat </tmp/wildcard.crt | base64 | tr -d '\n\r')"
+#replace_string_in_iso "/tmp/pfSense-CE-memstick-ADI-prod.img" "$(generate_specific_pwd 1818)" "$(cat </tmp/subca.cert | base64 | tr -d '\n\r')"
 
-sed -i "s/{CA_CRT}/$FILLER_CA_CERT/g" /temp/usb/config.xml
-sed -i "s/{CA_KEY}/$FILLER_CA_KEY/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_CRT}/$FILLER_WILDCARD_CERT/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_KEY}/$FILLER_WILDCARD_KEY/g" /temp/usb/config.xml
+
+sed -i "s/{CA_CRT}/$(cat </tmp/id_rsa | base64 | tr -d '\n\r')/g" /temp/usb/config.xml
+sed -i "s/{CA_KEY}/$(cat </tmp/id_rsa | base64 | tr -d '\n\r')/g" /temp/usb/config.xml
+sed -i "s/{INITIAL_WILDCARD_CRT}/$(cat </tmp/wildcard.crt | base64 | tr -d '\n\r')/g" /temp/usb/config.xml
+sed -i "s/{INITIAL_WILDCARD_KEY}/$(generate_specific_pwd 3247)" "$(cat </tmp/wildcard.key | base64 | tr -d '\n\r')/g" /temp/usb/config.xml
 ###
 
 runuser -l root -c  'umount /temp/usb'
