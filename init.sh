@@ -85,7 +85,7 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
-create_server_cert /tmp "wildcard" "*"
+#create_server_cert /tmp "wildcard" "*"
 ### add filler values for certs and keys
 FILLER_CA_CERT="$(generate_specific_pwd 1818)"
 FILLER_CA_KEY="$(generate_specific_pwd 3243)"
