@@ -85,10 +85,10 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
-sed -i "s/{CA_CRT}/{$(generate_specific_pwd 1818)}/g" /temp/usb/config.xml
-sed -i "s/{CA_KEY}/{$(generate_specific_pwd 3243)}/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_CRT}/{$(generate_specific_pwd 2041)}/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_KEY}/{$(generate_specific_pwd 3247)}/g" /temp/usb/config.xml
+sed -i "s/{CA_CRT}/$(generate_specific_pwd 1818)/g" /temp/usb/config.xml
+sed -i "s/{CA_KEY}/$(generate_specific_pwd 3243)/g" /temp/usb/config.xml
+sed -i "s/{INITIAL_WILDCARD_CRT}/$(generate_specific_pwd 2041)/g" /temp/usb/config.xml
+sed -i "s/{INITIAL_WILDCARD_KEY}/$(generate_specific_pwd 3247)/g" /temp/usb/config.xml
 ###
 
 runuser -l root -c  'umount /temp/usb'
