@@ -173,6 +173,8 @@ sleep 30;
   sleep 10;
   echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
   sleep 10;
+  echo 'cp /tmp/test-mnt/config.xml.orig /mnt/root/config.xml.orig'
+  sleep 10;
   echo "$cmd";
   sleep 10;
   echo "$cmdCopy";
