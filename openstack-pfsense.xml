@@ -1698,8 +1698,7 @@
                         </item>
                         <item>
                             <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>443</extaddr_port>
-                            <extaddr_ssl>yes</extaddr_ssl>
+                            <extaddr_port>80</extaddr_port>
                             <_index></_index>
                         </item>
                         <item>
