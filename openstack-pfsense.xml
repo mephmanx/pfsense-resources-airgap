@@ -4090,7 +4090,7 @@
                 <cache_replacement_policy>heap LFUDA</cache_replacement_policy>
                 <cache_swap_low>90</cache_swap_low>
                 <cache_swap_high>95</cache_swap_high>
-                <donotcache>LmdpdGh1Yi5jb20NCi5naXRodWJ1c2VyY29udGVudC5jb20NCi5kb2NrZXIuaW8NCi5yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tDQouaHViLmRvY2tlci5jb20NCi5oYXNoaWNvcnAuY29tDQouYW1hem9uYXdzLmNvbQ==</donotcache>
+                <donotcache>LmNsb3VkLmxvY2Fs</donotcache>
                 <enable_offline></enable_offline>
                 <ext_cachemanager></ext_cachemanager>
                 <harddisk_cache_size>{CACHE_SIZE}</harddisk_cache_size>
@@ -4103,7 +4103,7 @@
                 <maximum_objsize_in_mem>10240</maximum_objsize_in_mem>
                 <memory_replacement_policy>heap GDSF</memory_replacement_policy>
                 <cache_dynamic_content>on</cache_dynamic_content>
-                <custom_refresh_patterns>cmVmcmVzaF9wYXR0ZXJuIC9YTUxSUEMvR0VULVJFUS8uKi9yZXBvZGF0YS8uKiQgMCAxJSAxNDQwIGlnbm9yZS1uby1jYWNoZSByZWxvYWQtaW50by1pbXMgcmVmcmVzaC1pbXMNCnJlZnJlc2hfcGF0dGVybiAgXC5ycG0kICAxMDA4MCAxMDAlIDUyNTk2MCBvdmVycmlkZS1leHBpcmUgb3ZlcnJpZGUtbGFzdG1vZCBpZ25vcmUtcmVsb2FkIHJlbG9hZC1pbnRvLWltcw==</custom_refresh_patterns>
+                <custom_refresh_patterns></custom_refresh_patterns>
             </config>
         </squidcache>
         <squidremote></squidremote>
