@@ -3452,7 +3452,7 @@
                             <status>active</status>
                             <name>cloudfoundry-lb</name>
                             <address>{CLOUDFOUNDRY_VIP}</address>
-                            <port>443</port>
+                            <port>80</port>
                             <id>214</id>
                             <_index></_index>
                         </item>
