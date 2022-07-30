@@ -105,7 +105,7 @@
     <interfaces>
         <wan>
             <enable></enable>
-            <if>vtnet0</if>
+            <if>em0</if>
             <descr><![CDATA[WAN]]></descr>
             <alias-address></alias-address>
             <alias-subnet>32</alias-subnet>
