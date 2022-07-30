@@ -1030,11 +1030,6 @@
                             <extaddr_port>8082</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>8082</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1057,11 +1052,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>8776</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>8776</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1090,11 +1080,6 @@
                             <extaddr_port>8774</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>8774</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1120,11 +1105,6 @@
                             <extaddr_port>8775</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>8775</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1147,11 +1127,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>6080</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>6080</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1181,11 +1156,6 @@
                             <extaddr_port>5000</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>5000</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1208,11 +1178,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>9292</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>9292</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1249,11 +1214,6 @@
                             <extaddr_port>9696</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>9696</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems>
                         <item>
@@ -1287,11 +1247,6 @@
                             <extaddr_port>8004</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>8004</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1314,11 +1269,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>8000</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>8000</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1349,11 +1299,6 @@
                             <extaddr_port>8080</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>8080</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1376,11 +1321,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>9876</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>9876</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1410,11 +1350,6 @@
                             <extaddr_port>9511</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>9511</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1437,11 +1372,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>8780</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>8780</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1470,11 +1400,6 @@
                             <extaddr_port>9311</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>9311</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1497,11 +1422,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>8041</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>8041</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1530,11 +1450,6 @@
                             <extaddr_port>8779</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>8779</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1557,11 +1472,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>9001</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>9001</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1629,12 +1539,8 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>80</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>80</extaddr_port>
+                            <extaddr_port>443</extaddr_port>
+                            <extaddr_ssl>yes</extaddr_ssl>
                             <_index></_index>
                         </item>
                         <item>
@@ -1713,11 +1619,6 @@
                             <extaddr_port>2222</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>2222</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1740,11 +1641,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>8786</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>8786</extaddr_port>
                             <_index></_index>
                         </item>
@@ -1773,11 +1669,6 @@
                             <extaddr_port>9517</extaddr_port>
                             <_index></_index>
                         </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
-                            <extaddr_port>9517</extaddr_port>
-                            <_index></_index>
-                        </item>
                     </a_extaddr>
                     <a_actionitems></a_actionitems>
                     <a_errorfiles></a_errorfiles>
@@ -1802,11 +1693,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>35357</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>opt1_ipv4</extaddr>
                             <extaddr_port>35357</extaddr_port>
                             <_index></_index>
                         </item>
@@ -4026,7 +3912,7 @@
                 <cache_replacement_policy>heap LFUDA</cache_replacement_policy>
                 <cache_swap_low>90</cache_swap_low>
                 <cache_swap_high>95</cache_swap_high>
-                <donotcache>LmdpdGh1Yi5jb20NCi5naXRodWJ1c2VyY29udGVudC5jb20NCi5kb2NrZXIuaW8NCi5yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tDQouaHViLmRvY2tlci5jb20NCi5oYXNoaWNvcnAuY29tDQouYW1hem9uYXdzLmNvbQ==</donotcache>
+                <donotcache>LmNsb3VkLmxvY2Fs</donotcache>
                 <enable_offline></enable_offline>
                 <ext_cachemanager></ext_cachemanager>
                 <harddisk_cache_size>{CACHE_SIZE}</harddisk_cache_size>
@@ -4039,7 +3925,7 @@
                 <maximum_objsize_in_mem>10240</maximum_objsize_in_mem>
                 <memory_replacement_policy>heap GDSF</memory_replacement_policy>
                 <cache_dynamic_content>on</cache_dynamic_content>
-                <custom_refresh_patterns>cmVmcmVzaF9wYXR0ZXJuIC9YTUxSUEMvR0VULVJFUS8uKi9yZXBvZGF0YS8uKiQgMCAxJSAxNDQwIGlnbm9yZS1uby1jYWNoZSByZWxvYWQtaW50by1pbXMgcmVmcmVzaC1pbXMNCnJlZnJlc2hfcGF0dGVybiAgXC5ycG0kICAxMDA4MCAxMDAlIDUyNTk2MCBvdmVycmlkZS1leHBpcmUgb3ZlcnJpZGUtbGFzdG1vZCBpZ25vcmUtcmVsb2FkIHJlbG9hZC1pbnRvLWltcw==</custom_refresh_patterns>
+                <custom_refresh_patterns></custom_refresh_patterns>
             </config>
         </squidcache>
         <squidremote></squidremote>
