@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exec 1>/out/pfsense-build.log 2>&1
+exec 1>/out/pfsense-build-$1.log 2>&1
 set -x
 
 source /tmp/openstack-scripts/vm_functions.sh
@@ -33,8 +33,6 @@ sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
 EOF
 
 cp /tmp/openstack-setup/openstack-env.sh /temp/usb/
-mv /temp/usb/config.xml /temp/usb/config.xml.orig
-
 if [ 'test' == $1 ]; then
   mv /openstack-pfsense-test.xml /temp/usb/config.xml
 else
@@ -172,8 +170,6 @@ sleep 30;
   echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
   sleep 10;
   echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
-  sleep 10;
-  echo 'cp /tmp/test-mnt/config.xml.orig /mnt/root/config.xml.orig'
   sleep 10;
   echo "$cmd";
   sleep 10;
