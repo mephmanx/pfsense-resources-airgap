@@ -302,11 +302,11 @@
             </destination>
             <log></log>
             <created>
-                <time>1653923008</time>
+                <time>1659110437</time>
                 <username><![CDATA[Auto]]></username>
             </created>
             <interface>wan</interface>
-            <tracker>1770009683</tracker>
+            <tracker>1770009957</tracker>
         </rule>
         <rule>
             <quick>yes</quick>
@@ -323,7 +323,7 @@
             </destination>
             <log></log>
             <created>
-                <time>1653923008</time>
+                <time>1659110437</time>
                 <username><![CDATA[Auto]]></username>
             </created>
             <interface>lan</interface>
@@ -786,6 +786,15 @@
             <who>root</who>
             <command>/usr/bin/nice -n20 /sbin/pfctl -q -t snort2c -T expire 3600</command>
         </item>
+        <item>
+            <minute>*/1</minute>
+            <hour>*</hour>
+            <mday>*</mday>
+            <month>*</month>
+            <wday>*</wday>
+            <who>root</who>
+            <command>/usr/local/pkg/servicewatchdog_cron.php</command>
+        </item>
     </cron>
     <wol></wol>
     <rrd>
@@ -933,7 +942,8 @@
         <dns64netbits>96</dns64netbits>
     </unbound>
     <revision>
-        <time>1654011249</time>
+        <time>1659178928</time>
+        <description><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap): Services: Service Watchdog: updated notification settings.]]></description>
         <username><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap)]]></username>
     </revision>
     <ppps></ppps>
@@ -1010,6 +1020,12 @@
             <tooltiptext>Stats of HAProxy</tooltiptext>
             <section>Status</section>
             <url>/haproxy/haproxy_stats.php?haproxystats=1</url>
+        </menu>
+        <menu>
+            <name>Service Watchdog</name>
+            <tooltiptext></tooltiptext>
+            <section>Services</section>
+            <url>/services_servicewatchdog.php</url>
         </menu>
         <haproxy>
             <ha_backends>
@@ -3275,6 +3291,7 @@
                             <name>cloudfoundry-lb</name>
                             <address>{CLOUDFOUNDRY_VIP}</address>
                             <port>443</port>
+                            <ssl>yes</ssl>
                             <id>214</id>
                             <_index></_index>
                         </item>
@@ -4010,7 +4027,7 @@
             <config></config>
         </vpn_openvpn_export>
         <snortglobal>
-            <snort_config_ver>4.1.5_3</snort_config_ver>
+            <snort_config_ver>4.1.6</snort_config_ver>
             <snortdownload>on</snortdownload>
             <snortcommunityrules>on</snortcommunityrules>
             <emergingthreats>on</emergingthreats>
@@ -4703,7 +4720,7 @@
             <pkginfolink>https://docs.netgate.com/pfsense/en/latest/packages/snort/index.html</pkginfolink>
             <website>http://www.snort.org</website>
             <descr><![CDATA[Snort is an open source network intrusion prevention and detection system (IDS/IPS). Combining the benefits of signature, protocol, and anomaly-based inspection.]]></descr>
-            <version>4.1.5_3</version>
+            <version>4.1.6</version>
             <configurationfile>/snort.xml</configurationfile>
             <after_install_info>Please visit Services - Snort - Interfaces tab first and select your desired rules. Afterwards visit the Updates tab to download your configured rulesets.</after_install_info>
             <include_file>/usr/local/pkg/snort/snort.inc</include_file>
@@ -4711,7 +4728,7 @@
         <package>
             <name>Cron</name>
             <descr><![CDATA[The cron utility is used to manage commands on a schedule.]]></descr>
-            <version>0.3.7_5</version>
+            <version>0.3.8_1</version>
             <configurationfile>cron.xml</configurationfile>
             <include_file>/usr/local/pkg/cron.inc</include_file>
         </package>
@@ -4727,7 +4744,25 @@
             <descr><![CDATA[The shellcmd utility is used to manage commands on system startup.]]></descr>
             <version>1.0.5_2</version>
             <configurationfile>shellcmd.xml</configurationfile>
+            <include_file>/usr/local/pkg/shellcmd.inc</include_file>
         </package>
+        <package>
+            <name>Service Watchdog</name>
+            <internal_name>Service_Watchdog</internal_name>
+            <descr><![CDATA[Monitors for stopped services and restarts them.]]></descr>
+            <version>1.8.7_1</version>
+            <configurationfile>servicewatchdog.xml</configurationfile>
+            <include_file>/usr/local/pkg/servicewatchdog.inc</include_file>
+        </package>
+        <servicewatchdog>
+            <item>
+                <name>haproxy</name>
+                <rcfile>haproxy.sh</rcfile>
+                <executable>haproxy</executable>
+                <description><![CDATA[TCP/HTTP(S) Load Balancer]]></description>
+                <notify></notify>
+            </item>
+        </servicewatchdog>
     </installedpackages>
     <ca>
         <refid>60ed826b68fa7</refid>
