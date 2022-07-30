@@ -57,6 +57,13 @@ CF_TCP_END_PORT=$((CF_TCP_START_PORT + CF_TCP_PORT_COUNT))
 #### backend to change host header from whatever it comes in as to internal domain
 ADVANCED_BACKEND=$(echo "http-request replace-value Host ^(.*)(\.[^\.]+){2}$ \1.$INTERNAL_DOMAIN_NAME" | base64 | tr -d '\n\r')
 
+######  variables to remove from PFSense cloud router
+sed -i "s/{TELEGRAM_API}/$TELEGRAM_API/g" /temp/usb/config.xml
+sed -i "s/{TELEGRAM_CHAT_ID}/$TELEGRAM_CHAT_ID/g" /temp/usb/config.xml
+sed -i "s/{OINKMASTER}/$OINKMASTER/g" /temp/usb/config.xml
+sed -i "s/{MAXMIND_KEY}/$MAXMIND_KEY/g" /temp/usb/config.xml
+#######
+
 ##### replace PFSense template vars
 sed -i "s/{CF_TCP_START_PORT}/$CF_TCP_START_PORT/g" /temp/usb/config.xml
 sed -i "s/{CF_TCP_END_PORT}/$CF_TCP_END_PORT/g" /temp/usb/config.xml
@@ -68,10 +75,6 @@ sed -i "s/{GATEWAY_ROUTER_DHCP_START}/$GATEWAY_ROUTER_DHCP_START/g" /temp/usb/co
 sed -i "s/{GATEWAY_ROUTER_DHCP_END}/$GATEWAY_ROUTER_DHCP_END/g" /temp/usb/config.xml
 sed -i "s/{INTERNAL_DOMAIN_NAME}/$INTERNAL_DOMAIN_NAME/g" /temp/usb/config.xml
 sed -i "s/{NETWORK_PREFIX}/$NETWORK_PREFIX/g" /temp/usb/config.xml
-sed -i "s/{TELEGRAM_API}/$TELEGRAM_API/g" /temp/usb/config.xml
-sed -i "s/{TELEGRAM_CHAT_ID}/$TELEGRAM_CHAT_ID/g" /temp/usb/config.xml
-sed -i "s/{OINKMASTER}/$OINKMASTER/g" /temp/usb/config.xml
-sed -i "s/{MAXMIND_KEY}/$MAXMIND_KEY/g" /temp/usb/config.xml
 sed -i "s/{CLOUDFOUNDRY_VIP}/$CLOUDFOUNDRY_VIP/g" /temp/usb/config.xml
 sed -i "s/{IDENTITY_VIP}/$IDENTITY_VIP/g" /temp/usb/config.xml
 sed -i "s/{SUPPORT_VIP}/$SUPPORT_VIP/g" /temp/usb/config.xml
@@ -83,6 +86,7 @@ sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
 #######
 
+##### cert placeholders.  lengths are VERY important!!
 sed -i "s/{CA_CRT}/$(generate_specific_pwd 2465)/g" /temp/usb/config.xml
 sed -i "s/{CA_KEY}/$(generate_specific_pwd 4389)/g" /temp/usb/config.xml
 sed -i "s/{INITIAL_WILDCARD_CRT}/$(generate_specific_pwd 2765)/g" /temp/usb/config.xml
