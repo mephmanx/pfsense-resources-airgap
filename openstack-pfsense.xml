@@ -1603,11 +1603,6 @@
                     <a_extaddr>
                         <item>
                             <extaddr>lan_ipv4</extaddr>
-                            <extaddr_port>80</extaddr_port>
-                            <_index></_index>
-                        </item>
-                        <item>
-                            <extaddr>lan_ipv4</extaddr>
                             <extaddr_port>443</extaddr_port>
                             <extaddr_ssl>yes</extaddr_ssl>
                             <_index></_index>
