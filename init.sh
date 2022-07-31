@@ -229,8 +229,8 @@ if [ 'dev' == "$1" ]; then
   cp /temp/transfer/repo.tar /tmp
 fi
 
-if [ -n "$4" ]; then
-  if [ 'keep' == "$4" ]; then
+if [ -n "$2" ]; then
+  if [ 'keep' == "$2" ]; then
     exit 0
   fi
 fi
