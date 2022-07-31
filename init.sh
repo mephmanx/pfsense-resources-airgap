@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exec 1>/out/pfsense-build-$1.log 2>&1
+exec 1>/out/pfsense-build-"$1".log 2>&1
 set -x
 
 source /tmp/openstack-scripts/vm_functions.sh
@@ -33,7 +33,7 @@ sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
 EOF
 
 cp /tmp/openstack-setup/openstack-env.sh /temp/usb/
-if [ 'dev' == $1 ]; then
+if [ 'dev' == "$1" ]; then
   mv /openstack-pfsense-test.xml /temp/usb/config.xml
 else
   mv /openstack-pfsense.xml /temp/usb/config.xml
@@ -43,7 +43,7 @@ cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
-if [ 'prod' == $1 ]; then
+if [ 'prod' == "$1" ]; then
   cp /tmp/repo.tar /temp/usb/
 fi
 
@@ -95,7 +95,7 @@ sed -i "s/{INITIAL_WILDCARD_KEY}/$(generate_specific_pwd 4393)/g" /temp/usb/conf
 
 runuser -l root -c  'umount /temp/usb'
 
-cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-$1.img
+cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$1".img
 #start pfsense vm to gather packages to build offline resources
 
 create_line="virt-install "
@@ -128,7 +128,7 @@ eval "$create_line"
 cmd=""
 cmdExtract=""
 cmdCopy=""
-if [ 'prod' == $1 ]; then
+if [ 'prod' == "$1" ]; then
   cmd="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf;"
   cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/usr/local/share/pfSense"
   cmdExtract="tar xf /mnt/usr/local/share/pfSense/repo.tar -C /mnt/usr/local/share/pfSense/pkg"
@@ -189,12 +189,12 @@ sleep 30;
   sleep 10;
 ) | telnet
 
-virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-$1.img --persistent --config --live
+virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
 ### cleanup
 runuser -l root -c  "rm -rf /temp/usb"
 #####
 
-if [ 'dev' == $1 ]; then
+if [ 'dev' == "$1" ]; then
 
   ## remove install disk from pfsense
   virsh destroy pfsense
@@ -202,8 +202,8 @@ if [ 'dev' == $1 ]; then
   virsh start pfsense
 
   ### base64 files
-  HYPERVISOR_KEY=`cat /root/.ssh/id_rsa | base64 | tr -d '\n\r'`
-  HYPERVISOR_PUB_KEY=`cat /root/.ssh/id_rsa.pub | base64 | tr -d '\n\r'`
+  HYPERVISOR_KEY=$(cat </root/.ssh/id_rsa | base64 | tr -d '\n\r')
+  HYPERVISOR_PUB_KEY=$(cat </root/.ssh/id_rsa.pub | base64 | tr -d '\n\r')
 
   hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
   hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
@@ -244,5 +244,10 @@ if [ 'dev' == $1 ]; then
 
 fi
 
+if [ -n "$4" ]; then
+  if [ 'keep' == "$4" ]; then
+    exit 0
+  fi
+fi
 virsh destroy pfsense
 virsh undefine --domain pfsense --remove-all-storage
