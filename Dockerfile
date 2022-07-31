@@ -13,14 +13,12 @@ RUN wget -O /temp/pfSense-CE-memstick-ADI.img.gz https://atxfiles.netgate.com/mi
 
 WORKDIR /
 COPY init.sh /
-RUN chmod 777 /init.sh
+RUN chmod +x /init.sh
 
 COPY openstack-pfsense.xml /
 COPY openstack-pfsense-test.xml /
 COPY pfsense-init.sh /
 COPY pf_functions.sh /
 COPY pfSense-repo.conf /
-
-RUN chmod 777 openstack-pfsense.xml
 
 ENTRYPOINT ["./init.sh"]

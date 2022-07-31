@@ -7,7 +7,6 @@ source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/openstack-scripts/project_config.sh
 source /tmp/openstack-setup/openstack-env.sh
 
-rm -rf /tmp/pfSense-CE-memstick-ADI.img
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
@@ -17,6 +16,9 @@ parted /temp/pfSense-CE-memstick-ADI.img resizepart 3 1300MB
 loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
+
+dd dd if=/dev/zero bs=1M count=400 >> /temp/transfer.img
+loop_device2=$(losetup -f --show -P /temp/transfer.img)
 
 ### initial cfg script
 ##  This runs after install but before first reboot
@@ -201,13 +203,8 @@ if [ 'dev' == "$1" ]; then
   sleep 20;
   virsh start pfsense
 
-  ### base64 files
-  HYPERVISOR_KEY=$(cat </root/.ssh/id_rsa | base64 | tr -d '\n\r')
-  HYPERVISOR_PUB_KEY=$(cat </root/.ssh/id_rsa.pub | base64 | tr -d '\n\r')
-
-  hypervisor_key_array=( $(echo $HYPERVISOR_KEY | fold -c250 ))
-  hypervisor_pub_array=( $(echo $HYPERVISOR_PUB_KEY | fold -c250 ))
-  ## arg $2 is buildserver scp user, $3 is ip
+  ### mount transfer img, copy file, detach and move to host
+  virsh attach-disk pfsense --source /temp/transfer.img --target vdc --persistent --config --live
 
   sleep 400;
   (echo open localhost 4568;
@@ -216,32 +213,20 @@ if [ 'dev' == "$1" ]; then
     sleep 5;
     echo 'tar cf repo.tar ./*';
     sleep 10;
-    echo "mkdir /root/.ssh";
+    echo "mkdir /tmp/transfer";
     sleep 10;
-    echo "touch /root/.ssh/id_rsa; touch /root/.ssh/id_rsa.pub; touch /root/.ssh/id_rsa.pub.enc; touch /root/.ssh/id_rsa.enc;";
+    echo "mount_msdosfs /dev/vtbd1 /tmp/transfer";
     sleep 10;
-    for element in "${hypervisor_pub_array[@]}"
-    do
-      echo "echo '$element' >> /root/.ssh/id_rsa.pub.enc";
-      sleep 5;
-    done
-    for element in "${hypervisor_key_array[@]}"
-    do
-      echo "echo '$element' >> /root/.ssh/id_rsa.enc";
-      sleep 5;
-    done
-    echo "openssl base64 -d -in /root/.ssh/id_rsa.pub.enc -out /root/.ssh/id_rsa.pub;";
+    echo "copy repo.tar /tmp/transfer";
+    sleep 20;
+    echo "umount /tmp/transfer";
     sleep 10;
-    echo "openssl base64 -d -in /root/.ssh/id_rsa.enc -out /root/.ssh/id_rsa;";
-    sleep 10;
-    echo "chmod 600 /root/.ssh/*";
-    sleep 10;
-    echo "ssh-keyscan -H $3 >> ~/.ssh/known_hosts;";
-    sleep 10;
-    echo "scp -B repo.tar $2@$3:/tmp"
-    sleep 60;
   ) | telnet
 
+  virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
+  mkdir /temp/transfer
+  mount /temp/transfer.img /temp/transfer.img
+  cp /temp/transfer/repo.tar /tmp
 fi
 
 if [ -n "$4" ]; then
