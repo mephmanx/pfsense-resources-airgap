@@ -17,7 +17,7 @@ loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
-dd dd if=/dev/zero bs=1M count=400 >> /temp/transfer.img
+dd if=/dev/zero bs=1M count=400 >> /temp/transfer.img
 loop_device2=$(losetup -f --show -P /temp/transfer.img)
 
 ### initial cfg script
