@@ -226,7 +226,7 @@ if [ 'dev' == "$1" ]; then
 
   virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
   mkdir /tmp/transfer
-  mount /tmp/transfer.img /tmp/transfer.img
+  mount /tmp/transfer.img /tmp/transfer
   cp /tmp/transfer/repo.tar /tmp
   rm -rf /tmp/transfer.img
   rm -rf /tmp/transfer
