@@ -19,6 +19,7 @@ mount "$loop_Device"p3 /temp/usb
 
 dd if=/dev/zero bs=1M count=400 >> /tmp/transfer.img
 loop_device2=$(losetup -f --show -P /tmp/transfer.img)
+mkfs -t vfat "$loop_device2"
 
 ### initial cfg script
 ##  This runs after install but before first reboot
@@ -217,7 +218,7 @@ if [ 'dev' == "$1" ]; then
     sleep 10;
     echo "mkdir /tmp/transfer";
     sleep 10;
-    echo "sudo mount_msdosfs /dev/vtbd1 /tmp/transfer";
+    echo "sudo mount_msdosfs /dev/vtbd0 /tmp/transfer";
     sleep 10;
     echo "cp repo.tar /tmp/transfer";
     sleep 20;
