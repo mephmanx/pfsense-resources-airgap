@@ -209,15 +209,17 @@ if [ 'dev' == "$1" ]; then
   sleep 400;
   (echo open localhost 4568;
     sleep 30;
+    echo "yes | pkg install sudo"
+    sleep 20;
     echo 'cd /var/cache/pkg';
     sleep 5;
     echo 'tar cf repo.tar ./*';
     sleep 10;
     echo "mkdir /tmp/transfer";
     sleep 10;
-    echo "mount_msdosfs /dev/vtbd1 /tmp/transfer";
+    echo "sudo mount_msdosfs /dev/vtbd1 /tmp/transfer";
     sleep 10;
-    echo "copy repo.tar /tmp/transfer";
+    echo "cp repo.tar /tmp/transfer";
     sleep 20;
     echo "umount /tmp/transfer";
     sleep 10;
