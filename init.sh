@@ -17,8 +17,8 @@ loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
-dd if=/dev/zero bs=1M count=400 >> /temp/transfer.img
-loop_device2=$(losetup -f --show -P /temp/transfer.img)
+dd if=/dev/zero bs=1M count=400 >> /tmp/transfer.img
+loop_device2=$(losetup -f --show -P /tmp/transfer.img)
 
 ### initial cfg script
 ##  This runs after install but before first reboot
@@ -204,7 +204,7 @@ if [ 'dev' == "$1" ]; then
   virsh start pfsense
 
   ### mount transfer img, copy file, detach and move to host
-  virsh attach-disk pfsense --source /temp/transfer.img --target vdc --persistent --config --live
+  virsh attach-disk pfsense --source /tmp/transfer.img --target vdc --persistent --config --live
 
   sleep 400;
   (echo open localhost 4568;
@@ -224,9 +224,11 @@ if [ 'dev' == "$1" ]; then
   ) | telnet
 
   virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
-  mkdir /temp/transfer
-  mount /temp/transfer.img /temp/transfer.img
-  cp /temp/transfer/repo.tar /tmp
+  mkdir /tmp/transfer
+  mount /tmp/transfer.img /tmp/transfer.img
+  cp /tmp/transfer/repo.tar /tmp
+  rm -rf /tmp/transfer.img
+  rm -rf /tmp/transfer
 fi
 
 if [ -n "$2" ]; then
