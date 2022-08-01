@@ -228,7 +228,7 @@ if [ 'dev' == "$1" ]; then
   mkdir /tmp/transfer
   mount /tmp/transfer.img /tmp/transfer
   cp /tmp/transfer/repo.tar /tmp &
-  slepp 60
+  sleep 60
   umount /tmp/transfer
   rm -rf /tmp/transfer.img
   rm -rf /tmp/transfer
