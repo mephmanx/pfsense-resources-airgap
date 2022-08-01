@@ -105,7 +105,7 @@
     <interfaces>
         <wan>
             <enable></enable>
-            <if>em0</if>
+            <if>vtnet0</if>
             <descr><![CDATA[WAN]]></descr>
             <alias-address></alias-address>
             <alias-subnet>32</alias-subnet>
@@ -130,7 +130,7 @@
         </wan>
         <lan>
             <enable></enable>
-            <if>vtnet0</if>
+            <if>vtnet1</if>
             <descr><![CDATA[LAN]]></descr>
             <ipaddr>dhcp</ipaddr>
             <subnet>24</subnet>
@@ -142,7 +142,7 @@
         </lan>
         <opt1>
             <descr><![CDATA[LB_NET]]></descr>
-            <if>vtnet1</if>
+            <if>vtnet2</if>
             <enable></enable>
             <spoofmac></spoofmac>
             <ipaddr>{LB_ROUTER_IP}</ipaddr>
