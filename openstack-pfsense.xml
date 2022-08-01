@@ -4005,7 +4005,7 @@
                 <memory_cache_size>1024</memory_cache_size>
                 <maximum_objsize_in_mem>10240</maximum_objsize_in_mem>
                 <memory_replacement_policy>heap GDSF</memory_replacement_policy>
-                <cache_dynamic_content>on</cache_dynamic_content>
+                <cache_dynamic_content>off</cache_dynamic_content>
                 <custom_refresh_patterns></custom_refresh_patterns>
             </config>
         </squidcache>
