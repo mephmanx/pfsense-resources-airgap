@@ -134,9 +134,9 @@ cmd=""
 cmdExtract=""
 cmdCopy=""
 if [ 'prod' == "$1" ]; then
-  cmd="mkdir /tmp/repo-dir"
-  cmdCopy="cp /tmp/test-mnt/repo.tar /tmp/repo.tar"
-  cmdExtract="tar xf /tmp/repo.tar -C /tmp/repo-dir"
+  cmd="mkdir /root/repo-dir"
+  cmdCopy="cp /tmp/test-mnt/repo.tar /root/repo.tar"
+  cmdExtract="tar xf /root/repo.tar -C /root/repo-dir"
 fi
 
 sleep 30;
