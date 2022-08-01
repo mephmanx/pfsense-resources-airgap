@@ -209,18 +209,18 @@ if [ 'dev' == "$1" ]; then
   ### mount transfer img, copy file, detach and move to host
   virsh attach-disk pfsense --source /tmp/transfer.img --target vdc --persistent --config --live
 
-  sleep 1600;
+  sleep 2000;
   (echo open localhost 4568;
     sleep 30;
     echo 'cd /var/cache/pkg';
     sleep 5;
-    echo 'tar cf repo.tar ./*';
+    echo 'tar cf /tmp/repo.tar ./*';
     sleep 10;
     echo "mkdir /tmp/transfer";
     sleep 10;
     echo "mount_msdosfs /dev/vtbd0 /tmp/transfer";
     sleep 10;
-    echo "cp repo.tar /tmp/transfer";
+    echo "cp /tmp/repo.tar /tmp/transfer";
     sleep 100;
     echo "umount /tmp/transfer";
     sleep 10;
