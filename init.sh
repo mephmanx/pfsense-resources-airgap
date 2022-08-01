@@ -219,7 +219,7 @@ if [ 'dev' == "$1" ]; then
     echo "mount_msdosfs /dev/vtbd0 /tmp/transfer";
     sleep 10;
     echo "cp repo.tar /tmp/transfer";
-    sleep 20;
+    sleep 100;
     echo "umount /tmp/transfer";
     sleep 10;
   ) | telnet
@@ -227,7 +227,9 @@ if [ 'dev' == "$1" ]; then
   virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
   mkdir /tmp/transfer
   mount /tmp/transfer.img /tmp/transfer
-  cp /tmp/transfer/repo.tar /tmp
+  cp /tmp/transfer/repo.tar /tmp &
+  slepp 60
+  umount /tmp/transfer
   rm -rf /tmp/transfer.img
   rm -rf /tmp/transfer
 fi
