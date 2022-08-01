@@ -134,9 +134,9 @@ cmd=""
 cmdExtract=""
 cmdCopy=""
 if [ 'prod' == "$1" ]; then
-  cmd="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf;"
-  cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/usr/local/share/pfSense"
-  cmdExtract="tar xf /mnt/usr/local/share/pfSense/repo.tar -C /mnt/usr/local/share/pfSense/pkg"
+  cmd="mkdir /tmp/repo-dir"
+  cmdCopy="cp /tmp/test-mnt/repo.tar /tmp/repo.tar"
+  cmdExtract="tar xf /tmp/repo.tar -C /tmp/repo-dir"
 fi
 
 sleep 30;
@@ -212,8 +212,12 @@ if [ 'dev' == "$1" ]; then
   sleep 2000;
   (echo open localhost 4568;
     sleep 30;
-    echo 'cd /var/cache/pkg';
-    sleep 5;
+    echo "mkdir /tmp/repo-dir";
+    sleep 10;
+    echo "cd /tmp/repo-dir";
+    sleep 10;
+    echo 'pkg create -a';
+    sleep 400;
     echo 'tar cf /tmp/repo.tar ./*';
     sleep 10;
     echo "mkdir /tmp/transfer";
