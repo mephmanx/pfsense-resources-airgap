@@ -209,7 +209,7 @@ if [ 'dev' == "$1" ]; then
   ### mount transfer img, copy file, detach and move to host
   virsh attach-disk pfsense --source /tmp/transfer.img --target vdc --persistent --config --live
 
-  sleep 800;
+  sleep 1000;
   (echo open localhost 4568;
     sleep 30;
     echo 'cd /var/cache/pkg';
