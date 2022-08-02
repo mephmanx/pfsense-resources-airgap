@@ -48,8 +48,7 @@ cp /pfSense-repo.conf /temp/usb/
 
 if [ 'prod' == "$1" ]; then
   cp /tmp/repo.tar /temp/usb/
-  rm -rf /tmp/repo.tar
-  rm -rf /tmp/transfer.img
+  mv /tmp/repo.tar /tmp/repo-backup.tar
 fi
 
 ## move generated file above to disk
@@ -242,6 +241,7 @@ if [ 'dev' == "$1" ]; then
   sleep 60
   umount /tmp/transfer
   rm -rf /tmp/transfer
+  rm -rf /tmp/transfer.img
 fi
 
 if [ -n "$2" ]; then
