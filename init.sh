@@ -186,7 +186,7 @@ sleep 30;
   sleep 10;
   echo "$cmdExtract";
   sleep 10;
-  echo "chmod 777 /mnt/root/*.sh"
+  echo "chmod +x /mnt/root/*.sh"
   sleep 10;
   echo "cd /mnt/root";
   sleep 5;
