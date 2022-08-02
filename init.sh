@@ -220,8 +220,6 @@ if [ 'dev' == "$1" ]; then
     sleep 400;
     echo "pkg repo -o /tmp/repo-dir /var/cache/pkg/"
     sleep 100;
-    echo "cd /var/cache/pkg";
-    sleep 10;
     echo 'tar cf /tmp/repo.tar ./*';
     sleep 10;
     echo "mkdir /tmp/transfer";
