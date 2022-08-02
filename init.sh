@@ -137,6 +137,7 @@ if [ 'prod' == "$1" ]; then
   cmd="mkdir /mnt/tmp/repo-dir"
   cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/root/repo.tar"
   cmdExtract="tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir"
+  cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /usr/local/etc/pkg/repos/pfSense-repo.conf"
 fi
 
 sleep 30;
@@ -185,6 +186,8 @@ sleep 30;
   echo "$cmdCopy";
   sleep 10;
   echo "$cmdExtract";
+  sleep 10;
+  echo "$cmdRepoSetup";
   sleep 10;
   echo "chmod +x /mnt/root/*.sh"
   sleep 10;
