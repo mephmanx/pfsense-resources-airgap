@@ -137,7 +137,7 @@ if [ 'prod' == "$1" ]; then
   cmd="mkdir /mnt/tmp/repo-dir"
   cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/root/repo.tar"
   cmdExtract="tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir"
-  cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /usr/local/etc/pkg/repos/pfSense-repo.conf"
+  cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /usr/local/etc/pkg/repos/pfSense.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /usr/local/share/pfSense/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /usr/local/share/pfSense/pkg/repos/pfSense-repo.conf"
 fi
 
 sleep 30;
