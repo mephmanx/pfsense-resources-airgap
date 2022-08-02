@@ -10,8 +10,6 @@ exec 1>/root/init-install.log 2>&1 # send stdout and stderr from rc.local to a l
 IP_DATA=$(ifconfig vtnet0 | grep inet | awk -F' ' '{ print $2 }' | head -2 | tail -1)
 telegram_notify  "PFSense initialization script beginning... \n\nCloud DMZ IP: $IP_DATA"
 
-mkdir /tmp/repo-dir
-tar xf /root/repo.tar -C /tmp/repo-dir/
 setenv REPOS_DIR /tmp/repo-dir
 rm -rf /root/pfsense-init.sh
 telegram_notify  "PFSense init: init complete!"
