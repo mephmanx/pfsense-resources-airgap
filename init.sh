@@ -218,8 +218,10 @@ if [ 'dev' == "$1" ]; then
     sleep 10;
     echo 'pkg create -a';
     sleep 400;
-    echo "pkg repo /tmp/repo-dir"
+    echo "pkg repo -o /tmp/repo-dir /var/cache/pkg/"
     sleep 100;
+    echo "cd /var/cache/pkg";
+    sleep 10;
     echo 'tar cf /tmp/repo.tar ./*';
     sleep 10;
     echo "mkdir /tmp/transfer";
