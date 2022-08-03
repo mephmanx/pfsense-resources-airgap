@@ -101,105 +101,107 @@ runuser -l root -c  'umount /temp/usb'
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$1".img
 #start pfsense vm to gather packages to build offline resources
+if [ 'dev' == "$1" ] || [ 'keep' == "$2" ]; then
 
-create_line="virt-install "
-create_line+="--hvm "
-create_line+="--virt-type=kvm "
-create_line+="--name=pfsense "
-create_line+="--memory=1000 "
-create_line+="--cpu=host-passthrough,cache.mode=passthrough "
-create_line+="--vcpus=8 "
-create_line+="--boot hd,menu=off,useserial=off "
-create_line+="--disk /tmp/pfSense-CE-memstick-ADI-$1.img "
-create_line+="--disk pool=VM-VOL,size=40,bus=virtio,sparse=no "
-create_line+="--connect qemu:///system "
-create_line+="--os-type=freebsd "
-create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
-create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
-create_line+="--network type=direct,source=ext-con,model=virtio "
-create_line+="--network network=default "
-create_line+="--network network=default "
-create_line+="--os-variant=freebsd12.0 "
-create_line+="--graphics=vnc "
+  create_line="virt-install "
+  create_line+="--hvm "
+  create_line+="--virt-type=kvm "
+  create_line+="--name=pfsense "
+  create_line+="--memory=1000 "
+  create_line+="--cpu=host-passthrough,cache.mode=passthrough "
+  create_line+="--vcpus=8 "
+  create_line+="--boot hd,menu=off,useserial=off "
+  create_line+="--disk /tmp/pfSense-CE-memstick-ADI-$1.img "
+  create_line+="--disk pool=VM-VOL,size=40,bus=virtio,sparse=no "
+  create_line+="--connect qemu:///system "
+  create_line+="--os-type=freebsd "
+  create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
+  create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
+  create_line+="--network type=direct,source=ext-con,model=virtio "
+  create_line+="--network network=default "
+  create_line+="--network network=default "
+  create_line+="--os-variant=freebsd12.0 "
+  create_line+="--graphics=vnc "
 
-create_line+="--channel unix,target.type=virtio,target.name='org.qemu.guest_agent.0' "
+  create_line+="--channel unix,target.type=virtio,target.name='org.qemu.guest_agent.0' "
 
-create_line+="--autostart --wait 0"
+  create_line+="--autostart --wait 0"
 
-eval "$create_line"
+  eval "$create_line"
 
-## arg $1 is build repo cache or build prod image
-cmd=""
-cmdExtract=""
-cmdCopy=""
-if [ 'prod' == "$1" ]; then
-  cmd="mkdir /mnt/tmp/repo-dir"
-  cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/root/repo.tar"
-  cmdExtract="tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir"
-  cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/etc/pkg/FreeBSD.conf"
+  ## arg $1 is build repo cache or build prod image
+  cmd=""
+  cmdExtract=""
+  cmdCopy=""
+  if [ 'prod' == "$1" ]; then
+    cmd="mkdir /mnt/tmp/repo-dir"
+    cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/root/repo.tar"
+    cmdExtract="tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir"
+    cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/etc/pkg/FreeBSD.conf"
+  fi
+
+  sleep 30;
+  (echo open localhost 4568;
+    sleep 60;
+    echo "ansi";
+    sleep 5;
+    echo 'A'
+    sleep 5;
+    echo -ne '\r\n';
+    sleep 5;
+    echo -ne '\r\n';
+    sleep 5;
+    echo -ne '\r\n';
+    sleep 5;
+    echo -ne '\r\n';
+    sleep 5;
+    echo -ne '\r\n';
+    sleep 5;
+    echo 'v';
+    echo ' ';
+    echo -ne '\r\n';
+    sleep 5;
+    echo 'Y'
+    sleep 160;
+    echo 'N';
+    sleep 5;
+    echo 'S';
+    sleep 10;
+    echo 'mount -u -o rw /';
+    sleep 10;
+    echo 'mkdir /tmp/test-mnt';
+    sleep 10;
+    echo 'mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt';
+    sleep 10;
+    echo 'cp /tmp/test-mnt/openstack-env.sh /mnt/root/openstack-env.sh';
+    sleep 10;
+    echo 'cp /tmp/test-mnt/pf_functions.sh /mnt/root/pf_functions.sh';
+    sleep 10;
+    echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
+    sleep 10;
+    echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
+    sleep 10;
+    echo "$cmd";
+    sleep 10;
+    echo "$cmdCopy";
+    sleep 10;
+    echo "$cmdExtract";
+    sleep 10;
+    echo "$cmdRepoSetup";
+    sleep 10;
+    echo "chmod +x /mnt/root/*.sh"
+    sleep 10;
+    echo "cd /mnt/root";
+    sleep 5;
+    echo "./init.sh";
+    sleep 10;
+  ) | telnet
+
+  virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
+  ### cleanup
+  runuser -l root -c  "rm -rf /temp/usb"
+  #####
 fi
-
-sleep 30;
-(echo open localhost 4568;
-  sleep 60;
-  echo "ansi";
-  sleep 5;
-  echo 'A'
-  sleep 5;
-  echo -ne '\r\n';
-  sleep 5;
-  echo -ne '\r\n';
-  sleep 5;
-  echo -ne '\r\n';
-  sleep 5;
-  echo -ne '\r\n';
-  sleep 5;
-  echo -ne '\r\n';
-  sleep 5;
-  echo 'v';
-  echo ' ';
-  echo -ne '\r\n';
-  sleep 5;
-  echo 'Y'
-  sleep 160;
-  echo 'N';
-  sleep 5;
-  echo 'S';
-  sleep 10;
-  echo 'mount -u -o rw /';
-  sleep 10;
-  echo 'mkdir /tmp/test-mnt';
-  sleep 10;
-  echo 'mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt';
-  sleep 10;
-  echo 'cp /tmp/test-mnt/openstack-env.sh /mnt/root/openstack-env.sh';
-  sleep 10;
-  echo 'cp /tmp/test-mnt/pf_functions.sh /mnt/root/pf_functions.sh';
-  sleep 10;
-  echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
-  sleep 10;
-  echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
-  sleep 10;
-  echo "$cmd";
-  sleep 10;
-  echo "$cmdCopy";
-  sleep 10;
-  echo "$cmdExtract";
-  sleep 10;
-  echo "$cmdRepoSetup";
-  sleep 10;
-  echo "chmod +x /mnt/root/*.sh"
-  sleep 10;
-  echo "cd /mnt/root";
-  sleep 5;
-  echo "./init.sh";
-  sleep 10;
-) | telnet
-
-virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
-### cleanup
-runuser -l root -c  "rm -rf /temp/usb"
-#####
 
 if [ 'dev' == "$1" ]; then
 
