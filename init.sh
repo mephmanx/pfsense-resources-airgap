@@ -33,6 +33,7 @@ HOSTNAME="$ORGANIZATION-\$HOSTNAME_SUFFIX"
 sed -i -e 's/{CACHE_SIZE}/'\$DRIVE_SIZE'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{HOSTNAME}/'\$HOSTNAME'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
+echo "fin" > /tmp/init.complete
 EOF
 
 cp /tmp/openstack-setup/openstack-env.sh /temp/usb/
@@ -150,6 +151,9 @@ $cmdRepoSetup
 chmod +x /mnt/root/*.sh
 cd /mnt/root
 ./init.sh
+
+## important!  endless loop if below is removed!
+echo "fin" > /tmp/init.complete
 EOF
 
   PFSENSE_INIT=$(cat </temp/pf-init-1.sh | base64 | tr -d '\n\r')
@@ -195,7 +199,9 @@ EOF
     echo "rm -rf /mnt/root/*.enc";
     sleep 10;
     echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh;"
-    sleep 400;
+    sleep 10;
+    echo "yes | pkg install bash ; bash -c \"while [ true ] ; do sleep 5 ; if [ -f /tmp/init.complete ] ; then rm -rf /tmp/init.complete; exit ; fi ; done ;\"";
+    sleep 10;
   ) | telnet
 
   virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
@@ -238,6 +244,9 @@ mkdir /tmp/transfer
 mount_msdosfs /dev/vtbd0 /tmp/transfer
 cp /tmp/repo.tar /tmp/transfer
 umount /tmp/transfer
+
+## important!  endless loop if below is removed!
+echo "fin" > /tmp/init.complete
 EOF
 
   PFSENSE_INIT=$(cat </temp/pf-init-2.sh | base64 | tr -d '\n\r')
@@ -247,26 +256,27 @@ EOF
   sleep 2000;
   (echo open localhost 4568;
     sleep 30;
-    echo "touch /mnt/root/pf-init-1.sh; touch /mnt/root/pf-init-1.sh.enc;";
+    echo "touch /mnt/root/pf-init-2.sh; touch /mnt/root/pf-init-2.sh.enc;";
     sleep 10;
     for element in "${pfsense_init_array[@]}"
       do
-        echo "echo '$element' >> /mnt/root/pf-init-1.sh.enc";
+        echo "echo '$element' >> /mnt/root/pf-init-2.sh.enc";
         sleep 5;
       done
-    echo "openssl base64 -d -in /mnt/root/pf-init-1.sh.enc -out /mnt/root/pf-init-1.sh;";
+    echo "openssl base64 -d -in /mnt/root/pf-init-2.sh.enc -out /mnt/root/pf-init-2.sh;";
     sleep 10;
     echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh;"
-    sleep 1000;
+    echo "cd /mnt/root/; chmod +x pf-init-2.sh; ./pf-init-2.sh;"
+    sleep 10;
+    echo "yes | pkg install bash ; bash -c \"while [ true ] ; do sleep 5 ; if [ -f /tmp/init.complete ] ; then rm -rf /tmp/init.complete; exit ; fi ; done ;\"";
+    sleep 10;
   ) | telnet
 
   virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
   mkdir /tmp/transfer
   mount /tmp/transfer.img /tmp/transfer
-  cp /tmp/transfer/repo.tar /tmp &
-  sleep 60
+  cp /tmp/transfer/repo.tar /tmp
   umount /tmp/transfer
   rm -rf /tmp/transfer
   rm -rf /tmp/transfer.img
