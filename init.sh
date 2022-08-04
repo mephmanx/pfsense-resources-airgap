@@ -274,18 +274,18 @@ EOF
   sleep 2000;
   (echo open localhost 4568;
     sleep 30;
-    echo "touch /mnt/root/pf-init-2.sh; touch /mnt/root/pf-init-2.sh.enc;";
+    echo "touch /root/pf-init-2.sh; touch /root/pf-init-2.sh.enc;";
     sleep 10;
     for element in "${pfsense_init_array[@]}"
       do
-        echo "echo '$element' >> /mnt/root/pf-init-2.sh.enc";
+        echo "echo '$element' >> /root/pf-init-2.sh.enc";
         sleep 5;
       done
-    echo "openssl base64 -d -in /mnt/root/pf-init-2.sh.enc -out /mnt/root/pf-init-2.sh;";
+    echo "openssl base64 -d -in /root/pf-init-2.sh.enc -out /root/pf-init-2.sh;";
     sleep 10;
-    echo "rm -rf /mnt/root/*.enc";
+    echo "rm -rf /root/*.enc";
     sleep 10;
-    echo "cd /mnt/root/"
+    echo "cd /root/"
     sleep 10;
     echo "chmod +x pf-init-2.sh;"
     sleep 10;
