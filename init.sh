@@ -220,7 +220,17 @@ cd /tmp/repo-dir
 pkg create -a > & /tmp/pkg-create-a.out
 yes | pkg install bash
 bash
-for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d " " -f 4); do  pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done; for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 "No such file or directory" | grep for | cut -d " " -f 4); do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done;
+
+for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d " " -f 4); do
+  pkg fetch -r pfSense -o /tmp/repo-dir -y \$col;
+  mv /tmp/repo-dir/All/* /tmp/repo-dir
+done;
+
+for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 "No such file or directory" | grep for | cut -d " " -f 4); do
+  pkg fetch -r pfSense -o /tmp/repo-dir -y \$col;
+  mv /tmp/repo-dir/All/* /tmp/repo-dir
+done;
+
 exit
 pkg repo -o /tmp/repo-dir /tmp/repo-dir
 tar cf /tmp/repo.tar ./*
