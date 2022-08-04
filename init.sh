@@ -259,5 +259,8 @@ if [ -n "$2" ]; then
     exit 0
   fi
 fi
-virsh destroy pfsense
-virsh undefine --domain pfsense --remove-all-storage
+
+if [ 'dev' == "$1" ]; then
+  virsh destroy pfsense
+  virsh undefine --domain pfsense --remove-all-storage
+fi
