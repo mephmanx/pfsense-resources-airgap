@@ -222,7 +222,7 @@ if [ 'dev' == "$1" ]; then
     sleep 10;
     echo 'pkg create -a > & /tmp/pkg-create-a.out';
     sleep 400;
-    echo "for col in \`cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d \" \" -f 4\`; do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done; for col in \`cat /tmp/pkg-create-a.out | grep -B 1 \"No such file or directory\" | grep for | cut -d \" \" -f 4\`; do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done;";
+    echo "foreach col in \`cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d \" \" -f 4\`; do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; end; foreach col in \`cat /tmp/pkg-create-a.out | grep -B 1 \"No such file or directory\" | grep for | cut -d \" \" -f 4\`; do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; end;";
     sleep 200;
     echo "pkg repo -o /tmp/repo-dir /var/cache/pkg/"
     sleep 100;
