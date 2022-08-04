@@ -227,7 +227,7 @@ if [ 'dev' == "$1" ]; then
     echo "bash";
     sleep 30;
     echo "for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d \" \" -f 4); do yes | pkg install \$col; pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done; for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 \"No such file or directory\" | grep for | cut -d \" \" -f 4); do yes | pkg install \$col; pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done;";
-    sleep 400;
+    sleep 800;
     echo "exit";
     sleep 10;
     echo "pkg repo -o /tmp/repo-dir /tmp/repo-dir"
