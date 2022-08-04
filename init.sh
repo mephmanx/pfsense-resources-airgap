@@ -230,7 +230,7 @@ if [ 'dev' == "$1" ]; then
     sleep 400;
     echo "exit";
     sleep 10;
-    echo "pkg repo -o /tmp/repo-dir /var/cache/pkg/"
+    echo "pkg repo -o /tmp/repo-dir /tmp/repo-dir"
     sleep 100;
     echo 'tar cf /tmp/repo.tar ./*';
     sleep 10;
