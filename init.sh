@@ -223,11 +223,11 @@ if [ 'dev' == "$1" ]; then
     echo 'pkg create -a > & /tmp/pkg-create-a.out';
     sleep 400;
     echo "yes | pkg install bash";
-    sleep 160;
+    sleep 200;
     echo "bash";
     sleep 30;
     echo "for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d \" \" -f 4); do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done; for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 \"No such file or directory\" | grep for | cut -d \" \" -f 4); do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done;";
-    sleep 300;
+    sleep 400;
     echo "exit";
     sleep 10;
     echo "pkg repo -o /tmp/repo-dir /var/cache/pkg/"
