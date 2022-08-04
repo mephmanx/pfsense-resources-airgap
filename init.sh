@@ -198,11 +198,24 @@ EOF
     sleep 10;
     echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh;"
-    sleep 10;
-    echo "yes | pkg install bash ; bash -c \"while [ true ] ; do sleep 5 ; if [ -f /tmp/init.complete ] ; then rm -rf /tmp/init.complete; exit ; fi ; done ;\"";
+    echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh &;"
     sleep 10;
   ) | telnet
+
+### add wait before restart
+cat > /temp/wait1.sh <<EOF
+#!/usr/bin/expect
+set timeout -1;
+spawn telnet localhost 4568
+send "echo ''\n"
+expect "#"
+send "\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
+EOF
+
+chmod +x /temp/wait1.sh
+./temp/wait1.sh
+####
 
   virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
   ### cleanup
@@ -267,11 +280,24 @@ EOF
     sleep 10;
     echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo "cd /mnt/root/; chmod +x pf-init-2.sh; ./pf-init-2.sh;"
-    sleep 10;
-    echo "yes | pkg install bash ; bash -c \"while [ true ] ; do sleep 5 ; if [ -f /tmp/init.complete ] ; then rm -rf /tmp/init.complete; exit ; fi ; done ;\"";
+    echo "cd /mnt/root/; chmod +x pf-init-2.sh; ./pf-init-2.sh &;"
     sleep 10;
   ) | telnet
+
+### add wait before restart
+cat > /temp/wait2.sh <<EOF
+#!/usr/bin/expect
+set timeout -1;
+spawn telnet localhost 4568
+send "echo ''\n"
+expect "#"
+send "\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
+EOF
+
+chmod +x /temp/wait2.sh
+./temp/wait2.sh
+####
 
   virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
   mkdir /tmp/transfer
