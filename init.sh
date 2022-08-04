@@ -198,7 +198,11 @@ EOF
     sleep 10;
     echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh"
+    echo "cd /mnt/root/"
+    sleep 10;
+    echo "chmod +x pf-init-1.sh;"
+    sleep 10;
+    echo "./pf-init-1.sh"
     sleep 10;
   ) | telnet
 
@@ -281,7 +285,11 @@ EOF
     sleep 10;
     echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo "cd /mnt/root/; chmod +x pf-init-2.sh; ./pf-init-2.sh"
+    echo "cd /mnt/root/"
+    sleep 10;
+    echo "chmod +x pf-init-2.sh;"
+    sleep 10;
+    echo "./pf-init-2.sh"
     sleep 10;
   ) | telnet
 
