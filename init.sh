@@ -135,10 +135,26 @@ if [ 'dev' == "$1" ] || [ 'keep' == "$2" ]; then
   cmdCopy=""
   if [ 'prod' == "$1" ]; then
     cmd="mkdir /mnt/tmp/repo-dir"
-    cmdCopy="cp /tmp/test-mnt/repo.tar /mnt/root/repo.tar"
     cmdExtract="tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir"
     cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/etc/pkg/FreeBSD.conf"
   fi
+
+cat > /temp/pf-init-1.sh <<EOF
+mount -u -o rw /
+mkdir /tmp/test-mnt
+mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt
+cp /tmp/test-mnt/* /mnt/root
+$cmd
+$cmdExtract
+$cmdRepoSetup
+chmod +x /mnt/root/*.sh
+cd /mnt/root
+./init.sh
+EOF
+
+  PFSENSE_INIT=$(cat </temp/pf-init-1.sh | base64 | tr -d '\n\r')
+
+  pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
 
   sleep 30;
   (echo open localhost 4568;
@@ -167,34 +183,19 @@ if [ 'dev' == "$1" ] || [ 'keep' == "$2" ]; then
     sleep 5;
     echo 'S';
     sleep 10;
-    echo 'mount -u -o rw /';
+    echo "touch /mnt/root/pf-init-1.sh; touch /mnt/root/pf-init-1.sh.enc;";
     sleep 10;
-    echo 'mkdir /tmp/test-mnt';
+    for element in "${pfsense_init_array[@]}"
+      do
+        echo "echo '$element' >> /mnt/root/pf-init-1.sh.enc";
+        sleep 5;
+      done
+    echo "openssl base64 -d -in /mnt/root/pf-init-1.sh.enc -out /mnt/root/pf-init-1.sh;";
     sleep 10;
-    echo 'mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt';
+    echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo 'cp /tmp/test-mnt/openstack-env.sh /mnt/root/openstack-env.sh';
-    sleep 10;
-    echo 'cp /tmp/test-mnt/pf_functions.sh /mnt/root/pf_functions.sh';
-    sleep 10;
-    echo 'cp /tmp/test-mnt/pfsense-init.sh /mnt/root/pfsense-init.sh';
-    sleep 10;
-    echo 'cp /tmp/test-mnt/init.sh /mnt/root/init.sh'
-    sleep 10;
-    echo "$cmd";
-    sleep 10;
-    echo "$cmdCopy";
-    sleep 10;
-    echo "$cmdExtract";
-    sleep 10;
-    echo "$cmdRepoSetup";
-    sleep 10;
-    echo "chmod +x /mnt/root/*.sh"
-    sleep 10;
-    echo "cd /mnt/root";
-    sleep 5;
-    echo "./init.sh";
-    sleep 10;
+    echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh;"
+    sleep 400;
   ) | telnet
 
   virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
@@ -213,35 +214,42 @@ if [ 'dev' == "$1" ]; then
   ### mount transfer img, copy file, detach and move to host
   virsh attach-disk pfsense --source /tmp/transfer.img --target vdc --persistent --config --live
 
+cat > /temp/pf-init-2.sh <<EOF
+mkdir /tmp/repo-dir
+cd /tmp/repo-dir
+pkg create -a > & /tmp/pkg-create-a.out
+yes | pkg install bash
+bash
+for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d " " -f 4); do  pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done; for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 "No such file or directory" | grep for | cut -d " " -f 4); do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done;
+exit
+pkg repo -o /tmp/repo-dir /tmp/repo-dir
+tar cf /tmp/repo.tar ./*
+mkdir /tmp/transfer
+mount_msdosfs /dev/vtbd0 /tmp/transfer
+cp /tmp/repo.tar /tmp/transfer
+umount /tmp/transfer
+EOF
+
+  PFSENSE_INIT=$(cat </temp/pf-init-2.sh | base64 | tr -d '\n\r')
+
+  pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
+
   sleep 2000;
   (echo open localhost 4568;
     sleep 30;
-    echo "mkdir /tmp/repo-dir";
+    echo "touch /mnt/root/pf-init-1.sh; touch /mnt/root/pf-init-1.sh.enc;";
     sleep 10;
-    echo "cd /tmp/repo-dir";
+    for element in "${pfsense_init_array[@]}"
+      do
+        echo "echo '$element' >> /mnt/root/pf-init-1.sh.enc";
+        sleep 5;
+      done
+    echo "openssl base64 -d -in /mnt/root/pf-init-1.sh.enc -out /mnt/root/pf-init-1.sh;";
     sleep 10;
-    echo 'pkg create -a > & /tmp/pkg-create-a.out';
-    sleep 400;
-    echo "yes | pkg install bash";
-    sleep 200;
-    echo "bash";
-    sleep 30;
-    echo "for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d \" \" -f 4); do yes | pkg install \$col; pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done; for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 \"No such file or directory\" | grep for | cut -d \" \" -f 4); do yes | pkg install \$col; pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; done;";
-    sleep 800;
-    echo "exit";
+    echo "rm -rf /mnt/root/*.enc";
     sleep 10;
-    echo "pkg repo -o /tmp/repo-dir /tmp/repo-dir"
-    sleep 100;
-    echo 'tar cf /tmp/repo.tar ./*';
-    sleep 10;
-    echo "mkdir /tmp/transfer";
-    sleep 10;
-    echo "mount_msdosfs /dev/vtbd0 /tmp/transfer";
-    sleep 10;
-    echo "cp /tmp/repo.tar /tmp/transfer";
-    sleep 100;
-    echo "umount /tmp/transfer";
-    sleep 10;
+    echo "cd /mnt/root/; chmod +x pf-init-1.sh; ./pf-init-1.sh;"
+    sleep 1000;
   ) | telnet
 
   virsh detach-disk --domain pfsense /tmp/transfer.img --persistent --config --live
