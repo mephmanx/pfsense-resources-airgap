@@ -1,4 +1,4 @@
-FROM mephmanx/pfsense-base:$DOCKER_TAG AS OS-BASE
+FROM mephmanx/pfsense-base:$PFSENSE_VERSION AS OS-BASE
 
 FROM quay.io/centos/centos:stream8
 
