@@ -238,8 +238,6 @@ if [ 'dev' == "$1" ]; then
   virsh attach-disk pfsense --source /tmp/transfer.img --target vdc --persistent --config --live
 
 cat > /temp/pf-init-2.sh <<EOF
-#!/bin/bash
-
 mkdir /tmp/repo-dir
 cd /tmp/repo-dir
 pkg create -a > & /tmp/pkg-create-a.out
@@ -291,6 +289,8 @@ EOF
     echo "cd /root/"
     sleep 10;
     echo "chmod +x pf-init-2.sh;"
+    sleep 10;
+    echo "echo '#!/bin/bash' | cat - pf-init-2.sh > temp && mv temp pf-init-2.sh";
     sleep 10;
     echo "./pf-init-2.sh"
     sleep 10;
