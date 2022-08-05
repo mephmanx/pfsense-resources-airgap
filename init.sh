@@ -273,7 +273,6 @@ EOF
     echo "./pf-init-3.sh"
     sleep 10;
   ) | telnet
-  sleep 2000;
   ########
 
 ### add wait before restart
