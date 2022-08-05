@@ -1,3 +1,5 @@
+ARG PFSENSE_VERSION
+ENV PF_VER=${PFSENSE_VERSION}
 FROM mephmanx/pfsense-base:$PFSENSE_VERSION AS OS-BASE
 
 FROM quay.io/centos/centos:stream8
