@@ -238,9 +238,11 @@ if [ 'dev' == "$1" ]; then
   virsh attach-disk pfsense --source /tmp/transfer.img --target vdc --persistent --config --live
 
 cat > /temp/pf-init-2.sh <<EOF
+#!/bin/bash
+
 mkdir /tmp/repo-dir
 cd /tmp/repo-dir
-pkg create -a > \& /tmp/pkg-create-a.out
+pkg create -a > & /tmp/pkg-create-a.out
 pkg fetch -o /tmp/repo-dir -y qemu-guest-agent
 yes | pkg install bash
 bash
