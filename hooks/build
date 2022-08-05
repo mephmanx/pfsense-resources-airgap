@@ -2,6 +2,6 @@
 
 echo "------ HOOK START - BUILD -------"
 
-docker build --build-arg PFSENSE_VERSION=2.6.0 -t $IMAGE_NAME .
+docker build --build-arg PFSENSE_VERSION="$DOCKER_TAG" -t "$IMAGE_NAME" .
 
 echo "------ HOOK END - BUILD -------"

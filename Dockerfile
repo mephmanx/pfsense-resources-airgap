@@ -1,4 +1,4 @@
-FROM mephmanx/pfsense-base:2.6.0 AS OS-BASE
+FROM mephmanx/pfsense-base:$PFSENSE_VERSION AS OS-BASE
 
 FROM quay.io/centos/centos:stream8
 
