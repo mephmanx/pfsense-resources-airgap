@@ -6,7 +6,6 @@ set -x
 source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/openstack-scripts/project_config.sh
 source /tmp/openstack-setup/openstack-env.sh
-yum install -y expect
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
@@ -252,7 +251,7 @@ EOF
   pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
 
   ### add wait based on checking for progress complete in system.log file
-  sleep 60;
+  sleep 200;
   (echo open localhost 4568;
     sleep 30;
     echo "touch /root/pf-init-3.sh; touch /root/pf-init-3.sh.enc;";

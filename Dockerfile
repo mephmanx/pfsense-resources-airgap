@@ -6,8 +6,7 @@ RUN mkdir /out
 RUN mkdir /temp
 RUN yum install -y epel-release
 RUN yum install -y @virt
-RUN dnf install -y virt-install virt-viewer libguestfs-tools openvpn
-RUN yum install -y wget telnet setroubleshoot setools
+RUN dnf install -y virt-install virt-viewer libguestfs-tools openvpn expect wget telnet setroubleshoot setools
 
 COPY --from=OS-BASE /root/pfSense-CE-memstick-ADI.img.gz /temp/pfSense-CE-memstick-ADI.img.gz
 
