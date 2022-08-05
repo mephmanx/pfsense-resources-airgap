@@ -240,7 +240,7 @@ if [ 'dev' == "$1" ]; then
 cat > /temp/pf-init-2.sh <<EOF
 mkdir /tmp/repo-dir
 cd /tmp/repo-dir
-pkg create -a > & /tmp/pkg-create-a.out
+pkg create -a > \& /tmp/pkg-create-a.out
 pkg fetch -o /tmp/repo-dir -y qemu-guest-agent
 yes | pkg install bash
 bash
@@ -272,7 +272,25 @@ EOF
 
   pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
 
+  ### add wait based on checking for progress complete in system.log file
   sleep 2000;
+  ########
+
+### add wait before restart
+cat > /temp/wait2.sh <<EOF
+#!/usr/bin/expect
+set timeout -1;
+spawn telnet localhost 4568
+send "echo ''\n"
+expect "#"
+send "\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
+EOF
+
+  chmod +x /temp/wait2.sh
+  ./temp/wait2.sh
+  ####
+
   (echo open localhost 4568;
     sleep 30;
     echo "touch /root/pf-init-2.sh; touch /root/pf-init-2.sh.enc;";
@@ -289,8 +307,6 @@ EOF
     echo "cd /root/"
     sleep 10;
     echo "chmod +x pf-init-2.sh;"
-    sleep 10;
-    echo "echo '#!/bin/bash' | cat - pf-init-2.sh > temp && mv temp pf-init-2.sh";
     sleep 10;
     echo "./pf-init-2.sh"
     sleep 10;
