@@ -241,7 +241,6 @@ cat > /temp/pf-init-3.sh <<EOF
 while ! grep "process finished successfully" /var/log/system.log > /dev/null;
 do
   sleep 10;
-  echo "testing"
 done
 
 ## important!  endless loop if below is removed!
