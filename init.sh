@@ -261,6 +261,7 @@ tar cf /tmp/repo.tar ./*
 mkdir /tmp/transfer
 mount_msdosfs /dev/vtbd0 /tmp/transfer
 cp /tmp/repo.tar /tmp/transfer
+sleep 30
 umount /tmp/transfer
 
 ## important!  endless loop if below is removed!
