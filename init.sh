@@ -291,9 +291,6 @@ EOF
   ####
 
 cat > /temp/pf-init-2.sh <<EOF
-mkdir /tmp/repo-dir
-cd /tmp/repo-dir
-pkg create -a
 pkg fetch -o /tmp/repo-dir -y qemu-guest-agent
 yes | pkg install bash
 bash
@@ -342,7 +339,13 @@ EOF
     sleep 10;
     echo "chmod +x pf-init-2.sh;"
     sleep 10;
-    echo "./pf-init-2.sh > /tmp/pkg-create-a.out"
+    echo "mkdir /tmp/repo-dir"
+    sleep 10;
+    echo "cd /tmp/repo-dir"
+    sleep 10;
+    echo "pkg create -a > & /tmp/pkg-create-a.out"
+    sleep 400;
+    echo "./pf-init-2.sh"
     sleep 10;
   ) | telnet
 
