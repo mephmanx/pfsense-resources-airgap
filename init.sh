@@ -295,6 +295,7 @@ cd /tmp/repo-dir
 pkg create -a > /tmp/pkg-create-a.out 2>&1
 pkg fetch -o /tmp/repo-dir -y qemu-guest-agent
 yes | pkg install bash
+sleep 200
 
 bash -c "for col in \$(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for | cut -d " " -f 4); do pkg fetch -r pfSense -o /tmp/repo-dir -y \$col; mv /tmp/repo-dir/All/* /tmp/repo-dir; done;"
 
