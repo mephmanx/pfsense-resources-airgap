@@ -11,8 +11,8 @@ IP_DATA=$(ifconfig vtnet0 | grep inet | awk -F' ' '{ print $2 }' | head -2 | tai
 telegram_notify  "PFSense initialization script beginning... \n\nCloud DMZ IP: $IP_DATA"
 yes | pkg install qemu-guest-agent
 
-echo "qemu_guest_agent_enable=\"YES\"" >> /etc/rc.conf
-echo "qemu_guest_agent_flags=\"-d -v -l /var/log/qemu-ga.log\"" >> /etc/rc.conf
+echo 'qemu_guest_agent_enable="YES"' >> /etc/rc.conf
+echo 'qemu_guest_agent_flags="-d -v -l /var/log/qemu-ga.log"' >> /etc/rc.conf
 
 service qemu-guest-agent start
 
