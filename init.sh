@@ -298,7 +298,6 @@ mkdir /tmp/repo-dir
 cd /tmp/repo-dir
 pkg create -a > /tmp/pkg-create-a.out 2>&1
 pkg fetch -o /tmp/repo-dir -y qemu-guest-agent
-pkg fetch -o /tmp/repo-dir -y pfSense-pkg-squid
 mv /tmp/repo-dir/All/* /tmp/repo-dir
 yes | pkg install bash
 sleep 200
@@ -307,6 +306,8 @@ bash -c 'for col in $(cat /tmp/pkg-create-a.out | grep -B 1 missing | grep for |
 
 bash -c 'for col in $(cat /tmp/pkg-create-a.out | grep -B 1 "No such file or directory" | grep for | cut -d " " -f 4); do pkg fetch -r pfSense -o /tmp/repo-dir -y $col; mv /tmp/repo-dir/All/* /tmp/repo-dir; done;'
 
+pkg fetch -r pfSense -o /tmp/repo-dir -y pfSense-pkg-squid
+pkg fetch -r pfSense -o /tmp/repo-dir -y squid
 pkg repo -o /tmp/repo-dir /tmp/repo-dir
 tar cf /tmp/repo.tar ./*
 mkdir /tmp/transfer
