@@ -32,6 +32,8 @@ HOSTNAME="$ORGANIZATION-\$HOSTNAME_SUFFIX"
 sed -i -e 's/{CACHE_SIZE}/'\$DRIVE_SIZE'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{HOSTNAME}/'\$HOSTNAME'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
+
+## important!  endless loop if below is removed!
 echo "fin" > /tmp/init.complete
 EOF
 
