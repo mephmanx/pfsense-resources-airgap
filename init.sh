@@ -66,8 +66,6 @@ ADVANCED_BACKEND=$(echo "http-request replace-value Host ^(.*)(\.[^\.]+){2}$ \1.
 ######  variables to remove from PFSense cloud router
 sed -i "s/{TELEGRAM_API}/$TELEGRAM_API/g" /temp/usb/config.xml
 sed -i "s/{TELEGRAM_CHAT_ID}/$TELEGRAM_CHAT_ID/g" /temp/usb/config.xml
-sed -i "s/{OINKMASTER}/$OINKMASTER/g" /temp/usb/config.xml
-sed -i "s/{MAXMIND_KEY}/$MAXMIND_KEY/g" /temp/usb/config.xml
 #######
 
 ##### replace PFSense template vars
