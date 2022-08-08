@@ -27,7 +27,6 @@
             <scope>remote</scope>
             <gid>2000</gid>
             <priv>page-dashboard-all</priv>
-            <priv>page-firewall-pfblockerng</priv>
             <priv>page-services-snort</priv>
             <priv>page-status-openvpn</priv>
             <priv>page-openvpn-csc</priv>
@@ -351,48 +350,6 @@
         </rule>
     </nat>
     <filter>
-        <rule>
-            <quick>yes</quick>
-            <floating>yes</floating>
-            <ipprotocol>inet</ipprotocol>
-            <type>block</type>
-            <direction>any</direction>
-            <descr><![CDATA[pfB_PRI1_v4 auto rule]]></descr>
-            <source>
-                <address>pfB_PRI1_v4</address>
-            </source>
-            <destination>
-                <any></any>
-            </destination>
-            <log></log>
-            <created>
-                <time>1659988876</time>
-                <username><![CDATA[Auto]]></username>
-            </created>
-            <interface>wan</interface>
-            <tracker>1770009871</tracker>
-        </rule>
-        <rule>
-            <quick>yes</quick>
-            <floating>yes</floating>
-            <ipprotocol>inet</ipprotocol>
-            <type>reject</type>
-            <direction>any</direction>
-            <descr><![CDATA[pfB_PRI1_v4 auto rule]]></descr>
-            <source>
-                <any></any>
-            </source>
-            <destination>
-                <address>pfB_PRI1_v4</address>
-            </destination>
-            <log></log>
-            <created>
-                <time>1659988876</time>
-                <username><![CDATA[Auto]]></username>
-            </created>
-            <interface>lan</interface>
-            <tracker>1770009423</tracker>
-        </rule>
         <rule>
             <id></id>
             <tracker>1626890209</tracker>
