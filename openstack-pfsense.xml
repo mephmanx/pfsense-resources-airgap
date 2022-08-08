@@ -58,7 +58,7 @@
         <webgui>
             <protocol>https</protocol>
             <loginautocomplete></loginautocomplete>
-            <dashboardcolumns>3</dashboardcolumns>
+            <dashboardcolumns>2</dashboardcolumns>
             <port>444</port>
             <max_procs>2</max_procs>
             <ssl-certref>60ec35a6053df</ssl-certref>
@@ -802,7 +802,7 @@
         <enable></enable>
     </rrd>
     <widgets>
-        <sequence>system_information:col1:open:0,gateways:col1:open:0,interfaces:col1:open:0,log:col2:open:0,haproxy:col3:open:0</sequence>
+        <sequence>log:col1:open:0,system_information:col1:open:0,gateways:col1:open:0,haproxy:col2:open:0</sequence>
         <period>10</period>
         <system_information-0>
             <filter>system,bios,cpu_type,hwcrypto,pti,mds,state_table_size,mbuf_usage,load_average,swap_usage,disk_usage</filter>
@@ -943,9 +943,9 @@
         <dns64netbits>96</dns64netbits>
     </unbound>
     <revision>
-        <time>1659993797</time>
-        <description><![CDATA[(system): Removed snort package.]]></description>
-        <username><![CDATA[(system)]]></username>
+        <time>1659995442</time>
+        <description><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap): Widget configuration has been changed.]]></description>
+        <username><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap)]]></username>
     </revision>
     <ppps></ppps>
     <gateways>
