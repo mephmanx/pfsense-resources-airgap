@@ -611,8 +611,7 @@
     <ipsec>
         <vtimaps></vtimaps>
     </ipsec>
-    <aliases>
-    </aliases>
+    <aliases></aliases>
     <proxyarp></proxyarp>
     <cron>
         <item>
