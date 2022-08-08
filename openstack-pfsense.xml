@@ -366,11 +366,11 @@
             </destination>
             <log></log>
             <created>
-                <time>1659110437</time>
+                <time>1659988876</time>
                 <username><![CDATA[Auto]]></username>
             </created>
             <interface>wan</interface>
-            <tracker>1770009957</tracker>
+            <tracker>1770009871</tracker>
         </rule>
         <rule>
             <quick>yes</quick>
@@ -387,7 +387,7 @@
             </destination>
             <log></log>
             <created>
-                <time>1659110437</time>
+                <time>1659988876</time>
                 <username><![CDATA[Auto]]></username>
             </created>
             <interface>lan</interface>
@@ -676,15 +676,6 @@
         <vtimaps></vtimaps>
     </ipsec>
     <aliases>
-        <alias>
-            <name>pfB_PRI1_v4</name>
-            <url>https://127.0.0.1:444/pfblockerng/pfblockerng.php?pfb=pfB_PRI1_v4 &lt;br /&gt;[ Abuse_Feodo_C2_v4, Abuse_IPBL_v4, Abuse_SSLBL_v4, CINS_army_v4, ET_Block_v4, ET_Comp_v4, ISC_Block_v4, Spamhaus_Drop_v4, Spamhaus_eDrop_v4, Talos_BL_v4 ]</url>
-            <updatefreq>32</updatefreq>
-            <address></address>
-            <descr><![CDATA[pfBlockerNG  Auto  Alias]]></descr>
-            <type>urltable</type>
-            <detail><![CDATA[DO NOT EDIT THIS ALIAS]]></detail>
-        </alias>
     </aliases>
     <proxyarp></proxyarp>
     <cron>
@@ -778,51 +769,7 @@
             <who>root</who>
             <command>/usr/bin/nice -n20 /etc/rc.update_pkg_metadata</command>
         </item>
-        <item>
-            <minute>0</minute>
-            <hour>17</hour>
-            <mday>4-10</mday>
-            <month>*</month>
-            <wday>*</wday>
-            <who>root</who>
-            <command>/usr/local/bin/php /usr/local/www/pfblockerng/pfblockerng.php dcc &gt;&gt; /var/log/pfblockerng/extras.log 2&gt;&amp;1</command>
-        </item>
-        <item>
-            <minute>0</minute>
-            <hour>*</hour>
-            <mday>*</mday>
-            <month>*</month>
-            <wday>*</wday>
-            <who>root</who>
-            <command>/usr/local/bin/php /usr/local/www/pfblockerng/pfblockerng.php cron &gt;&gt; /var/log/pfblockerng/pfblockerng.log 2&gt;&amp;1</command>
-        </item>
-        <item>
-            <minute>1</minute>
-            <hour>1</hour>
-            <mday>*</mday>
-            <month>*</month>
-            <wday>*</wday>
-            <who>root</who>
-            <command>cd /root/pfsense-scripts;./pfsense-cloud-backup.sh</command>
-        </item>
-        <item>
-            <minute>*/5</minute>
-            <hour>*</hour>
-            <mday>*</mday>
-            <month>*</month>
-            <wday>*</wday>
-            <who>root</who>
-            <command>/usr/bin/nice -n20 /usr/local/bin/php -f /usr/local/pkg/snort/snort_check_cron_misc.inc</command>
-        </item>
-        <item>
-            <minute>4</minute>
-            <hour>0</hour>
-            <mday>*/1</mday>
-            <month>*</month>
-            <wday>*</wday>
-            <who>root</who>
-            <command>/usr/bin/nice -n20 /usr/local/bin/php -f /usr/local/pkg/snort/snort_check_for_rule_updates.php</command>
-        </item>
+
         <item>
             <minute>0</minute>
             <hour>0</hour>
@@ -842,15 +789,6 @@
             <command>/usr/local/pkg/swapstate_check.php</command>
         </item>
         <item>
-            <minute>*/5</minute>
-            <hour>*</hour>
-            <mday>*</mday>
-            <month>*</month>
-            <wday>*</wday>
-            <who>root</who>
-            <command>/usr/bin/nice -n20 /sbin/pfctl -q -t snort2c -T expire 3600</command>
-        </item>
-        <item>
             <minute>*/1</minute>
             <hour>*</hour>
             <mday>*</mday>
@@ -865,7 +803,7 @@
         <enable></enable>
     </rrd>
     <widgets>
-        <sequence>system_information:col1:open:0,gateways:col1:open:0,interfaces:col1:open:0,log:col2:open:0,haproxy:col3:open:0,pfblockerng:col2:open:0,snort_alerts:col2:open:0</sequence>
+        <sequence>system_information:col1:open:0,gateways:col1:open:0,interfaces:col1:open:0,log:col2:open:0,haproxy:col3:open:0</sequence>
         <period>10</period>
         <system_information-0>
             <filter>system,bios,cpu_type,hwcrypto,pti,mds,state_table_size,mbuf_usage,load_average,swap_usage,disk_usage</filter>
@@ -971,7 +909,7 @@
         <dnssec></dnssec>
         <active_interface>all</active_interface>
         <outgoing_interface>wan</outgoing_interface>
-        <custom_options>c2VydmVyOgogICAgbG9nLXF1ZXJpZXM6IHllcwpzZXJ2ZXI6aW5jbHVkZTogL3Zhci91bmJvdW5kL3BmYl9kbnNibC4qY29uZg==</custom_options>
+        <custom_options>c2VydmVyOgogICAgbG9nLXF1ZXJpZXM6IHllcw==</custom_options>
         <hideidentity></hideidentity>
         <hideversion></hideversion>
         <dnssecstripped></dnssecstripped>
@@ -1006,9 +944,9 @@
         <dns64netbits>96</dns64netbits>
     </unbound>
     <revision>
-        <time>1659178928</time>
-        <description><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap): Services: Service Watchdog: updated notification settings.]]></description>
-        <username><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap)]]></username>
+        <time>1659993797</time>
+        <description><![CDATA[(system): Removed snort package.]]></description>
+        <username><![CDATA[(system)]]></username>
     </revision>
     <ppps></ppps>
     <gateways>
@@ -1049,17 +987,6 @@
             <section>Services</section>
             <configfile>shellcmd.xml</configfile>
             <url>/pkg.php?xml=shellcmd.xml</url>
-        </menu>
-        <menu>
-            <name>pfBlockerNG</name>
-            <section>Firewall</section>
-            <url>/pfblockerng/pfblockerng_general.php</url>
-        </menu>
-        <menu>
-            <name>Snort</name>
-            <tooltiptext>Set up snort specific settings</tooltiptext>
-            <section>Services</section>
-            <url>/snort/snort_interfaces.php</url>
         </menu>
         <menu>
             <name>Squid Proxy Server</name>
@@ -3946,24 +3873,6 @@
             <description><![CDATA[Telegraf daemon]]></description>
         </service>
         <service>
-            <name>pfb_dnsbl</name>
-            <rcfile>pfb_dnsbl.sh</rcfile>
-            <executable>lighttpd_pfb</executable>
-            <description><![CDATA[pfBlockerNG DNSBL service]]></description>
-        </service>
-        <service>
-            <name>pfb_filter</name>
-            <rcfile>pfb_filter.sh</rcfile>
-            <executable>php_pfb</executable>
-            <description><![CDATA[pfBlockerNG firewall filter service]]></description>
-        </service>
-        <service>
-            <name>snort</name>
-            <rcfile>snort.sh</rcfile>
-            <executable>snort</executable>
-            <description><![CDATA[Snort IDS/IPS Daemon]]></description>
-        </service>
-        <service>
             <name>squid</name>
             <rcfile>squid.sh</rcfile>
             <executable>squid</executable>
@@ -4090,266 +3999,6 @@
             <defaultsettings></defaultsettings>
             <config></config>
         </vpn_openvpn_export>
-        <snortglobal>
-            <snort_config_ver>4.1.6</snort_config_ver>
-            <snortdownload>on</snortdownload>
-            <snortcommunityrules>on</snortcommunityrules>
-            <emergingthreats>on</emergingthreats>
-            <emergingthreats_pro>off</emergingthreats_pro>
-            <enable_feodo_botnet_c2_rules>on</enable_feodo_botnet_c2_rules>
-            <clearblocks>on</clearblocks>
-            <verbose_logging>off</verbose_logging>
-            <openappid_detectors>on</openappid_detectors>
-            <openappid_rules_detectors>on</openappid_rules_detectors>
-            <hide_deprecated_rules>off</hide_deprecated_rules>
-            <curl_no_verify_ssl_peer>off</curl_no_verify_ssl_peer>
-            <oinkmastercode>{OINKMASTER}</oinkmastercode>
-            <etpro_code></etpro_code>
-            <rm_blocked>1h_b</rm_blocked>
-            <autorulesupdate7>1d_up</autorulesupdate7>
-            <forcekeepsettings>on</forcekeepsettings>
-            <rule>
-                <interface>wan</interface>
-                <enable>on</enable>
-                <uuid>33237</uuid>
-                <descr><![CDATA[WAN]]></descr>
-                <performance>ac-bnfa</performance>
-                <snaplen>1518</snaplen>
-                <ips_mode>ips_mode_inline</ips_mode>
-                <enable_pkt_caps>off</enable_pkt_caps>
-                <tcpdump_file_size>128</tcpdump_file_size>
-                <unified2_logging_enable>off</unified2_logging_enable>
-                <unified2_log_vlan_events>off</unified2_log_vlan_events>
-                <unified2_log_mpls_events>off</unified2_log_mpls_events>
-                <blockoffenders7>on</blockoffenders7>
-                <blockoffenderskill>on</blockoffenderskill>
-                <blockoffendersip>both</blockoffendersip>
-                <whitelistname>default</whitelistname>
-                <homelistname>default</homelistname>
-                <externallistname>default</externallistname>
-                <suppresslistname>default</suppresslistname>
-                <alertsystemlog>on</alertsystemlog>
-                <alertsystemlog_facility>log_auth</alertsystemlog_facility>
-                <alertsystemlog_priority>log_alert</alertsystemlog_priority>
-                <cksumcheck>off</cksumcheck>
-                <fpm_split_any_any>off</fpm_split_any_any>
-                <fpm_search_optimize>off</fpm_search_optimize>
-                <fpm_no_stream_inserts>off</fpm_no_stream_inserts>
-                <max_attribute_hosts>10000</max_attribute_hosts>
-                <max_attribute_services_per_host>10</max_attribute_services_per_host>
-                <max_paf>16000</max_paf>
-                <ftp_preprocessor>on</ftp_preprocessor>
-                <ftp_telnet_inspection_type>stateful</ftp_telnet_inspection_type>
-                <ftp_telnet_alert_encrypted>off</ftp_telnet_alert_encrypted>
-                <ftp_telnet_check_encrypted>on</ftp_telnet_check_encrypted>
-                <ftp_telnet_normalize>on</ftp_telnet_normalize>
-                <ftp_telnet_detect_anomalies>on</ftp_telnet_detect_anomalies>
-                <ftp_telnet_ayt_attack_threshold>20</ftp_telnet_ayt_attack_threshold>
-                <ftp_client_engine>
-                    <item>
-                        <name>default</name>
-                        <bind_to>all</bind_to>
-                        <max_resp_len>256</max_resp_len>
-                        <telnet_cmds>no</telnet_cmds>
-                        <ignore_telnet_erase_cmds>yes</ignore_telnet_erase_cmds>
-                        <bounce>yes</bounce>
-                        <bounce_to_net></bounce_to_net>
-                        <bounce_to_port></bounce_to_port>
-                    </item>
-                </ftp_client_engine>
-                <ftp_server_engine>
-                    <item>
-                        <name>default</name>
-                        <bind_to>all</bind_to>
-                        <ports>default</ports>
-                        <telnet_cmds>no</telnet_cmds>
-                        <ignore_telnet_erase_cmds>yes</ignore_telnet_erase_cmds>
-                        <ignore_data_chan>no</ignore_data_chan>
-                        <def_max_param_len>100</def_max_param_len>
-                    </item>
-                </ftp_server_engine>
-                <smtp_preprocessor>on</smtp_preprocessor>
-                <smtp_memcap>838860</smtp_memcap>
-                <smtp_max_mime_mem>838860</smtp_max_mime_mem>
-                <smtp_b64_decode_depth>0</smtp_b64_decode_depth>
-                <smtp_qp_decode_depth>0</smtp_qp_decode_depth>
-                <smtp_bitenc_decode_depth>0</smtp_bitenc_decode_depth>
-                <smtp_uu_decode_depth>0</smtp_uu_decode_depth>
-                <smtp_email_hdrs_log_depth>1464</smtp_email_hdrs_log_depth>
-                <smtp_ignore_data>off</smtp_ignore_data>
-                <smtp_ignore_tls_data>on</smtp_ignore_tls_data>
-                <smtp_log_mail_from>on</smtp_log_mail_from>
-                <smtp_log_rcpt_to>on</smtp_log_rcpt_to>
-                <smtp_log_filename>on</smtp_log_filename>
-                <smtp_log_email_hdrs>on</smtp_log_email_hdrs>
-                <dce_rpc_2>on</dce_rpc_2>
-                <dns_preprocessor>on</dns_preprocessor>
-                <ssl_preproc>on</ssl_preproc>
-                <pop_preproc>on</pop_preproc>
-                <pop_memcap>838860</pop_memcap>
-                <pop_b64_decode_depth>0</pop_b64_decode_depth>
-                <pop_qp_decode_depth>0</pop_qp_decode_depth>
-                <pop_bitenc_decode_depth>0</pop_bitenc_decode_depth>
-                <pop_uu_decode_depth>0</pop_uu_decode_depth>
-                <imap_preproc>on</imap_preproc>
-                <imap_memcap>838860</imap_memcap>
-                <imap_b64_decode_depth>0</imap_b64_decode_depth>
-                <imap_qp_decode_depth>0</imap_qp_decode_depth>
-                <imap_bitenc_decode_depth>0</imap_bitenc_decode_depth>
-                <imap_uu_decode_depth>0</imap_uu_decode_depth>
-                <sip_preproc>on</sip_preproc>
-                <other_preprocs>on</other_preprocs>
-                <pscan_protocol>all</pscan_protocol>
-                <pscan_type>all</pscan_type>
-                <pscan_memcap>10000000</pscan_memcap>
-                <pscan_sense_level>medium</pscan_sense_level>
-                <http_inspect>on</http_inspect>
-                <http_inspect_proxy_alert>off</http_inspect_proxy_alert>
-                <http_inspect_memcap>150994944</http_inspect_memcap>
-                <http_inspect_max_gzip_mem>838860</http_inspect_max_gzip_mem>
-                <http_inspect_engine>
-                    <item>
-                        <name>default</name>
-                        <bind_to>all</bind_to>
-                        <server_profile>all</server_profile>
-                        <enable_xff>off</enable_xff>
-                        <log_uri>off</log_uri>
-                        <log_hostname>off</log_hostname>
-                        <server_flow_depth>65535</server_flow_depth>
-                        <enable_cookie>on</enable_cookie>
-                        <client_flow_depth>1460</client_flow_depth>
-                        <extended_response_inspection>on</extended_response_inspection>
-                        <no_alerts>off</no_alerts>
-                        <unlimited_decompress>on</unlimited_decompress>
-                        <inspect_gzip>on</inspect_gzip>
-                        <normalize_cookies>on</normalize_cookies>
-                        <normalize_headers>on</normalize_headers>
-                        <normalize_utf>on</normalize_utf>
-                        <normalize_javascript>on</normalize_javascript>
-                        <allow_proxy_use>off</allow_proxy_use>
-                        <inspect_uri_only>off</inspect_uri_only>
-                        <max_javascript_whitespaces>200</max_javascript_whitespaces>
-                        <post_depth>-1</post_depth>
-                        <max_headers>0</max_headers>
-                        <max_spaces>0</max_spaces>
-                        <max_header_length>0</max_header_length>
-                        <ports>default</ports>
-                        <decompress_swf>off</decompress_swf>
-                        <decompress_pdf>off</decompress_pdf>
-                    </item>
-                </http_inspect_engine>
-                <frag3_max_frags>8192</frag3_max_frags>
-                <frag3_memcap>4194304</frag3_memcap>
-                <frag3_detection>on</frag3_detection>
-                <frag3_engine>
-                    <item>
-                        <name>default</name>
-                        <bind_to>all</bind_to>
-                        <policy>bsd</policy>
-                        <timeout>60</timeout>
-                        <min_ttl>1</min_ttl>
-                        <detect_anomalies>on</detect_anomalies>
-                        <overlap_limit>0</overlap_limit>
-                        <min_frag_len>0</min_frag_len>
-                    </item>
-                </frag3_engine>
-                <stream5_reassembly>on</stream5_reassembly>
-                <stream5_flush_on_alert>off</stream5_flush_on_alert>
-                <stream5_prune_log_max>1048576</stream5_prune_log_max>
-                <stream5_track_tcp>on</stream5_track_tcp>
-                <stream5_max_tcp>262144</stream5_max_tcp>
-                <stream5_track_udp>on</stream5_track_udp>
-                <stream5_max_udp>131072</stream5_max_udp>
-                <stream5_udp_timeout>30</stream5_udp_timeout>
-                <stream5_track_icmp>off</stream5_track_icmp>
-                <stream5_max_icmp>65536</stream5_max_icmp>
-                <stream5_icmp_timeout>30</stream5_icmp_timeout>
-                <stream5_mem_cap>8388608</stream5_mem_cap>
-                <stream5_tcp_engine>
-                    <item>
-                        <name>default</name>
-                        <bind_to>all</bind_to>
-                        <policy>bsd</policy>
-                        <timeout>30</timeout>
-                        <max_queued_bytes>1048576</max_queued_bytes>
-                        <detect_anomalies>off</detect_anomalies>
-                        <overlap_limit>0</overlap_limit>
-                        <max_queued_segs>2621</max_queued_segs>
-                        <require_3whs>off</require_3whs>
-                        <startup_3whs_timeout>0</startup_3whs_timeout>
-                        <no_reassemble_async>off</no_reassemble_async>
-                        <max_window>0</max_window>
-                        <use_static_footprint_sizes>off</use_static_footprint_sizes>
-                        <check_session_hijacking>off</check_session_hijacking>
-                        <dont_store_lg_pkts>off</dont_store_lg_pkts>
-                        <ports_client>default</ports_client>
-                        <ports_both>default</ports_both>
-                        <ports_server>none</ports_server>
-                    </item>
-                </stream5_tcp_engine>
-                <appid_preproc>off</appid_preproc>
-                <sf_appid_mem_cap>256</sf_appid_mem_cap>
-                <sf_appid_statslog>on</sf_appid_statslog>
-                <sf_appid_stats_period>300</sf_appid_stats_period>
-                <ssh_preproc_ports>22</ssh_preproc_ports>
-                <ssh_preproc_max_encrypted_packets>20</ssh_preproc_max_encrypted_packets>
-                <ssh_preproc_max_client_bytes>19600</ssh_preproc_max_client_bytes>
-                <ssh_preproc_max_server_version_len>100</ssh_preproc_max_server_version_len>
-                <ssh_preproc_enable_respoverflow>on</ssh_preproc_enable_respoverflow>
-                <ssh_preproc_enable_srvoverflow>on</ssh_preproc_enable_srvoverflow>
-                <ssh_preproc_enable_ssh1crc32>on</ssh_preproc_enable_ssh1crc32>
-                <ssh_preproc_enable_protomismatch>on</ssh_preproc_enable_protomismatch>
-                <autoflowbitrules>on</autoflowbitrules>
-                <ips_policy_enable>on</ips_policy_enable>
-                <ips_policy>security</ips_policy>
-                <ips_policy_mode>alert</ips_policy_mode>
-                <rulesets></rulesets>
-            </rule>
-            <auto_manage_sids>off</auto_manage_sids>
-            <enable_log_mgmt>on</enable_log_mgmt>
-            <alert_log_limit_size>500</alert_log_limit_size>
-            <alert_log_retention>336</alert_log_retention>
-            <appid_alerts_log_retention>336</appid_alerts_log_retention>
-            <appid_alerts_log_limit_size>500</appid_alerts_log_limit_size>
-            <appid_stats_log_limit_size>1000</appid_stats_log_limit_size>
-            <appid_stats_log_retention>168</appid_stats_log_retention>
-            <event_pkts_log_limit_size>0</event_pkts_log_limit_size>
-            <event_pkts_log_retention>336</event_pkts_log_retention>
-            <sid_changes_log_limit_size>250</sid_changes_log_limit_size>
-            <sid_changes_log_retention>336</sid_changes_log_retention>
-            <stats_log_limit_size>500</stats_log_limit_size>
-            <stats_log_retention>168</stats_log_retention>
-            <sid_mgmt_lists>
-                <item>
-                    <name>modifysid-sample.conf</name>
-                    <modtime>1626963297</modtime>
-                    <content>IyBleGFtcGxlIG1vZGlmeXNpZC5jb25mCiMKIyBmb3JtYXR0aW5nIGlzIHNpbXBsZQojIDxzaWQgb3Igc2lkIGxpc3Q+ICJ3aGF0IEknbSByZXBsYWNpbmciICJ3aGF0IEknbSByZXBsYWNpbmcgaXQgd2l0aCIKIwojIE5vdGUgdGhhdCB0aGlzIHdpbGwgb25seSB3b3JrIHdpdGggR0lEOjEgcnVsZXMsIHNpbXBseSBiZWNhdXNlIG1vZGlmeWluZwojIEdJRDozIFNPIHN0dWIgcnVsZXMgd291bGQgbm90IGFjdHVhbGx5IGFmZmVjdCB0aGUgcnVsZS4KIwojIElmIHlvdSBhcmUgYXR0ZW1wdGluZyB0byBjaGFuZ2UgcnVsZXN0YXRlIChlbmFibGUsZGlzYWJsZSkgZnJvbSBoZXJlCiMgdGhlbiB5b3UgYXJlIGRvaW5nIGl0IHdyb25nLiBEbyB0aGlzIGZyb20gd2l0aGluIHRoZSByZXNwZWN0aXZlIAojIHJ1bGVzdGF0ZSBtb2RpZmljYXRpb24gY29uZmlndXJhdGlvbiBmaWxlcy4KCiMgdGhlIGZvbGxvd2luZyBhcHBsaWVzIHRvIHNpZCAxMDAxMCBvbmx5IGFuZCByZXByZXNlbnRzIHdoYXQgd291bGQgbm9ybWFsbHkKIyBiZSBzL3RvX2NsaWVudC9mcm9tX3NlcnZlci8KIyAxMDAxMCAidG9fY2xpZW50IiAiZnJvbV9zZXJ2ZXIiCgojIHRoZSBmb2xsb3dpbmcgd291bGQgcmVwbGFjZSBIVFRQX1BPUlRTIHdpdGggSFRUUFNfUE9SVFMgZm9yIEFMTCBHSUQ6MQojIHJ1bGVzCiMgIkhUVFBfUE9SVFMiICJIVFRQU19QT1JUUyIKCiMgbXVsdGlwbGUgc2lkcyBjYW4gYmUgc3BlY2lmaWVkIGFzIG5vdGVkIGJlbG93OgojIDMwMiw0MjksMTgyMSAiXCRFWFRFUk5BTF9ORVQiICJcJEhPTUVfTkVUIgoK</content>
-                </item>
-                <item>
-                    <name>disablesid-sample.conf</name>
-                    <modtime>1626963297</modtime>
-                    <content>IyBleGFtcGxlIGRpc2FibGVzaWQuY29uZgoKIyBFeGFtcGxlIG9mIG1vZGlmeWluZyBzdGF0ZSBmb3IgaW5kaXZpZHVhbCBydWxlcwojIDE6MTAzNCwxOjk4MzcsMToxMjcwLDE6MzM5MCwxOjcxMCwxOjEyNDksMzoxMzAxMAoKIyBFeGFtcGxlIG9mIG1vZGlmeWluZyBzdGF0ZSBmb3IgcnVsZSByYW5nZXMKIyAxOjIyMC0xOjMyNjQsMzoxMzAxMC0zOjEzMDEzCgojIENvbW1lbnRzIGFyZSBhbGxvd2VkIGluIHRoaXMgZmlsZSwgYW5kIGNhbiBhbHNvIGJlIG9uIHRoZSBzYW1lIGxpbmUKIyBBcyB0aGUgbW9kaWZ5IHN0YXRlIHN5bnRheCwgYXMgbG9uZyBhcyBpdCBpcyBhIHRyYWlsaW5nIGNvbW1lbnQKIyAxOjEwMTEgIyBJIERpc2FibGVkIHRoaXMgcnVsZSBiZWNhdXNlIEkgY291bGQhCgojIEV4YW1wbGUgb2YgbW9kaWZ5aW5nIHN0YXRlIGZvciBNUyBhbmQgY3ZlIHJ1bGVzLCBub3RlIHRoZSB1c2Ugb2YgdGhlIDogCiMgaW4gY3ZlLiBUaGlzIHdpbGwgbW9kaWZ5IE1TMDktMDA4LCBjdmUgMjAwOS0wMjMzLCBidWd0cmFxIDIxMzAxLAojIGFuZCBhbGwgTVMwMCBhbmQgYWxsIGN2ZSAyMDAwIHJlbGF0ZWQgc2lkcyEgIFRoZXNlIHN1cHBvcnQgcmVndWxhciBleHByZXNzaW9uCiMgbWF0Y2hpbmcgb25seSBhZnRlciB5b3UgaGF2ZSBzcGVjaWZpZWQgd2hhdCB5b3UgYXJlIGxvb2tpbmcgZm9yLCBpLmUuIAojIE1TMDAtPHJlZ2V4PiBvciBjdmU6PHJlZ2V4PiwgdGhlIGZpcnN0IHNlY3Rpb24gQ0FOTk9UIGNvbnRhaW4gYSByZWd1bGFyCiMgZXhwcmVzc2lvbiAoTVNcZHsyfS1cZCspIHdpbGwgTk9UIHdvcmssIHVzZSB0aGUgcGNyZToga2V5d29yZCAoYmVsb3cpCiMgZm9yIHRoaXMuCiMgTVMwOS0wMDgsY3ZlOjIwMDktMDIzMyxidWd0cmFxOjIxMzAxLE1TMDAtXGQrLGN2ZToyMDAwLVxkKwoKIyBFeGFtcGxlIG9mIHVzaW5nIHRoZSBwY3JlOiBrZXl3b3JkIHRvIG1vZGlmeSBydWxlc3RhdGUuICB0aGUgcGNyZSBrZXl3b3JkIAojIGFsbG93cyBmb3IgZnVsbCB1c2Ugb2YgcmVndWxhciBleHByZXNzaW9uIHN5bnRheCwgeW91IGRvIG5vdCBuZWVkIHRvIGRlc2lnbmF0ZQojIHdpdGggLyBhbmQgYWxsIHBjcmUgc2VhcmNoZXMgYXJlIHRyZWF0ZWQgYXMgY2FzZSBpbnNlbnNpdGl2ZS4gRm9yIG1vcmUgaW5mb3JtYXRpb24gCiMgYWJvdXQgcmVndWxhciBleHByZXNzaW9uIHN5bnRheDogaHR0cDovL3d3dy5yZWd1bGFyLWV4cHJlc3Npb25zLmluZm8vCiMgVGhlIGZvbGxvd2luZyBleGFtcGxlIG1vZGlmaWVzIHN0YXRlIGZvciBhbGwgTVMwNyB0aHJvdWdoIE1TMTAgCiMgcGNyZTpNUygwWzctOV18MTApLVxkKwojIHBjcmU6Ikpvb21sYSIKCiMgRXhhbXBsZSBvZiBtb2RpZnlpbmcgc3RhdGUgZm9yIHNwZWNpZmljIGNhdGVnb3JpZXMgZW50aXJlbHkuCiMgInNub3J0XyIgbGltaXRzIHRvIFNub3J0IFN1YnNjcmliZXIgcnVsZXMsICJlbWVyZ2luZy0iIGxpbWl0cyB0byAKIyBFbWVyZ2luZyBUaHJlYXRzIE9wZW4gcnVsZXMsICJldHByby0iIGxpbWl0cyB0byBFVC1QUk8gcnVsZXMuCiMgInNoZWxsY29kZSIgd2l0aCBubyBwcmVmaXggd291bGQgbWF0Y2ggaW4gYW55IHZlbmRvciBzZXQuCiMgc25vcnRfd2ViLWlpcyxlbWVyZ2luZy1zaGVsbGNvZGUsZXRwcm8taW1hcCxzaGVsbGNvZGUKCiMgQW55IG9mIHRoZSBhYm92ZSB2YWx1ZXMgY2FuIGJlIG9uIGEgc2luZ2xlIGxpbmUgb3IgbXVsdGlwbGUgbGluZXMsIHdoZW4gCiMgb24gYSBzaW5nbGUgbGluZSB0aGV5IHNpbXBseSBuZWVkIHRvIGJlIHNlcGFyYXRlZCBieSBhICwKIyAxOjk4MzcsMToyMjAtMTozMjY0LDM6MTMwMTAtMzoxMzAxMyxwY3JlOk1TKDBbMC03XSktXGQrLE1TMDktMDA4LGN2ZToyMDA5LTAyMzMKCiMgVGhlIG1vZGlmaWNhdGlvbnMgaW4gdGhpcyBmaWxlIGFyZSBmb3Igc2FtcGxlL2V4YW1wbGUgcHVycG9zZXMgb25seSBhbmQKIyBzaG91bGQgbm90IGFjdGl2ZWx5IGJlIHVzZWQsIHlvdSBuZWVkIHRvIG1vZGlmeSB0aGlzIGZpbGUgdG8gZml0IHlvdXIgCiMgZW52aXJvbm1lbnQuCgo=</content>
-                </item>
-                <item>
-                    <name>dropsid-sample.conf</name>
-                    <modtime>1626963297</modtime>
-                    <content>IyBOb3RlOiBUaGlzIGZpbGUgaXMgdXNlZCB0byBzcGVjaWZ5IHdoYXQgcnVsZXMgeW91IHdpc2ggdG8gYmUgc2V0IHRvIGhhdmUKIyBhbiBhY3Rpb24gb2YgZHJvcCByYXRoZXIgdGhhbiBhbGVydC4KCiMgRXhhbXBsZSBvZiBtb2RpZnlpbmcgYWN0aW9uIGZvciBpbmRpdmlkdWFsIHJ1bGVzCiMgMToxMDM0LDE6OTgzNywxOjEyNzAsMTozMzkwLDE6NzEwLDE6MTI0OSwzOjEzMDEwCgojIEV4YW1wbGUgb2YgbW9kaWZ5aW5nIGFjdGlvbiBmb3IgcnVsZSByYW5nZXMKIyAxOjIyMC0xOjMyNjQsMzoxMzAxMC0zOjEzMDEzCgojIENvbW1lbnRzIGFyZSBhbGxvd2VkIGluIHRoaXMgZmlsZSwgYW5kIGNhbiBhbHNvIGJlIG9uIHRoZSBzYW1lIGxpbmUKIyBhcyB0aGUgbW9kaWZ5IGFjdGlvbiBzeW50YXgsIGFzIGxvbmcgYXMgaXQgaXMgYSB0cmFpbGluZyBjb21tZW50CiMgMToxMDExICMgSSBNb2RpZmllZCB0aGlzIHJ1bGUgYWN0aW9uIGJlY2F1c2UgSSBjb3VsZCEKCiMgRXhhbXBsZSBvZiBtb2RpZnlpbmcgYWN0aW9uIGZvciBNUyBhbmQgY3ZlIHJ1bGVzLCBub3RlIHRoZSB1c2Ugb2YgdGhlIDogCiMgaW4gY3ZlLiBUaGlzIHdpbGwgbW9kaWZ5IE1TMDktMDA4LCBjdmUgMjAwOS0wMjMzLCBidWd0cmFxIDIxMzAxLAojIGFuZCBhbGwgTVMwMCBhbmQgYWxsIGN2ZSAyMDAwIHJlbGF0ZWQgc2lkcyEgIFRoZXNlIHN1cHBvcnQgcmVndWxhciBleHByZXNzaW9uCiMgbWF0Y2hpbmcgb25seSBhZnRlciB5b3UgaGF2ZSBzcGVjaWZpZWQgd2hhdCB5b3UgYXJlIGxvb2tpbmcgZm9yLCBpLmUuIAojIE1TMDAtPHJlZ2V4PiBvciBjdmU6PHJlZ2V4PiwgdGhlIGZpcnN0IHNlY3Rpb24gQ0FOTk9UIGNvbnRhaW4gYSByZWd1bGFyCiMgZXhwcmVzc2lvbiAoTVNcZHsyfS1cZCspIHdpbGwgTk9UIHdvcmssIHVzZSB0aGUgcGNyZToga2V5d29yZCAoYmVsb3cpCiMgZm9yIHRoaXMuCiMgTVMwOS0wMDgsY3ZlOjIwMDktMDIzMyxidWd0cmFxOjIxMzAxLE1TMDAtXGQrLGN2ZToyMDAwLVxkKwoKIyBFeGFtcGxlIG9mIHVzaW5nIHRoZSBwY3JlOiBrZXl3b3JkIHRvIG1vZGlmeSBydWxlIGFjdGlvbi4gIHRoZSBwY3JlIGtleXdvcmQgCiMgYWxsb3dzIGZvciBmdWxsIHVzZSBvZiByZWd1bGFyIGV4cHJlc3Npb24gc3ludGF4LCB5b3UgZG8gbm90IG5lZWQgdG8gZGVzaWduYXRlCiMgd2l0aCAvIGFuZCBhbGwgcGNyZSBzZWFyY2hlcyBhcmUgdHJlYXRlZCBhcyBjYXNlIGluc2Vuc2l0aXZlLiBGb3IgbW9yZSBpbmZvcm1hdGlvbiAKIyBhYm91dCByZWd1bGFyIGV4cHJlc3Npb24gc3ludGF4OiBodHRwOi8vd3d3LnJlZ3VsYXItZXhwcmVzc2lvbnMuaW5mby8KIyBUaGUgZm9sbG93aW5nIGV4YW1wbGUgbW9kaWZpZXMgYWN0aW9uIGZvciBhbGwgTVMwNyB0aHJvdWdoIE1TMTAgCiMgcGNyZTpNUygwWzctOV18MTApLVxkKwoKIyBUaGUgZm9sbG93aW5nIGV4YW1wbGUgbW9kaWZpZXMgYWN0aW9uIGZvciBTbm9ydCBWUlQgcnVsZXMgdGFnZ2VkIHdpdGggSVBTIAojIFBvbGljeSBTZWN1cml0eSBhbmQgaXBzIGRyb3AuICBOb3RlIHRoZSBiZXR0ZXIgd2F5IHRvIGFjY29tcGxpc2ggdGhpcyBpcwojIGJ5IHNldHRpbmcgdGhlIG9wdGlvbiAiSVBTIFBvbGljeSBNb2RlIiB0byAicG9saWN5IiBvbiB0aGUgQ0FURUdPUklFUyB0YWIuCiMgLS0tLS0tLS0tLS0tLS0tLS0KIyBwY3JlOiJwY3JlOnNlY3VyaXR5LWlwc1xzKmRyb3AiCgojIEV4YW1wbGUgb2YgbW9kaWZ5aW5nIGFjdGlvbiBmb3Igc3BlY2lmaWMgY2F0ZWdvcmllcyBlbnRpcmVseQojIFZSVC13ZWItaWlzLEVULXNoZWxsY29kZSxFVC1lbWVyZ2luZ3RocmVhdHMtc210cCxDdXN0b20tc2hlbGxjb2RlLEN1c3RvbS1lbWVyZ2luZ3RocmVhdHMtc210cAoKIyBBbnkgb2YgdGhlIGFib3ZlIHZhbHVlcyBjYW4gYmUgb24gYSBzaW5nbGUgbGluZSBvciBtdWx0aXBsZSBsaW5lcywgd2hlbiAKIyBvbiBhIHNpbmdsZSBsaW5lIHRoZXkgc2ltcGx5IG5lZWQgdG8gYmUgc2VwYXJhdGVkIGJ5IGEgLAojIDE6OTgzNywxOjIyMC0xOjMyNjQsMzoxMzAxMC0zOjEzMDEzLHBjcmU6TVMoMFswLTddKS1cZCssTVMwOS0wMDgsY3ZlOjIwMDktMDIzMwoKIyBUaGUgbW9kaWZpY2F0aW9ucyBpbiB0aGlzIGZpbGUgYXJlIGZvciBzYW1wbGUvZXhhbXBsZSBwdXJwb3NlcyBvbmx5IGFuZAojIHNob3VsZCBub3QgYWN0aXZlbHkgYmUgdXNlZCwgeW91IG5lZWQgdG8gbW9kaWZ5IHRoaXMgZmlsZSB0byBmaXQgeW91ciAKIyBlbnZpcm9ubWVudC4K</content>
-                </item>
-                <item>
-                    <name>rejectsid-sample.conf</name>
-                    <modtime>1626963297</modtime>
-                    <content>IyBOb3RlOiBUaGlzIGZpbGUgaXMgdXNlZCB0byBzcGVjaWZ5IHdoYXQgcnVsZXMgeW91IHdpc2ggdG8gYmUgc2V0IHRvIGhhdmUKIyBhbiBhY3Rpb24gb2YgcmVqZWN0IHJhdGhlciB0aGFuIGFsZXJ0LgoKIyBFeGFtcGxlIG9mIG1vZGlmeWluZyBhY3Rpb24gZm9yIGluZGl2aWR1YWwgcnVsZXMKIyAxOjEwMzQsMTo5ODM3LDE6MTI3MCwxOjMzOTAsMTo3MTAsMToxMjQ5LDM6MTMwMTAKCiMgRXhhbXBsZSBvZiBtb2RpZnlpbmcgYWN0aW9uIGZvciBydWxlIHJhbmdlcwojIDE6MjIwLTE6MzI2NCwzOjEzMDEwLTM6MTMwMTMKCiMgQ29tbWVudHMgYXJlIGFsbG93ZWQgaW4gdGhpcyBmaWxlLCBhbmQgY2FuIGFsc28gYmUgb24gdGhlIHNhbWUgbGluZQojIGFzIHRoZSBtb2RpZnkgYWN0aW9uIHN5bnRheCwgYXMgbG9uZyBhcyBpdCBpcyBhIHRyYWlsaW5nIGNvbW1lbnQKIyAxOjEwMTEgIyBJIE1vZGlmaWVkIHRoaXMgcnVsZSBhY3Rpb24gdG8gcmVqZWN0IGJlY2F1c2UgSSBjb3VsZCEKCiMgRXhhbXBsZSBvZiBtb2RpZnlpbmcgYWN0aW9uIGZvciBNUyBhbmQgY3ZlIHJ1bGVzLCBub3RlIHRoZSB1c2Ugb2YgdGhlIDogCiMgaW4gY3ZlLiBUaGlzIHdpbGwgbW9kaWZ5IE1TMDktMDA4LCBjdmUgMjAwOS0wMjMzLCBidWd0cmFxIDIxMzAxLAojIGFuZCBhbGwgTVMwMCBhbmQgYWxsIGN2ZSAyMDAwIHJlbGF0ZWQgc2lkcyEgIFRoZXNlIHN1cHBvcnQgcmVndWxhciBleHByZXNzaW9uCiMgbWF0Y2hpbmcgb25seSBhZnRlciB5b3UgaGF2ZSBzcGVjaWZpZWQgd2hhdCB5b3UgYXJlIGxvb2tpbmcgZm9yLCBpLmUuIAojIE1TMDAtPHJlZ2V4PiBvciBjdmU6PHJlZ2V4PiwgdGhlIGZpcnN0IHNlY3Rpb24gQ0FOTk9UIGNvbnRhaW4gYSByZWd1bGFyCiMgZXhwcmVzc2lvbiAoTVNcZHsyfS1cZCspIHdpbGwgTk9UIHdvcmssIHVzZSB0aGUgcGNyZToga2V5d29yZCAoYmVsb3cpCiMgZm9yIHRoaXMuCiMgTVMwOS0wMDgsY3ZlOjIwMDktMDIzMyxidWd0cmFxOjIxMzAxLE1TMDAtXGQrLGN2ZToyMDAwLVxkKwoKIyBFeGFtcGxlIG9mIHVzaW5nIHRoZSBwY3JlOiBrZXl3b3JkIHRvIG1vZGlmeSBydWxlIGFjdGlvbi4gIHRoZSBwY3JlIGtleXdvcmQgCiMgYWxsb3dzIGZvciBmdWxsIHVzZSBvZiByZWd1bGFyIGV4cHJlc3Npb24gc3ludGF4LCB5b3UgZG8gbm90IG5lZWQgdG8gZGVzaWduYXRlCiMgd2l0aCAvIGFuZCBhbGwgcGNyZSBzZWFyY2hlcyBhcmUgdHJlYXRlZCBhcyBjYXNlIGluc2Vuc2l0aXZlLiBGb3IgbW9yZSBpbmZvcm1hdGlvbiAKIyBhYm91dCByZWd1bGFyIGV4cHJlc3Npb24gc3ludGF4OiBodHRwOi8vd3d3LnJlZ3VsYXItZXhwcmVzc2lvbnMuaW5mby8KIyBUaGUgZm9sbG93aW5nIGV4YW1wbGUgbW9kaWZpZXMgYWN0aW9uIGZvciBhbGwgTVMwNyB0aHJvdWdoIE1TMTAgCiMgcGNyZTpNUygwWzctOV18MTApLVxkKwoKIyBUaGUgZm9sbG93aW5nIGV4YW1wbGUgbW9kaWZpZXMgYWN0aW9uIHRvIHJlamVjdCBmb3IgU25vcnQgVlJUIHJ1bGVzIHRhZ2dlZCB3aXRoIAojIElQUyBQb2xpY3kgU2VjdXJpdHkgYW5kIGlwcyBkcm9wLgojIC0tLS0tLS0tLS0tLS0tLS0tCiMgcGNyZToicGNyZTpzZWN1cml0eS1pcHNccypkcm9wIgoKIyBFeGFtcGxlIG9mIG1vZGlmeWluZyBhY3Rpb24gZm9yIHNwZWNpZmljIGNhdGVnb3JpZXMgZW50aXJlbHkKIyBWUlQtd2ViLWlpcyxFVC1zaGVsbGNvZGUsRVQtZW1lcmdpbmd0aHJlYXRzLXNtdHAsQ3VzdG9tLXNoZWxsY29kZSxDdXN0b20tZW1lcmdpbmd0aHJlYXRzLXNtdHAKCiMgQW55IG9mIHRoZSBhYm92ZSB2YWx1ZXMgY2FuIGJlIG9uIGEgc2luZ2xlIGxpbmUgb3IgbXVsdGlwbGUgbGluZXMsIHdoZW4gCiMgb24gYSBzaW5nbGUgbGluZSB0aGV5IHNpbXBseSBuZWVkIHRvIGJlIHNlcGFyYXRlZCBieSBhICwKIyAxOjk4MzcsMToyMjAtMTozMjY0LDM6MTMwMTAtMzoxMzAxMyxwY3JlOk1TKDBbMC03XSktXGQrLE1TMDktMDA4LGN2ZToyMDA5LTAyMzMKCiMgVGhlIG1vZGlmaWNhdGlvbnMgaW4gdGhpcyBmaWxlIGFyZSBmb3Igc2FtcGxlL2V4YW1wbGUgcHVycG9zZXMgb25seSBhbmQKIyBzaG91bGQgbm90IGFjdGl2ZWx5IGJlIHVzZWQsIHlvdSBuZWVkIHRvIG1vZGlmeSB0aGlzIGZpbGUgdG8gZml0IHlvdXIgCiMgZW52aXJvbm1lbnQuCg==</content>
-                </item>
-                <item>
-                    <name>enablesid-sample.conf</name>
-                    <modtime>1626963297</modtime>
-                    <content>IyBleGFtcGxlIGVuYWJsZXNpZC5jb25mCgojIEV4YW1wbGUgb2YgbW9kaWZ5aW5nIHN0YXRlIGZvciBpbmRpdmlkdWFsIHJ1bGVzCiMgMToxMDM0LDE6OTgzNywxOjEyNzAsMTozMzkwLDE6NzEwLDE6MTI0OSwzOjEzMDEwCgojIEV4YW1wbGUgb2YgbW9kaWZ5aW5nIHN0YXRlIGZvciBydWxlIHJhbmdlcwojIDE6MjIwLTE6MzI2NCwzOjEzMDEwLTM6MTMwMTMKCiMgQ29tbWVudHMgYXJlIGFsbG93ZWQgaW4gdGhpcyBmaWxlLCBhbmQgY2FuIGFsc28gYmUgb24gdGhlIHNhbWUgbGluZQojIEFzIHRoZSBtb2RpZnkgc3RhdGUgc3ludGF4LCBhcyBsb25nIGFzIGl0IGlzIGEgdHJhaWxpbmcgY29tbWVudAojIDE6MTAxMSAjIEkgRGlzYWJsZWQgdGhpcyBydWxlIGJlY2F1c2UgSSBjb3VsZCEKCiMgRXhhbXBsZSBvZiBtb2RpZnlpbmcgc3RhdGUgZm9yIE1TIGFuZCBjdmUgcnVsZXMsIG5vdGUgdGhlIHVzZSBvZiB0aGUgOiAKIyBpbiBjdmUuIFRoaXMgd2lsbCBtb2RpZnkgTVMwOS0wMDgsIGN2ZSAyMDA5LTAyMzMsIGJ1Z3RyYXEgMjEzMDEsCiMgYW5kIGFsbCBNUzAwIGFuZCBhbGwgY3ZlIDIwMDAgcmVsYXRlZCBzaWRzISAgVGhlc2Ugc3VwcG9ydCByZWd1bGFyIGV4cHJlc3Npb24KIyBtYXRjaGluZyBvbmx5IGFmdGVyIHlvdSBoYXZlIHNwZWNpZmllZCB3aGF0IHlvdSBhcmUgbG9va2luZyBmb3IsIGkuZS4gCiMgTVMwMC08cmVnZXg+IG9yIGN2ZTo8cmVnZXg+LCB0aGUgZmlyc3Qgc2VjdGlvbiBDQU5OT1QgY29udGFpbiBhIHJlZ3VsYXIKIyBleHByZXNzaW9uIChNU1xkezJ9LVxkKykgd2lsbCBOT1Qgd29yaywgdXNlIHRoZSBwY3JlOiBrZXl3b3JkIChiZWxvdykKIyBmb3IgdGhpcy4KIyBNUzA5LTAwOCxjdmU6MjAwOS0wMjMzLGJ1Z3RyYXE6MjEzMDEsTVMwMC1cZCssY3ZlOjIwMDAtXGQrCgojIEV4YW1wbGUgb2YgdXNpbmcgdGhlIHBjcmU6IGtleXdvcmQgdG8gbW9kaWZ5IHJ1bGVzdGF0ZS4gIHRoZSBwY3JlIGtleXdvcmQgCiMgYWxsb3dzIGZvciBmdWxsIHVzZSBvZiByZWd1bGFyIGV4cHJlc3Npb24gc3ludGF4LCB5b3UgZG8gbm90IG5lZWQgdG8gZGVzaWduYXRlCiMgd2l0aCAvIGFuZCBhbGwgcGNyZSBzZWFyY2hlcyBhcmUgdHJlYXRlZCBhcyBjYXNlIGluc2Vuc2l0aXZlLiBGb3IgbW9yZSBpbmZvcm1hdGlvbiAKIyBhYm91dCByZWd1bGFyIGV4cHJlc3Npb24gc3ludGF4OiBodHRwOi8vd3d3LnJlZ3VsYXItZXhwcmVzc2lvbnMuaW5mby8KIyBUaGUgZm9sbG93aW5nIGV4YW1wbGUgbW9kaWZpZXMgc3RhdGUgZm9yIGFsbCBNUzA3IHRocm91Z2ggTVMxMCAKIyBwY3JlOk1TKDBbNy05XXwxMCktXGQrCiMgcGNyZToiSm9vbWxhIgoKIyBFeGFtcGxlIG9mIG1vZGlmeWluZyBzdGF0ZSBmb3Igc3BlY2lmaWMgY2F0ZWdvcmllcyBlbnRpcmVseS4KIyAic25vcnRfIiBsaW1pdHMgdG8gU25vcnQgU3Vic2NyaWJlciBydWxlcywgImVtZXJnaW5nLSIgbGltaXRzIHRvIAojIEVtZXJnaW5nIFRocmVhdHMgT3BlbiBydWxlcywgImV0cHJvLSIgbGltaXRzIHRvIEVULVBSTyBydWxlcy4KIyAic2hlbGxjb2RlIiB3aXRoIG5vIHByZWZpeCB3b3VsZCBtYXRjaCBpbiBhbnkgdmVuZG9yIHNldC4KIyBzbm9ydF93ZWItaWlzLGVtZXJnaW5nLXNoZWxsY29kZSxldHByby1pbWFwLHNoZWxsY29kZQoKIyBBbnkgb2YgdGhlIGFib3ZlIHZhbHVlcyBjYW4gYmUgb24gYSBzaW5nbGUgbGluZSBvciBtdWx0aXBsZSBsaW5lcywgd2hlbiAKIyBvbiBhIHNpbmdsZSBsaW5lIHRoZXkgc2ltcGx5IG5lZWQgdG8gYmUgc2VwYXJhdGVkIGJ5IGEgLAojIDE6OTgzNywxOjIyMC0xOjMyNjQsMzoxMzAxMC0zOjEzMDEzLHBjcmU6TVMoMFswLTddKS1cZCssTVMwOS0wMDgsY3ZlOjIwMDktMDIzMwoK</content>
-                </item>
-            </sid_mgmt_lists>
-            <sid_list_migration>2</sid_list_migration>
-            <rule_update_starttime>00:04</rule_update_starttime>
-            <dashboard_widget>snort_alerts:col2:open:0</dashboard_widget>
-        </snortglobal>
         <telegraf>
             <config>
                 <enable>on</enable>
@@ -4376,274 +4025,6 @@
                 <telegraf_raw_config></telegraf_raw_config>
             </config>
         </telegraf>
-        <pfblockerng>
-            <config>
-                <enable_cb>on</enable_cb>
-                <pfb_keep>on</pfb_keep>
-                <pfb_reuse></pfb_reuse>
-                <pfb_interval>1</pfb_interval>
-                <pfb_min></pfb_min>
-                <pfb_hour></pfb_hour>
-                <pfb_dailystart></pfb_dailystart>
-                <skipfeed></skipfeed>
-                <log_max_log>20000</log_max_log>
-                <log_max_errlog>20000</log_max_errlog>
-                <log_max_extraslog>20000</log_max_extraslog>
-                <log_max_ip_blocklog>20000</log_max_ip_blocklog>
-                <log_max_ip_permitlog>20000</log_max_ip_permitlog>
-                <log_max_ip_matchlog>20000</log_max_ip_matchlog>
-                <log_max_dnslog>20000</log_max_dnslog>
-                <log_max_dnsbl_parse_err>20000</log_max_dnsbl_parse_err>
-                <log_max_dnsreplylog>20000</log_max_dnsreplylog>
-                <log_max_unilog>20000</log_max_unilog>
-            </config>
-        </pfblockerng>
-        <pfblockerngipsettings>
-            <config>
-                <enable_dup>on</enable_dup>
-                <suppression>on</suppression>
-                <inbound_interface>wan</inbound_interface>
-                <inbound_deny_action>block</inbound_deny_action>
-                <outbound_interface>lan</outbound_interface>
-                <outbound_deny_action>reject</outbound_deny_action>
-                <pass_order>order_0</pass_order>
-                <enable_agg>on</enable_agg>
-                <enable_log></enable_log>
-                <ip_placeholder>127.1.7.7</ip_placeholder>
-                <maxmind_locale>en</maxmind_locale>
-                <database_cc></database_cc>
-                <maxmind_key>{MAXMIND_KEY}</maxmind_key>
-                <asn_reporting>disabled</asn_reporting>
-                <enable_float>on</enable_float>
-                <autorule_suffix>autorule</autorule_suffix>
-                <killstates></killstates>
-                <v4suppression></v4suppression>
-            </config>
-        </pfblockerngipsettings>
-        <pfblockerngdnsblsettings>
-            <config>
-                <pfb_dnsvip>10.10.10.1</pfb_dnsvip>
-                <pfb_dnsport>8081</pfb_dnsport>
-                <pfb_dnsport_ssl>8443</pfb_dnsport_ssl>
-                <pfb_dnsblv6></pfb_dnsblv6>
-                <pfb_dnsbl>on</pfb_dnsbl>
-                <suppression>czMuYW1hem9uYXdzLmNvbQ0KczMtMS5hbWF6b25hd3MuY29tICMgQ05BTUUgZm9yIChzMy5hbWF6b25hd3MuY29tKQ0KLmdpdGh1Yi5jb20NCi5naXRodWJ1c2VyY29udGVudC5jb20gDQpnaXRodWIubWFwLmZhc3RseS5uZXQgIyBDTkFNRSBmb3IgKHJhdy5naXRodWJ1c2VyY29udGVudC5jb20pDQouZ2l0bGFiLmNvbQ0KLmFwcGxlLmNvbSANCi5zb3VyY2Vmb3JnZS5uZXQNCi5mbHMtbmEuYW1hem9uLmNvbSAjIGFsZXhhDQouY29udHJvbC5rb2NoYXZhLmNvbSAjIGFsZXhhIDINCi5kZXZpY2UtbWV0cmljcy11cy0yLmFtYXpvbi5jb20gIyBhbGV4YSAzDQouYW1hem9uLWFkc3lzdGVtLmNvbSAjIGFtYXpvbiBhcHAgYWRzDQoucHgubW9hdGFkcy5jb20gIyBhbWF6b24gYXBwIDINCi53aWxkY2FyZC5tb2F0YWRzLmNvbS5lZGdla2V5Lm5ldCAjIENOQU1FIGZvciAocHgubW9hdGFkcy5jb20pDQouZTEzMTM2LmcuYWthbWFpZWRnZS5uZXQgIyBDTkFNRSBmb3IgKHB4Lm1vYXRhZHMuY29tKQ0KLnNlY3VyZS1nbC5pbXJ3b3JsZHdpZGUuY29tICMgYW1hem9uIGFwcCAzDQoucGl4ZWwuYWRzYWZlcHJvdGVjdGVkLmNvbSAjIGFtYXpvbiBhcHAgNA0KLmFueWNhc3QucGl4ZWwuYWRzYWZlcHJvdGVjdGVkLmNvbSAjIENOQU1FIGZvciAocGl4ZWwuYWRzYWZlcHJvdGVjdGVkLmNvbSkNCi5icy5zZXJ2aW5nLXN5cy5jb20gIyBhbWF6b24gYXBwIDUNCi5icy5leWVibGFzdGVyLmFrYWRucy5uZXQgIyBDTkFNRSBmb3IgKGJzLnNlcnZpbmctc3lzLmNvbSkNCi5ic2xhLmV5ZWJsYXN0ZXIuYWthZG5zLm5ldCAjIENOQU1FIGZvciAoYnMuc2VydmluZy1zeXMuY29tKQ0KLmFkc2FmZXByb3RlY3RlZC5jb20gIyBhbWF6b24gYXBwIDYNCi5hbnljYXN0LnN0YXRpYy5hZHNhZmVwcm90ZWN0ZWQuY29tICMgQ05BTUUgZm9yIChzdGF0aWMuYWRzYWZlcHJvdGVjdGVkLmNvbSkNCmdvb2dsZS5jb20NCnd3dy5nb29nbGUuY29tDQp5b3V0dWJlLmNvbQ0Kd3d3LnlvdXR1YmUuY29tDQp5b3V0dWJlLXVpLmwuZ29vZ2xlLmNvbSAjIENOQU1FIGZvciAoeW91dHViZS5jb20pDQpzdGFja292ZXJmbG93LmNvbQ0Kd3d3LnN0YWNrb3ZlcmZsb3cuY29tDQpkcm9wYm94LmNvbQ0Kd3d3LmRyb3Bib3guY29tDQp3d3cuZHJvcGJveC1kbnMuY29tICMgQ05BTUUgZm9yIChkcm9wYm94LmNvbSkNCi5hZHNhZmVwcm90ZWN0ZWQuY29tDQpjb250cm9sLmtvY2hhdmEuY29tDQpzZWN1cmUtZ2wuaW1yd29ybGR3aWRlLmNvbQ0KcGJzLnR3aW1nLmNvbSAjIHR3aXR0ZXIgaW1hZ2VzDQp3d3cucGJzLnR3aW1nLmNvbSAjIHR3aXR0ZXIgaW1hZ2VzDQpjczE5Ni53YWMuZWRnZWNhc3RjZG4ubmV0ICMgQ05BTUUgZm9yIChwYnMudHdpbWcuY29tKQ0KY3MyLXdhYy5hcHItODMxNS5lZGdlY2FzdGRucy5uZXQgIyBDTkFNRSBmb3IgKHBicy50d2ltZy5jb20pDQpjczItd2FjLXVzLjgzMTUuZWNkbnMubmV0ICMgQ05BTUUgZm9yIChwYnMudHdpbWcuY29tKQ0KY3M0NS53YWMuZWRnZWNhc3RjZG4ubmV0ICMgQ05BTUUgZm9yIChwYnMudHdpbWcuY29tKQ==</suppression>
-                <pfb_tld></pfb_tld>
-                <pfb_control></pfb_control>
-                <pfb_dnsvip_type>ipalias</pfb_dnsvip_type>
-                <dnsbl_interface>lo0</dnsbl_interface>
-                <pfb_dnsbl_rule></pfb_dnsbl_rule>
-                <dnsbl_allow_int></dnsbl_allow_int>
-                <global_log></global_log>
-                <dnsbl_webpage>dnsbl_default.php</dnsbl_webpage>
-                <pfb_cache>on</pfb_cache>
-                <pfb_dnsbl_sync></pfb_dnsbl_sync>
-                <dnsbl_mode>dnsbl_unbound</dnsbl_mode>
-                <pfb_py_reply>on</pfb_py_reply>
-                <pfb_py_block>on</pfb_py_block>
-                <pfb_hsts>on</pfb_hsts>
-                <pfb_idn></pfb_idn>
-                <pfb_regex></pfb_regex>
-                <pfb_cname></pfb_cname>
-                <pfb_noaaaa></pfb_noaaaa>
-                <pfb_gp></pfb_gp>
-                <pfb_regex_list></pfb_regex_list>
-                <pfb_noaaaa_list></pfb_noaaaa_list>
-                <pfb_pytld></pfb_pytld>
-                <pfb_pytld_sort></pfb_pytld_sort>
-                <pfb_py_nolog></pfb_py_nolog>
-                <pfb_pytlds_gtld>arpa,family,com,net,org,edu,ca,co,io</pfb_pytlds_gtld>
-                <pfb_pytlds_cctld></pfb_pytlds_cctld>
-                <pfb_pytlds_itld></pfb_pytlds_itld>
-                <pfb_pytlds_bgtld></pfb_pytlds_bgtld>
-                <pfb_gp_bypass_list></pfb_gp_bypass_list>
-                <action>Disabled</action>
-                <aliaslog>enabled</aliaslog>
-                <autoaddrnot_in></autoaddrnot_in>
-                <autoports_in></autoports_in>
-                <aliasports_in></aliasports_in>
-                <autoaddr_in></autoaddr_in>
-                <autonot_in></autonot_in>
-                <aliasaddr_in></aliasaddr_in>
-                <autoproto_in></autoproto_in>
-                <agateway_in>default</agateway_in>
-                <autoaddrnot_out></autoaddrnot_out>
-                <autoports_out></autoports_out>
-                <aliasports_out></aliasports_out>
-                <autoaddr_out></autoaddr_out>
-                <autonot_out></autonot_out>
-                <aliasaddr_out></aliasaddr_out>
-                <autoproto_out></autoproto_out>
-                <agateway_out>default</agateway_out>
-                <alexa_enable>on</alexa_enable>
-                <alexa_type>tranco</alexa_type>
-                <alexa_count>1000</alexa_count>
-                <alexa_inclusion>com,net,org,ca,co,io</alexa_inclusion>
-                <tldexclusion></tldexclusion>
-                <tldblacklist></tldblacklist>
-                <tldwhitelist></tldwhitelist>
-                <pfb_dnsvip_pass></pfb_dnsvip_pass>
-            </config>
-        </pfblockerngdnsblsettings>
-        <pfblockerngdnsbl>
-            <config>
-                <aliasname>ADs_Basic</aliasname>
-                <description><![CDATA[ADs Basic - Collection of ADvertisement Domain Feeds.]]></description>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</url>
-                    <header>StevenBlack_ADs</header>
-                </row>
-                <action>unbound</action>
-                <cron>EveryDay</cron>
-                <logging>enabled</logging>
-                <order>default</order>
-                <dow>1</dow>
-            </config>
-        </pfblockerngdnsbl>
-        <pfblockernglistsv4>
-            <config>
-                <aliasname>PRI1</aliasname>
-                <description><![CDATA[PRI1 - Collection of Feeds from the most reputable blocklist providers. (Primary tier)]]></description>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt</url>
-                    <header>Abuse_Feodo_C2</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://ransomwaretracker.abuse.ch/downloads/RW_IPBL.txt</url>
-                    <header>Abuse_IPBL</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://sslbl.abuse.ch/blacklist/sslipblacklist.txt</url>
-                    <header>Abuse_SSLBL</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://cinsarmy.com/list/ci-badguys.txt</url>
-                    <header>CINS_army</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://rules.emergingthreats.net/fwrules/emerging-Block-IPs.txt</url>
-                    <header>ET_Block</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://rules.emergingthreats.net/blockrules/compromised-ips.txt</url>
-                    <header>ET_Comp</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://isc.sans.edu/block.txt</url>
-                    <header>ISC_Block</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://www.spamhaus.org/drop/drop.txt</url>
-                    <header>Spamhaus_Drop</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://www.spamhaus.org/drop/edrop.txt</url>
-                    <header>Spamhaus_eDrop</header>
-                </row>
-                <row>
-                    <format>auto</format>
-                    <state><![CDATA[Enabled]]></state>
-                    <url>https://talosintelligence.com/documents/ip-blacklist</url>
-                    <header>Talos_BL</header>
-                </row>
-                <action>Deny_Both</action>
-                <cron>01hour</cron>
-                <aliaslog>enabled</aliaslog>
-                <dow>1</dow>
-            </config>
-        </pfblockernglistsv4>
-        <pfblockerngsafesearch></pfblockerngsafesearch>
-        <pfblockerngtopspammers>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngtopspammers>
-        <pfblockerngafrica>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngafrica>
-        <pfblockerngantarctica>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngantarctica>
-        <pfblockerngasia>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngasia>
-        <pfblockerngeurope>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngeurope>
-        <pfblockerngnorthamerica>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngnorthamerica>
-        <pfblockerngoceania>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngoceania>
-        <pfblockerngsouthamerica>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngsouthamerica>
-        <pfblockerngproxyandsatellite>
-            <config>
-                <action>Deny_Both</action>
-                <aliaslog>enabled</aliaslog>
-            </config>
-        </pfblockerngproxyandsatellite>
-        <pfblockerngreputation>
-            <config>
-                <enable_rep>on</enable_rep>
-                <p24_max_var>5</p24_max_var>
-                <enable_pdup>on</enable_pdup>
-                <p24_pmax_var>50</p24_pmax_var>
-                <enable_dedup>on</enable_dedup>
-                <p24_dmax_var>5</p24_dmax_var>
-                <ccwhite>ignore</ccwhite>
-                <ccblack>block</ccblack>
-                <ccexclude></ccexclude>
-                <et_header></et_header>
-                <etblock></etblock>
-                <etmatch></etmatch>
-                <et_update>enabled</et_update>
-            </config>
-        </pfblockerngreputation>
         <shellcmdsettings>
             <config>
                 <cmd>/root/pfsense-init.sh</cmd>
@@ -4651,8 +4032,80 @@
                 <description><![CDATA[PFSense init script]]></description>
             </config>
         </shellcmdsettings>
-        <pfblockerngblacklist></pfblockerngblacklist>
-        <pfblockerngglobal></pfblockerngglobal>
+        <package>
+            <name>haproxy-devel</name>
+            <pkginfolink>https://docs.netgate.com/pfsense/en/latest/packages/haproxy.html</pkginfolink>
+            <descr><![CDATA[The Reliable, High Performance TCP/HTTP(S) Load Balancer.&lt;br /&gt;
+			This package implements the TCP, HTTP and HTTPS balancing features from haproxy.&lt;br /&gt;
+			Supports ACLs for smart backend switching.]]></descr>
+            <website>http://haproxy.1wt.eu/</website>
+            <version>0.62_10</version>
+            <configurationfile>haproxy.xml</configurationfile>
+            <logging>
+                <logsocket>/tmp/haproxy_chroot/var/run/log</logsocket>
+                <facilityname>haproxy</facilityname>
+                <logfilename>haproxy.log</logfilename>
+            </logging>
+            <filter_rule_function>haproxy_generate_rules</filter_rule_function>
+            <include_file>/usr/local/pkg/haproxy/haproxy.inc</include_file>
+            <plugins>
+                <item>
+                    <type>plugin_carp</type>
+                </item>
+                <item>
+                    <type>plugin_certificates</type>
+                </item>
+            </plugins>
+        </package>
+        <package>
+            <name>OpenVPN Client Export Utility</name>
+            <internal_name>openvpn-client-export</internal_name>
+            <descr><![CDATA[Allows a pre-configured OpenVPN Windows Client or Mac OS X's Viscosity configuration bundle to be exported directly from pfSense.]]></descr>
+            <version>1.6_4</version>
+            <configurationfile>openvpn-client-export.xml</configurationfile>
+            <tabs>
+                <tab>
+                    <name>Client Export</name>
+                    <tabgroup>OpenVPN</tabgroup>
+                    <url>/vpn_openvpn_export.php</url>
+                </tab>
+                <tab>
+                    <name>Shared Key Export</name>
+                    <tabgroup>OpenVPN</tabgroup>
+                    <url>/vpn_openvpn_export_shared.php</url>
+                </tab>
+            </tabs>
+            <include_file>/usr/local/pkg/openvpn-client-export.inc</include_file>
+        </package>
+        <package>
+            <name>Cron</name>
+            <descr><![CDATA[The cron utility is used to manage commands on a schedule.]]></descr>
+            <version>0.3.8_1</version>
+            <configurationfile>cron.xml</configurationfile>
+            <include_file>/usr/local/pkg/cron.inc</include_file>
+        </package>
+        <package>
+            <name>Telegraf</name>
+            <descr><![CDATA[Telegraf is an agent written in Go for collecting, processing, aggregating, and writing metrics.]]></descr>
+            <version>0.9_6</version>
+            <configurationfile>telegraf.xml</configurationfile>
+            <include_file>/usr/local/pkg/telegraf.inc</include_file>
+        </package>
+        <package>
+            <name>Shellcmd</name>
+            <descr><![CDATA[The shellcmd utility is used to manage commands on system startup.]]></descr>
+            <version>1.0.5_2</version>
+            <configurationfile>shellcmd.xml</configurationfile>
+            <include_file>/usr/local/pkg/shellcmd.inc</include_file>
+        </package>
+        <package>
+            <name>Service Watchdog</name>
+            <internal_name>Service_Watchdog</internal_name>
+            <descr><![CDATA[Monitors for stopped services and restarts them.]]></descr>
+            <version>1.8.7_1</version>
+            <configurationfile>servicewatchdog.xml</configurationfile>
+            <include_file>/usr/local/pkg/servicewatchdog.inc</include_file>
+        </package>
         <package>
             <name>squid3</name>
             <internal_name>squid</internal_name>
@@ -4720,110 +4173,19 @@
                 </item>
             </plugins>
         </package>
-        <package>
-            <name>haproxy-devel</name>
-            <pkginfolink>https://docs.netgate.com/pfsense/en/latest/packages/haproxy.html</pkginfolink>
-            <descr><![CDATA[The Reliable, High Performance TCP/HTTP(S) Load Balancer.&lt;br /&gt;
-			This package implements the TCP, HTTP and HTTPS balancing features from haproxy.&lt;br /&gt;
-			Supports ACLs for smart backend switching.]]></descr>
-            <website>http://haproxy.1wt.eu/</website>
-            <version>0.62_10</version>
-            <configurationfile>haproxy.xml</configurationfile>
-            <logging>
-                <logsocket>/tmp/haproxy_chroot/var/run/log</logsocket>
-                <facilityname>haproxy</facilityname>
-                <logfilename>haproxy.log</logfilename>
-            </logging>
-            <filter_rule_function>haproxy_generate_rules</filter_rule_function>
-            <include_file>/usr/local/pkg/haproxy/haproxy.inc</include_file>
-            <plugins>
-                <item>
-                    <type>plugin_carp</type>
-                </item>
-                <item>
-                    <type>plugin_certificates</type>
-                </item>
-            </plugins>
-        </package>
-        <package>
-            <name>OpenVPN Client Export Utility</name>
-            <internal_name>openvpn-client-export</internal_name>
-            <descr><![CDATA[Allows a pre-configured OpenVPN Windows Client or Mac OS X's Viscosity configuration bundle to be exported directly from pfSense.]]></descr>
-            <version>1.6_4</version>
-            <configurationfile>openvpn-client-export.xml</configurationfile>
-            <tabs>
-                <tab>
-                    <name>Client Export</name>
-                    <tabgroup>OpenVPN</tabgroup>
-                    <url>/vpn_openvpn_export.php</url>
-                </tab>
-                <tab>
-                    <name>Shared Key Export</name>
-                    <tabgroup>OpenVPN</tabgroup>
-                    <url>/vpn_openvpn_export_shared.php</url>
-                </tab>
-            </tabs>
-            <include_file>/usr/local/pkg/openvpn-client-export.inc</include_file>
-        </package>
-        <package>
-            <name>pfBlockerNG-devel</name>
-            <descr><![CDATA[pfBlockerNG-devel is the Next Generation of pfBlockerNG.&lt;br /&gt;
-			Manage IPv4/v6 List Sources into 'Deny, Permit or Match' formats.&lt;br /&gt;
-			GeoIP database by MaxMind Inc. (GeoLite2 Free version).&lt;br /&gt;
-			De-Duplication, Suppression, and Reputation enhancements.&lt;br /&gt;
-			Provision to download from diverse List formats.&lt;br /&gt;
-			Advanced Integration for Proofpoint ET IQRisk IP Reputation Threat Sources.&lt;br /&gt;
-			Domain Name (DNSBL) blocking via Unbound DNS Resolver.]]></descr>
-            <pkginfolink>https://forum.netgate.com/topic/158592/pfblockerng-devel-v3-0-0-no-longer-bound-by-unbound/43</pkginfolink>
-            <version>3.1.0_4</version>
-            <configurationfile>pfblockerng.xml</configurationfile>
-            <include_file>/usr/local/pkg/pfblockerng/pfblockerng.inc</include_file>
-        </package>
-        <package>
-            <name>snort</name>
-            <pkginfolink>https://docs.netgate.com/pfsense/en/latest/packages/snort/index.html</pkginfolink>
-            <website>http://www.snort.org</website>
-            <descr><![CDATA[Snort is an open source network intrusion prevention and detection system (IDS/IPS). Combining the benefits of signature, protocol, and anomaly-based inspection.]]></descr>
-            <version>4.1.6</version>
-            <configurationfile>/snort.xml</configurationfile>
-            <after_install_info>Please visit Services - Snort - Interfaces tab first and select your desired rules. Afterwards visit the Updates tab to download your configured rulesets.</after_install_info>
-            <include_file>/usr/local/pkg/snort/snort.inc</include_file>
-        </package>
-        <package>
-            <name>Cron</name>
-            <descr><![CDATA[The cron utility is used to manage commands on a schedule.]]></descr>
-            <version>0.3.8_1</version>
-            <configurationfile>cron.xml</configurationfile>
-            <include_file>/usr/local/pkg/cron.inc</include_file>
-        </package>
-        <package>
-            <name>Telegraf</name>
-            <descr><![CDATA[Telegraf is an agent written in Go for collecting, processing, aggregating, and writing metrics.]]></descr>
-            <version>0.9_6</version>
-            <configurationfile>telegraf.xml</configurationfile>
-            <include_file>/usr/local/pkg/telegraf.inc</include_file>
-        </package>
-        <package>
-            <name>Shellcmd</name>
-            <descr><![CDATA[The shellcmd utility is used to manage commands on system startup.]]></descr>
-            <version>1.0.5_2</version>
-            <configurationfile>shellcmd.xml</configurationfile>
-            <include_file>/usr/local/pkg/shellcmd.inc</include_file>
-        </package>
-        <package>
-            <name>Service Watchdog</name>
-            <internal_name>Service_Watchdog</internal_name>
-            <descr><![CDATA[Monitors for stopped services and restarts them.]]></descr>
-            <version>1.8.7_1</version>
-            <configurationfile>servicewatchdog.xml</configurationfile>
-            <include_file>/usr/local/pkg/servicewatchdog.inc</include_file>
-        </package>
         <servicewatchdog>
             <item>
                 <name>haproxy</name>
                 <rcfile>haproxy.sh</rcfile>
                 <executable>haproxy</executable>
                 <description><![CDATA[TCP/HTTP(S) Load Balancer]]></description>
+                <notify></notify>
+            </item>
+            <item>
+                <name>squid</name>
+                <rcfile>squid.sh</rcfile>
+                <executable>squid</executable>
+                <description><![CDATA[Squid Proxy Server Service]]></description>
                 <notify></notify>
             </item>
         </servicewatchdog>
@@ -4842,14 +4204,5 @@
             <type>Default</type>
         </gps>
     </ntpd>
-    <virtualip>
-        <vip>
-            <interface>lo0</interface>
-            <descr><![CDATA[pfB DNSBL - DO NOT EDIT]]></descr>
-            <type>single</type>
-            <subnet_bits>32</subnet_bits>
-            <subnet>10.10.10.1</subnet>
-            <mode>ipalias</mode>
-        </vip>
-    </virtualip>
+    <virtualip></virtualip>
 </pfsense>
