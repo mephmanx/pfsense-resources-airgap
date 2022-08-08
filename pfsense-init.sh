@@ -16,6 +16,6 @@ echo 'qemu_guest_agent_flags="-d -v -l /var/log/qemu-ga.log"' >> /etc/rc.conf
 
 service qemu-guest-agent start
 
-pw useradd squid
+yes | pkg install pfSense-pkg-squid
 rm -rf /root/pfsense-init.sh
 telegram_notify  "PFSense init: init complete!"
