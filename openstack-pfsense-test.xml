@@ -705,7 +705,6 @@
             <who>root</who>
             <command>/usr/bin/nice -n20 /etc/rc.update_pkg_metadata</command>
         </item>
-
         <item>
             <minute>0</minute>
             <hour>0</hour>
