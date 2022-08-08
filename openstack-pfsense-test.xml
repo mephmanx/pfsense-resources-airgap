@@ -302,7 +302,7 @@
             </destination>
             <log></log>
             <created>
-                <time>1659988876</time>
+                <time>1660000024</time>
                 <username><![CDATA[Auto]]></username>
             </created>
             <interface>wan</interface>
@@ -323,7 +323,7 @@
             </destination>
             <log></log>
             <created>
-                <time>1659988876</time>
+                <time>1660000024</time>
                 <username><![CDATA[Auto]]></username>
             </created>
             <interface>lan</interface>
@@ -879,9 +879,9 @@
         <dns64netbits>96</dns64netbits>
     </unbound>
     <revision>
-        <time>1659995442</time>
-        <description><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap): Widget configuration has been changed.]]></description>
-        <username><![CDATA[admin@10.0.200.3[45.56.119.204] (LDAP/ipa-ldap)]]></username>
+        <time>1660000332</time>
+        <description><![CDATA[(system): Removed snort package.]]></description>
+        <username><![CDATA[(system)]]></username>
     </revision>
     <ppps></ppps>
     <gateways>
