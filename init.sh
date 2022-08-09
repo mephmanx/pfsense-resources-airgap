@@ -372,6 +372,7 @@ chmod +x /temp/wait2.sh
   mkdir /tmp/transfer
   mount /tmp/transfer.img /tmp/transfer
   cp /tmp/transfer/repo.tar /tmp
+  sleep 10
   umount /tmp/transfer
   rm -rf /tmp/transfer
   rm -rf /tmp/transfer.img
