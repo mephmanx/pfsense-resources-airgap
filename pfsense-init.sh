@@ -19,3 +19,6 @@ service qemu-guest-agent start
 yes | pkg install pfSense-pkg-squid
 rm -rf /root/pfsense-init.sh
 telegram_notify  "PFSense init: init complete!"
+
+## important!  endless loop if below is removed!
+echo "fin" > /tmp/init.complete

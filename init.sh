@@ -251,7 +251,23 @@ EOF
   pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
 
   ### add wait based on checking for progress complete in system.log file
-  sleep 500;
+
+  ### add wait before restart
+  sleep 100;
+cat > /temp/wait4.sh <<EOF
+#!/usr/bin/expect
+set timeout -1;
+spawn telnet localhost 4568
+send "echo ''\n"
+expect "#"
+send "\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
+EOF
+
+    chmod +x /temp/wait4.sh
+    ./temp/wait4.sh
+    ####
+
   (echo open localhost 4568;
     sleep 30;
     echo -ne "\r\n";
