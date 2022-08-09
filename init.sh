@@ -251,7 +251,7 @@ EOF
   pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
 
   ### add wait based on checking for progress complete in system.log file
-  sleep 260;
+  sleep 500;
   (echo open localhost 4568;
     sleep 30;
     echo -ne "\r\n";
