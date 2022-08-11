@@ -17,6 +17,7 @@ mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
 dd if=/dev/zero bs=1M count=400 >> /tmp/transfer.img
+chmod 777 /tmp/transfer.img
 loop_device2=$(losetup -f --show -P /tmp/transfer.img)
 mkfs -t vfat "$loop_device2"
 
@@ -50,7 +51,7 @@ cp /pfSense-repo.conf /temp/usb/
 
 if [ 'prod' == "$1" ]; then
   cp /tmp/repo.tar /temp/usb/
-  mv /tmp/repo.tar /tmp/repo-backup.tar
+  rm -rf /tmp/repo.tar
 fi
 
 ## move generated file above to disk
