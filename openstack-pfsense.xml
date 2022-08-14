@@ -4135,14 +4135,12 @@
                 <rcfile>haproxy.sh</rcfile>
                 <executable>haproxy</executable>
                 <description><![CDATA[TCP/HTTP(S) Load Balancer]]></description>
-                <notify></notify>
             </item>
             <item>
                 <name>squid</name>
                 <rcfile>squid.sh</rcfile>
                 <executable>squid</executable>
                 <description><![CDATA[Squid Proxy Server Service]]></description>
-                <notify></notify>
             </item>
         </servicewatchdog>
     </installedpackages>
