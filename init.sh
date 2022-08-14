@@ -375,8 +375,9 @@ chmod +x /temp/wait2.sh
   cp /tmp/transfer/repo.tar /tmp
   sleep 10
   umount /tmp/transfer
-  rm -rf /tmp/transfer
+  sleep 10
   rm -rf /tmp/transfer.img
+  rm -rf /tmp/transfer*
 fi
 
 if [ -n "$2" ]; then
