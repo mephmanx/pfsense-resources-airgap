@@ -16,11 +16,12 @@ loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
-dd if=/dev/zero bs=1M count=400 >> /tmp/transfer.img
-chmod 777 /tmp/transfer.img
-loop_device2=$(losetup -f --show -P /tmp/transfer.img)
-mkfs -t vfat "$loop_device2"
-
+if [ 'dev' == "$1" ]; then
+  dd if=/dev/zero bs=1M count=400 >> /tmp/transfer.img
+  chmod 777 /tmp/transfer.img
+  loop_device2=$(losetup -f --show -P /tmp/transfer.img)
+  mkfs -t vfat "$loop_device2"
+fi
 ### initial cfg script
 ##  This runs after install but before first reboot
 cat > /temp/init.sh <<EOF
@@ -375,7 +376,6 @@ chmod +x /temp/wait2.sh
   cp /tmp/transfer/repo.tar /tmp
   sleep 10
   umount /tmp/transfer
-  sleep 10
   rm -rf /tmp/transfer.img
   rm -rf /tmp/transfer*
 fi
