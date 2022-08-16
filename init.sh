@@ -10,13 +10,9 @@ source /tmp/openstack-setup/openstack-env.sh
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
+mkdir /temp/usb
 dd if=/dev/zero bs=1M count=400 >> /temp/pfSense-CE-memstick-ADI.img
 parted /temp/pfSense-CE-memstick-ADI.img resizepart 3 1300MB
-
-loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
-mount "$loop_Device"p2 /temp/pfsense-install
-./remove_branding.sh
-
 loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb

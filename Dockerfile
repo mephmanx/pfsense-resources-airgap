@@ -13,8 +13,7 @@ COPY --from=OS-BASE /root/pfSense-CE-memstick-ADI.img.gz /temp/pfSense-CE-memsti
 
 WORKDIR /
 COPY init.sh /
-COPY remove_branding.sh /
-RUN chmod +x /*.sh
+RUN chmod +x /init.sh
 
 COPY openstack-pfsense.xml /
 COPY openstack-pfsense-test.xml /
