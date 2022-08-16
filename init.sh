@@ -246,7 +246,7 @@ do
 done
 
 ## important!  endless loop if below is removed!
-echo "fin" > /tmp/init.complete
+echo "fin" > /tmp/init2.complete
 EOF
 
   PFSENSE_INIT=$(cat </temp/pf-init-3.sh | base64 | tr -d '\n\r')
