@@ -24,4 +24,4 @@ rm -rf /root/pfsense-init.sh
 telegram_notify  "PFSense init: init complete!"
 
 ## important!  endless loop if below is removed!
-echo "fin" > /tmp/init.complete
+echo "fin" > /tmp/init2.complete

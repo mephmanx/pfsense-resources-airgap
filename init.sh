@@ -264,7 +264,7 @@ spawn telnet localhost 4568
 send "echo ''\n"
 expect "#"
 send "\n"
-send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init2.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
 EOF
 
     chmod +x /temp/wait4.sh
