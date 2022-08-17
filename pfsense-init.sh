@@ -19,6 +19,7 @@ service qemu-guest-agent start
 yes | pkg install pfSense-pkg-squid
 yes | pkg install pfSense-pkg-telegraf
 yes | pkg install pfSense-pkg-haproxy-devel
+yes | pkg install pfSense-pkg-openvpn-client-export
 
 rm -rf /root/pfsense-init.sh
 telegram_notify  "PFSense init: init complete!"
