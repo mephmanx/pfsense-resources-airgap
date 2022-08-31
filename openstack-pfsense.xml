@@ -67,7 +67,7 @@
             <loginshowhost></loginshowhost>
             <nohttpreferercheck></nohttpreferercheck>
             <authmode>ipa-ldap</authmode>
-            <althostnames>pfsense</althostnames>
+            <althostnames>{EDGE_ROUTER_NAME}</althostnames>
         </webgui>
         <disablesegmentationoffloading></disablesegmentationoffloading>
         <disablelargereceiveoffloading></disablelargereceiveoffloading>
@@ -1453,16 +1453,16 @@
                     <advanced>b3B0aW9uIGh0dHBsb2c=</advanced>
                     <ha_acls>
                         <item>
-                            <name>pfsense</name>
+                            <name>{EDGE_ROUTER_NAME}</name>
                             <expression>host_contains</expression>
-                            <value>pfsense</value>
+                            <value>{EDGE_ROUTER_NAME}</value>
                             <backendservercountbackend>cinder</backendservercountbackend>
                             <_index></_index>
                         </item>
                         <item>
-                            <name>horizon</name>
+                            <name>{HORIZON_GATEWAY_NAME}</name>
                             <expression>host_contains</expression>
-                            <value>horizon</value>
+                            <value>{HORIZON_GATEWAY_NAME}</value>
                             <backendservercountbackend>cinder</backendservercountbackend>
                             <_index></_index>
                         </item>
@@ -1481,16 +1481,16 @@
                             <_index></_index>
                         </item>
                         <item>
-                            <name>harbor</name>
+                            <name>{SUPPORT_HOST}</name>
                             <expression>host_contains</expression>
-                            <value>harbor</value>
+                            <value>{SUPPORT_HOST}</value>
                             <backendservercountbackend>cinder</backendservercountbackend>
                             <_index></_index>
                         </item>
                         <item>
-                            <name>identity</name>
+                            <name>{IDENTITY_HOST}</name>
                             <expression>host_contains</expression>
-                            <value>identity</value>
+                            <value>{IDENTITY_HOST}</value>
                             <backendservercountbackend>cinder</backendservercountbackend>
                             <_index></_index>
                         </item>
@@ -1515,14 +1515,14 @@
                     <a_actionitems>
                         <item>
                             <action>use_backend</action>
-                            <acl>pfsense</acl>
-                            <use_backendbackend>pfsense</use_backendbackend>
+                            <acl>{EDGE_ROUTER_NAME}</acl>
+                            <use_backendbackend>{EDGE_ROUTER_NAME}</use_backendbackend>
                             <_index></_index>
                         </item>
                         <item>
                             <action>use_backend</action>
-                            <acl>horizon</acl>
-                            <use_backendbackend>horizon</use_backendbackend>
+                            <acl>{HORIZON_GATEWAY_NAME}</acl>
+                            <use_backendbackend>{HORIZON_GATEWAY_NAME}</use_backendbackend>
                             <_index></_index>
                         </item>
                         <item>
@@ -1539,14 +1539,14 @@
                         </item>
                         <item>
                             <action>use_backend</action>
-                            <acl>harbor</acl>
-                            <use_backendbackend>harbor</use_backendbackend>
+                            <acl>{SUPPORT_HOST}</acl>
+                            <use_backendbackend>{SUPPORT_HOST}</use_backendbackend>
                             <_index></_index>
                         </item>
                         <item>
                             <action>use_backend</action>
-                            <acl>identity</acl>
-                            <use_backendbackend>identity</use_backendbackend>
+                            <acl>{IDENTITY_HOST}</acl>
+                            <use_backendbackend>{IDENTITY_HOST}</use_backendbackend>
                             <_index></_index>
                         </item>
                     </a_actionitems>
@@ -2393,7 +2393,7 @@
                     <ha_servers>
                         <item>
                             <status>active</status>
-                            <name>horizon-external</name>
+                            <name>{HORIZON_GATEWAY_NAME}-external</name>
                             <address>{EXTERNAL_VIP}</address>
                             <port>80</port>
                             <id>101</id>
@@ -2405,7 +2405,7 @@
                     <errorfiles></errorfiles>
                     <advanced></advanced>
                     <advanced_backend>{ADVANCED_BACKEND}</advanced_backend>
-                    <name>horizon</name>
+                    <name>{HORIZON_GATEWAY_NAME}</name>
                     <balance></balance>
                     <balance_urilen></balance_urilen>
                     <balance_uridepth></balance_uridepth>
@@ -2420,7 +2420,7 @@
                     <monitor_httpversion></monitor_httpversion>
                     <monitor_username></monitor_username>
                     <monitor_domain></monitor_domain>
-                    <monitor_agentport>horizon</monitor_agentport>
+                    <monitor_agentport>{HORIZON_GATEWAY_NAME}</monitor_agentport>
                     <agent_check></agent_check>
                     <agent_port></agent_port>
                     <agent_inter></agent_inter>
@@ -3023,7 +3023,7 @@
                     <ha_servers>
                         <item>
                             <status>active</status>
-                            <name>pfsense</name>
+                            <name>{EDGE_ROUTER_NAME}</name>
                             <address>{GATEWAY_ROUTER_IP}</address>
                             <port>444</port>
                             <ssl>yes</ssl>
@@ -3036,7 +3036,7 @@
                     <errorfiles></errorfiles>
                     <advanced></advanced>
                     <advanced_backend>{ADVANCED_BACKEND}</advanced_backend>
-                    <name>pfsense</name>
+                    <name>{EDGE_ROUTER_NAME}</name>
                     <balance></balance>
                     <balance_urilen></balance_urilen>
                     <balance_uridepth></balance_uridepth>
@@ -3051,7 +3051,7 @@
                     <monitor_httpversion></monitor_httpversion>
                     <monitor_username></monitor_username>
                     <monitor_domain></monitor_domain>
-                    <monitor_agentport>pfsense</monitor_agentport>
+                    <monitor_agentport>{EDGE_ROUTER_NAME}</monitor_agentport>
                     <agent_check></agent_check>
                     <agent_port></agent_port>
                     <agent_inter></agent_inter>
@@ -3375,7 +3375,7 @@
                     <ha_servers>
                         <item>
                             <status>active</status>
-                            <name>harbor</name>
+                            <name>{SUPPORT_HOST}</name>
                             <address>{SUPPORT_VIP}</address>
                             <port>443</port>
                             <ssl>yes</ssl>
@@ -3388,7 +3388,7 @@
                     <errorfiles></errorfiles>
                     <advanced></advanced>
                     <advanced_backend></advanced_backend>
-                    <name>harbor</name>
+                    <name>{SUPPORT_HOST}</name>
                     <balance></balance>
                     <balance_urilen></balance_urilen>
                     <balance_uridepth></balance_uridepth>
@@ -3403,7 +3403,7 @@
                     <monitor_httpversion></monitor_httpversion>
                     <monitor_username></monitor_username>
                     <monitor_domain></monitor_domain>
-                    <monitor_agentport>harbor</monitor_agentport>
+                    <monitor_agentport>{SUPPORT_HOST}</monitor_agentport>
                     <agent_check></agent_check>
                     <agent_port></agent_port>
                     <agent_inter></agent_inter>
@@ -3586,7 +3586,7 @@
                     <ha_servers>
                         <item>
                             <status>active</status>
-                            <name>identity</name>
+                            <name>{IDENTITY_HOST}</name>
                             <address>{IDENTITY_VIP}</address>
                             <port>443</port>
                             <ssl>yes</ssl>
@@ -3599,7 +3599,7 @@
                     <errorfiles></errorfiles>
                     <advanced></advanced>
                     <advanced_backend>{ADVANCED_BACKEND}</advanced_backend>
-                    <name>identity</name>
+                    <name>{IDENTITY_HOST}</name>
                     <balance></balance>
                     <balance_urilen></balance_urilen>
                     <balance_uridepth></balance_uridepth>
@@ -3614,7 +3614,7 @@
                     <monitor_httpversion></monitor_httpversion>
                     <monitor_username></monitor_username>
                     <monitor_domain></monitor_domain>
-                    <monitor_agentport>identity</monitor_agentport>
+                    <monitor_agentport>{IDENTITY_HOST}</monitor_agentport>
                     <agent_check></agent_check>
                     <agent_port></agent_port>
                     <agent_inter></agent_inter>
@@ -3807,8 +3807,8 @@
             <sslcompatibilitymode>auto</sslcompatibilitymode>
             <ssldefaultdhparam>4096</ssldefaultdhparam>
             <email_level><![CDATA[err]]></email_level>
-            <email_myhostname><![CDATA[pfsense-external]]></email_myhostname>
-            <email_from><![CDATA[pfsense-external@{INTERNAL_DOMAIN_NAME}]]></email_from>
+            <email_myhostname><![CDATA[{EDGE_ROUTER_NAME}-external]]></email_myhostname>
+            <email_from><![CDATA[{EDGE_ROUTER_NAME}-external@{INTERNAL_DOMAIN_NAME}]]></email_from>
             <email_to><![CDATA[]]></email_to>
             <resolver_retries></resolver_retries>
             <resolver_timeoutretry></resolver_timeoutretry>
