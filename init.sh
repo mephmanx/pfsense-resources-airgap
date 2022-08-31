@@ -91,7 +91,7 @@ sed -i "s/{LB_DHCP_START}/$LB_DHCP_START/g" /temp/usb/config.xml
 sed -i "s/{LB_DHCP_END}/$LB_DHCP_END/g" /temp/usb/config.xml
 sed -i "s/{ADVANCED_BACKEND}/$ADVANCED_BACKEND/g" /temp/usb/config.xml
 sed -i "s/{VPN_NETWORK}/$VPN_NETWORK/g" /temp/usb/config.xml
-sed -i "s/{HORIZON_GATEWAY_NAME}/$HORIZON_GATEWAY_NAME/g" /temp/usb/config.xml
+sed -i "s/{HORIZON_GATEWAY_NAME}/$APP_EXTERNAL_HOSTNAME/g" /temp/usb/config.xml
 sed -i "s/{EDGE_ROUTER_NAME}/$EDGE_ROUTER_NAME/g" /temp/usb/config.xml
 sed -i "s/{SUPPORT_HOST}/$SUPPORT_HOST/g" /temp/usb/config.xml
 sed -i "s/{IDENTITY_HOST}/$IDENTITY_HOST/g" /temp/usb/config.xml
