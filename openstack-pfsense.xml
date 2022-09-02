@@ -108,7 +108,6 @@
         <shellcmd>/root/pfsense-init.sh</shellcmd>
         <afterfilterchangeshellcmd></afterfilterchangeshellcmd>
         <logall></logall>
-        <nologdefaultblock></nologdefaultblock>
         <nologbogons></nologbogons>
         <nologprivatenets></nologprivatenets>
         <crypto_hardware>aesni_cryptodev</crypto_hardware>
