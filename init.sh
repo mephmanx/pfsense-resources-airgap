@@ -98,10 +98,10 @@ sed -i "s/{IDENTITY_HOST}/$IDENTITY_HOST/g" /temp/usb/config.xml
 #######
 
 ##### cert placeholders.  lengths are VERY important!!
-sed -i "s/{CA_CRT}/$(generate_specific_pwd 2465)/g" /temp/usb/config.xml
-sed -i "s/{CA_KEY}/$(generate_specific_pwd 4389)/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_CRT}/$(generate_specific_pwd 2765)/g" /temp/usb/config.xml
-sed -i "s/{INITIAL_WILDCARD_KEY}/$(generate_specific_pwd 4393)/g" /temp/usb/config.xml
+#sed -i "s/{CA_CRT}/$(generate_specific_pwd 2465)/g" /temp/usb/config.xml
+#sed -i "s/{CA_KEY}/$(generate_specific_pwd 4389)/g" /temp/usb/config.xml
+#sed -i "s/{INITIAL_WILDCARD_CRT}/$(generate_specific_pwd 2765)/g" /temp/usb/config.xml
+#sed -i "s/{INITIAL_WILDCARD_KEY}/$(generate_specific_pwd 4393)/g" /temp/usb/config.xml
 ###
 
 runuser -l root -c  'umount /temp/usb'
