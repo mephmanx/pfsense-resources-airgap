@@ -107,6 +107,7 @@
         <dns1host></dns1host>
         <shellcmd>/root/pfsense-init.sh</shellcmd>
         <afterfilterchangeshellcmd></afterfilterchangeshellcmd>
+        <logconfigchanges>enabled</logconfigchanges>
         <logall></logall>
         <nologbogons></nologbogons>
         <nologprivatenets></nologprivatenets>
