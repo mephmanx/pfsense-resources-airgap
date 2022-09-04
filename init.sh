@@ -1,8 +1,7 @@
 #!/bin/bash
 
-exec 1>/out/pfsense-build-"$1".log 2>&1
+exec 1> >(logger -s -t "$(basename "$0")") 2>&1
 set -x
-
 
 source /tmp/openstack-scripts/vm_functions.sh
 source /tmp/openstack-scripts/project_config.sh
