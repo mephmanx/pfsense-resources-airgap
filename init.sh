@@ -27,12 +27,9 @@ fi
 cat > /temp/init.sh <<EOF
 DRIVE_KB=\`geom disk list | grep Mediasize | sed 1d | awk '{ print \$2 }'\`
 DRIVE_SIZE=\$((DRIVE_KB / 1024 / 1024 * 75/100))
-HOSTNAME_SUFFIX=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 5 ; echo);
 RANDOM_PWD=\$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 31 ; echo);
-HOSTNAME="$ORGANIZATION-\$HOSTNAME_SUFFIX"
 
 sed -i -e 's/{CACHE_SIZE}/'\$DRIVE_SIZE'/g' /mnt/cf/conf/config.xml
-sed -i -e 's/{HOSTNAME}/'\$HOSTNAME'/g' /mnt/cf/conf/config.xml
 sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
 
 ## important!  endless loop if below is removed!
