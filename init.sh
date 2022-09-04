@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exec 1> >(logger -s --rfc5424 -t "gateway_build") 2>&1
+exec 1> >(logger -s --rfc5424 -t "gateway_build" --journald) 2>&1
 
 source /functions.sh
 source /tmp/openstack-scripts/project_config.sh
