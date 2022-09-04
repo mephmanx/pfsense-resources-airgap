@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exec 1> >(logger -s -t "Gateway Image build") 2>&1
+exec 1> >(logger -s --rfc5424 --sd-id gateway_build -t "$(basename "$0")") 2>&1
 set -x
 
 source /tmp/openstack-scripts/vm_functions.sh
