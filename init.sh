@@ -336,6 +336,8 @@ EOF
 
   (echo open localhost 4568;
     sleep 30;
+    echo -ne "\r\n";
+    sleep 10;
     echo "touch /root/pf-init-2.sh; touch /root/pf-init-2.sh.enc;";
     sleep 10;
     for element in "${pfsense_init_array[@]}"
