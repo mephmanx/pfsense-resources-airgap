@@ -4,7 +4,7 @@ exec 1>/out/pfsense-build-"$1".log 2>&1
 
 source /functions.sh
 # shellcheck disable=SC1090
-source "$2"
+source /env/project_config.sh
 source /tmp/openstack-setup/openstack-env.sh
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
