@@ -49,7 +49,7 @@ cp /pfSense-repo.conf /temp/usb/
 
 if [ 'prod' == "$1" ]; then
   cp /tmp/repo.tar /temp/usb/
-  rm -rf /tmp/repo.tar
+  mv /tmp/repo.tar repo-latest.tar
 fi
 
 ## move generated file above to disk
