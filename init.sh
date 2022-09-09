@@ -35,7 +35,6 @@ sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
 echo "fin" > /tmp/init.complete
 EOF
 
-cp /tmp/openstack-setup/openstack-env.sh /temp/usb/
 if [ 'dev' == "$1" ]; then
   mv /openstack-pfsense-test.xml /temp/usb/config.xml
 else
