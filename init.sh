@@ -61,11 +61,6 @@ CF_TCP_END_PORT=$((CF_TCP_START_PORT + CF_TCP_PORT_COUNT))
 #### backend to change host header from whatever it comes in as to internal domain
 ADVANCED_BACKEND=$(echo "http-request replace-value Host ^(.*)(\.[^\.]+){2}$ \1.$INTERNAL_DOMAIN_NAME" | base64 | tr -d '\n\r')
 
-######  variables to remove from PFSense cloud router
-sed -i "s/{TELEGRAM_API}/$TELEGRAM_API/g" /temp/usb/config.xml
-sed -i "s/{TELEGRAM_CHAT_ID}/$TELEGRAM_CHAT_ID/g" /temp/usb/config.xml
-#######
-
 ##### replace PFSense template vars
 sed -i "s/{CF_TCP_START_PORT}/$CF_TCP_START_PORT/g" /temp/usb/config.xml
 sed -i "s/{CF_TCP_END_PORT}/$CF_TCP_END_PORT/g" /temp/usb/config.xml
