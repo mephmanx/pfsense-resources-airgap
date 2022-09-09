@@ -11,6 +11,7 @@ RUN dnf install -y virt-install virt-viewer libguestfs-tools openvpn expect wget
 
 COPY --from=OS-BASE /root/pfSense-CE-memstick-ADI.img.gz /temp/pfSense-CE-memstick-ADI.img.gz
 
+RUN export PFSENSE_VERSION=$PFSENSE_VERSION
 WORKDIR /
 COPY init.sh /
 RUN chmod +x /init.sh
