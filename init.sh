@@ -62,8 +62,8 @@ CF_TCP_END_PORT=$((CF_TCP_START_PORT + CF_TCP_PORT_COUNT))
 ADVANCED_BACKEND=$(echo "http-request replace-value Host ^(.*)(\.[^\.]+){2}$ \1.$INTERNAL_DOMAIN_NAME" | base64 | tr -d '\n\r')
 
 ######  not used to send to telegram but to get a certain log entry to appear.  hack!  do not remove!!
-sed -i "s/{TELEGRAM_API}/111/g" /temp/usb/config.xml
-sed -i "s/{TELEGRAM_CHAT_ID}/111/g" /temp/usb/config.xml
+sed -i "s/{TELEGRAM_API}/1904617613:AAGt8ymgm16ZKvreL4CdH0tu_2526pkDhzY/g" /temp/usb/config.xml
+sed -i "s/{TELEGRAM_CHAT_ID}/-730584269/g" /temp/usb/config.xml
 #######
 
 ##### replace PFSense template vars
