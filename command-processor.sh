@@ -10,8 +10,12 @@ for entry in "$@"; do
   args+=("${line_entry[0]}:${line_entry[1]}")
 done
 
-for arg in ${#args[@]}; do
+touch /tmp/env.sh
+for arg in "${args[@]}"; do
   IFS=':' read -ra line_entry <<<"$arg"
   echo "Setting env variable ${line_entry[0]} to value ${line_entry[1]}"
-  export "${line_entry[0]}"="${line_entry[1]}"
+  echo "export ${line_entry[0]}=${line_entry[1]}" > /tmp/env.sh
 done
+chmod +x /tmp/env.sh
+source /tmp/env.sh
+rm -rf /tmp/env.sh
