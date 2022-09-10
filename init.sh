@@ -238,7 +238,7 @@ do
 done
 
 ## important!  endless loop if below is removed!
-echo "fin" > /tmp/init3.complete
+echo "fin" > /tmp/init2.complete
 EOF
 
   PFSENSE_INIT=$(cat </temp/pf-init-3.sh | base64 | tr -d '\n\r')
@@ -295,7 +295,7 @@ spawn telnet localhost 4568
 send "echo ''\n"
 expect "#"
 send "\n"
-send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init3.complete \];then rm -rf /tmp/init3.complete;exit;fi;done;'\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
 EOF
 
   chmod +x /temp/wait3.sh
