@@ -2,7 +2,7 @@
 
 args=()
 for entry in "$@"; do
-  if [ ! grep -q "$(echo entry | grep -aob ':' | grep -oE '[0-9]+')" ]; then
+  if grep -q ":" <<< "$entry"; then
     echo "Arguments must be of the form <param name>:<param value>"
     exit 1
   fi
