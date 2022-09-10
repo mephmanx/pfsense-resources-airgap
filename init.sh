@@ -150,9 +150,9 @@ cd /mnt/root
 echo "fin" > /tmp/init.complete
 EOF
 
-  PFSENSE_INIT=$(cat </temp/pf-init-1.sh | base64 | tr -d '\n\r')
-
-  pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
+  cat </temp/pf-init-1.sh | base64 | tr -d '\n\r' | fold -c250 > /tmp/fileentries.txt
+  readarray -t pfsense_init_array < /tmp/fileentries.txt
+  rm -rf /tmp/fileentries.txt
 
   sleep 30;
   (echo open localhost 4568;
@@ -241,9 +241,9 @@ done
 echo "fin" > /tmp/init2.complete
 EOF
 
-  PFSENSE_INIT=$(cat </temp/pf-init-3.sh | base64 | tr -d '\n\r')
-
-  pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
+  cat </temp/pf-init-3.sh | base64 | tr -d '\n\r' | fold -c250 > /tmp/fileentries.txt
+  readarray -t pfsense_init_array < /tmp/fileentries.txt
+  rm -rf /tmp/fileentries.txt
 
   ### add wait based on checking for progress complete in system.log file
 
@@ -323,9 +323,9 @@ umount /tmp/transfer
 echo "fin" > /tmp/init.complete
 EOF
 
-  PFSENSE_INIT=$(cat </temp/pf-init-2.sh | base64 | tr -d '\n\r')
-
-  pfsense_init_array=( $(echo "$PFSENSE_INIT" | fold -c250 ))
+  cat </temp/pf-init-2.sh | base64 | tr -d '\n\r' | fold -c250 > /tmp/fileentries.txt
+  readarray -t pfsense_init_array < /tmp/fileentries.txt
+  rm -rf /tmp/fileentries.txt
 
   (echo open localhost 4568;
     sleep 30;
