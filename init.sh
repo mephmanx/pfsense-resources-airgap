@@ -48,7 +48,8 @@ cp /pfSense-repo.conf /temp/usb/
 
 if [ 'prod' == "$1" ]; then
   cp /tmp/repo.tar /temp/usb/
-  mv /tmp/repo.tar repo-latest.tar
+  printf -v date '%(%Y-%m-%d)T\n' -1
+  mv /tmp/repo.tar repo-"$date".tar
 fi
 
 ## move generated file above to disk
