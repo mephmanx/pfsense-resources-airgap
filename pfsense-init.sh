@@ -7,9 +7,6 @@
 exec 1>/root/init-install.log 2>&1 # send stdout and stderr from rc.local to a log file
 #set -x                             # tell sh to display commands before execution
 
-IP_DATA=$(ifconfig vtnet0 | grep inet | awk -F' ' '{ print $2 }' | head -2 | tail -1)
-HOSTNAME=$(hostname -s)
-telegram_notify  "$HOSTNAME initialization script beginning... \n\nCloud DMZ IP: $IP_DATA"
 yes | pkg install bash
 yes | pkg install qemu-guest-agent
 
@@ -24,7 +21,6 @@ yes | pkg install pfSense-pkg-haproxy-devel
 yes | pkg install pfSense-pkg-openvpn-client-export
 
 rm -rf /root/pfsense-init.sh
-telegram_notify  "$HOSTNAME init: init complete!"
 
 ## important!  endless loop if below is removed!
 echo "fin" > /tmp/init2.complete
