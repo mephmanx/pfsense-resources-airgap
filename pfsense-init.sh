@@ -2,8 +2,6 @@
 ## this script will run on pfsense reboot and then remove itself
 ## this script is run on a FreeBSD system, not centos, not bash.  Makes some things slightly different
 
-. /root/pf_functions.sh
-
 yes | pkg install bash
 yes | pkg install qemu-guest-agent
 

@@ -42,7 +42,6 @@ else
   mv /openstack-pfsense.xml /temp/usb/config.xml
 fi
 
-cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
