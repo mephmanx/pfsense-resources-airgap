@@ -10,6 +10,7 @@ exec 1>/root/init-install.log 2>&1 # send stdout and stderr from rc.local to a l
 IP_DATA=$(ifconfig vtnet0 | grep inet | awk -F' ' '{ print $2 }' | head -2 | tail -1)
 HOSTNAME=$(hostname -s)
 telegram_notify  "$HOSTNAME initialization script beginning... \n\nCloud DMZ IP: $IP_DATA"
+yes | pkg install bash
 yes | pkg install qemu-guest-agent
 
 echo 'qemu_guest_agent_enable="YES"' >> /etc/rc.conf
