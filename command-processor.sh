@@ -12,6 +12,6 @@ done
 
 for arg in ${#args[@]}; do
   IFS=':' read -ra line_entry <<<"$arg"
-  echo "Setting env variable ${#line_entry[0]} to value ${#line_entry[1]}"
-  export ${#line_entry[0]}=${#line_entry[1]}
+  echo "Setting env variable ${line_entry[0]} to value ${line_entry[1]}"
+  export "${line_entry[0]}"="${line_entry[1]}"
 done
