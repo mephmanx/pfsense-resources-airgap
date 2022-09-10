@@ -16,7 +16,7 @@ loop_Device=$(losetup -f --show -P /temp/pfSense-CE-memstick-ADI.img)
 mkfs -t vfat "$loop_Device"p3
 mount "$loop_Device"p3 /temp/usb
 
-if [ 'dev' == "$1" ]; then
+if [ "$ENV" == 'dev' ]; then
   dd if=/dev/zero bs=1M count=400 >> /tmp/transfer.img
   chmod 777 /tmp/transfer.img
   loop_device2=$(losetup -f --show -P /tmp/transfer.img)
@@ -36,7 +36,7 @@ sed -i -e 's/{OPENVPN_CERT_PWD}/'\$RANDOM_PWD'/g' /mnt/cf/conf/config.xml
 echo "fin" > /tmp/init.complete
 EOF
 
-if [ 'dev' == "$1" ]; then
+if [ "$ENV" == 'dev' ]; then
   mv /openstack-pfsense-test.xml /temp/usb/config.xml
 else
   mv /openstack-pfsense.xml /temp/usb/config.xml
@@ -46,7 +46,7 @@ cp /pf_functions.sh /temp/usb/
 cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
-if [ 'prod' == "$1" ]; then
+if [ "$ENV" == 'prod' ]; then
   cp /tmp/repo.tar /temp/usb/
   printf -v date '%(%Y-%m-%d-%H-%M)T\n' -1
   mv /tmp/repo.tar repo-"$PFSENSE_VERSION"-"$date".tar
@@ -97,7 +97,7 @@ runuser -l root -c  'umount /temp/usb'
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$1".img
 #start pfsense vm to gather packages to build offline resources
-if [ 'dev' == "$1" ] || [ 'keep' == "$2" ]; then
+if [ "$ENV" == 'dev' ] || [ 'keep' == "$2" ]; then
 
   create_line="virt-install "
   create_line+="--hvm "
@@ -129,7 +129,7 @@ if [ 'dev' == "$1" ] || [ 'keep' == "$2" ]; then
   cmd=""
   cmdExtract=""
   cmdRepoSetup=""
-  if [ 'prod' == "$1" ]; then
+  if [ "$ENV" == 'prod' ]; then
     cmd="mkdir /mnt/tmp/repo-dir"
     cmdExtract="tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir"
     cmdRepoSetup="yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf; yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/etc/pkg/FreeBSD.conf"
@@ -222,7 +222,7 @@ chmod +x /temp/wait1.sh
   #####
 fi
 
-if [ 'dev' == "$1" ]; then
+if [ "$ENV" == 'dev' ]; then
 
   ## remove install disk from pfsense
   virsh destroy pfsense
@@ -382,7 +382,7 @@ if [ -n "$2" ]; then
   fi
 fi
 
-if [ 'dev' == "$1" ]; then
+if [ "$ENV" == 'dev' ]; then
   virsh destroy pfsense
   virsh undefine --domain pfsense --remove-all-storage
 fi
