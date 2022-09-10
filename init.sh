@@ -3,9 +3,9 @@
 exec 1>/out/pfsense-build-"$1".log 2>&1
 
 source /functions.sh
+source /command-processor.sh
 # shellcheck disable=SC1090
 source /env/configuration
-echo "$PFSENSE_VERSION"
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
 ### make sure to get offset of fat32 partition to put config.xml file on stick to reload!
 
@@ -48,8 +48,8 @@ cp /pfSense-repo.conf /temp/usb/
 
 if [ 'prod' == "$1" ]; then
   cp /tmp/repo.tar /temp/usb/
-  printf -v date '%(%Y-%m-%d)T\n' -1
-  mv /tmp/repo.tar repo-"$date".tar
+  printf -v date '%(%Y-%m-%d-%H-%M)T\n' -1
+  mv /tmp/repo.tar repo-"$PFSENSE_VERSION"-"$date".tar
 fi
 
 ## move generated file above to disk
