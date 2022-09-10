@@ -1,9 +1,9 @@
 #!/bin/bash
 
-exec 1>/out/pfsense-build-"$1".log 2>&1
+source /command-processor.sh
+exec 1>/out/pfsense-build-"$ENV".log 2>&1
 
 source /functions.sh
-source /command-processor.sh
 # shellcheck disable=SC1090
 source /env/configuration
 gunzip -f /temp/pfSense-CE-memstick-ADI.img.gz
@@ -95,7 +95,7 @@ sed -i "s/{IDENTITY_HOST}/$IDENTITY_HOST/g" /temp/usb/config.xml
 
 runuser -l root -c  'umount /temp/usb'
 
-cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$1".img
+cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$ENV".img
 #start pfsense vm to gather packages to build offline resources
 if [ "$ENV" == 'dev' ] || [ 'keep' == "$2" ]; then
 
@@ -107,7 +107,7 @@ if [ "$ENV" == 'dev' ] || [ 'keep' == "$2" ]; then
   create_line+="--cpu=host-passthrough,cache.mode=passthrough "
   create_line+="--vcpus=8 "
   create_line+="--boot hd,menu=off,useserial=off "
-  create_line+="--disk /tmp/pfSense-CE-memstick-ADI-$1.img "
+  create_line+="--disk /tmp/pfSense-CE-memstick-ADI-$ENV.img "
   create_line+="--disk pool=VM-VOL,size=40,bus=virtio,sparse=no "
   create_line+="--connect qemu:///system "
   create_line+="--os-type=freebsd "
@@ -125,7 +125,6 @@ if [ "$ENV" == 'dev' ] || [ 'keep' == "$2" ]; then
 
   eval "$create_line"
 
-  ## arg $1 is build repo cache or build prod image
   cmd=""
   cmdExtract=""
   cmdRepoSetup=""
@@ -216,7 +215,7 @@ chmod +x /temp/wait1.sh
 ./temp/wait1.sh
 ####
 
-  virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$1".img --persistent --config --live
+  virsh detach-disk --domain pfsense /tmp/pfSense-CE-memstick-ADI-"$ENV".img --persistent --config --live
   ### cleanup
   runuser -l root -c  "rm -rf /temp/usb"
   #####
