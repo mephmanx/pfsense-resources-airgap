@@ -312,7 +312,7 @@
         <sourceip></sourceip>
         <ipproto>ipv4</ipproto>
         <remoteserver>monitoring01.{INTERNAL_DOMAIN_NAME}:5540</remoteserver>
-        <remoteserver2>{GATEWAY_ROUTER_IP}:514</remoteserver2>
+        <remoteserver2>{LAN_CENTOS_IP}:514</remoteserver2>
         <remoteserver3></remoteserver3>
         <enable></enable>
         <nologdefaultpass></nologdefaultpass>
