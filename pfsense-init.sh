@@ -4,9 +4,6 @@
 
 . /root/pf_functions.sh
 
-exec 1>/root/init-install.log 2>&1 # send stdout and stderr from rc.local to a log file
-#set -x                             # tell sh to display commands before execution
-
 yes | pkg install bash
 yes | pkg install qemu-guest-agent
 
@@ -19,8 +16,6 @@ yes | pkg install pfSense-pkg-squid
 yes | pkg install pfSense-pkg-telegraf
 yes | pkg install pfSense-pkg-haproxy-devel
 yes | pkg install pfSense-pkg-openvpn-client-export
-
-rm -rf /root/pfsense-init.sh
 
 ## important!  endless loop if below is removed!
 echo "fin" > /tmp/init2.complete
