@@ -7,7 +7,7 @@ for entry in "$@"; do
     exit 1
   fi
   IFS=':' read -ra line_entry <<<"$entry"
-  args+=("${#line_entry[0]}:${#line_entry[1]}")
+  args+=("${line_entry[0]}:${line_entry[1]}")
 done
 
 for arg in ${#args[@]}; do
