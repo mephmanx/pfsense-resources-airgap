@@ -315,7 +315,6 @@
         <remoteserver2>{LAN_CENTOS_IP}:514</remoteserver2>
         <remoteserver3></remoteserver3>
         <enable></enable>
-        <nologdefaultpass></nologdefaultpass>
         <logall></logall>
     </syslog>
     <nat>
