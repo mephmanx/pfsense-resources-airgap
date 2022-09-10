@@ -306,6 +306,7 @@ mkdir /tmp/repo-dir
 cd /tmp/repo-dir
 pkg create -a > /tmp/pkg-create-a.out 2>&1
 pkg fetch -o /tmp/repo-dir -y qemu-guest-agent
+pkg fetch -o /tmp/repo-dir -y bash
 mv /tmp/repo-dir/All/* /tmp/repo-dir
 cd /var/cache/pkg
 ls -la ./ | grep -v "\->" | awk -F' ' '{ print \$9 }' | sed -e 's/~\(.*\)\././g' | xargs -I '{}' cp '{}' /tmp/repo-dir
