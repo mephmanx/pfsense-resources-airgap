@@ -266,6 +266,8 @@ EOF
     sleep 30;
     echo -ne "\r\n";
     sleep 10;
+    echo "rm -rf /tmp/init2.complete";
+    sleep 10;
     echo "touch /root/pf-init-3.sh; touch /root/pf-init-3.sh.enc;";
     sleep 10;
     for element in "${pfsense_init_array[@]}"
@@ -358,7 +360,7 @@ spawn telnet localhost 4568
 send "echo ''\n"
 expect "#"
 send "\n"
-send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init.complete \];then rm -rf /tmp/init.complete;exit;fi;done;'\n"
+send "yes|pkg install bash;bash -c 'while \[ true \];do sleep 5;if \[ -f /tmp/init2.complete \];then rm -rf /tmp/init2.complete;exit;fi;done;'\n"
 EOF
 
 chmod +x /temp/wait2.sh
