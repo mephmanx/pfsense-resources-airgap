@@ -10,8 +10,7 @@ for entry in "$@"; do
   args+=("${line_entry[0]}:${line_entry[1]}")
 done
 
-echo "#!/bin/bash"
 for arg in "${args[@]}"; do
   IFS=':' read -ra line_entry <<<"$arg"
-  echo "export ${line_entry[0]}=${line_entry[1]}"
+  printf "export %s=%s" "${line_entry[0]}" "${line_entry[1]}"
 done
