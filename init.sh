@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source /command-processor.sh "$@"
+. /command-processor.sh "$@"
+
 exec 1>/out/pfsense-build-"$ENV".log 2>&1
 
 source /functions.sh
