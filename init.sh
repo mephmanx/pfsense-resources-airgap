@@ -46,9 +46,13 @@ cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
 if [ "$ENV" == 'prod' ]; then
-  cp /tmp/repo.tar /temp/usb/
-  printf -v date '%(%Y-%m-%d-%H-%M)'
-  mv /tmp/repo.tar "/tmp/repo-$PFSENSE_VERSION-$date.tar"
+  if [ -f "$PFSENSE_PACKAGES" ]; then
+    cp "$PFSENSE_PACKAGES" /temp/usb/
+  else
+    cp /tmp/repo.tar /temp/usb/
+    printf -v date '%(%Y-%m-%d-%H-%M)'
+    mv /tmp/repo.tar "/tmp/repo-$PFSENSE_VERSION-$date.tar"
+  fi
 fi
 
 ## move generated file above to disk
