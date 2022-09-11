@@ -47,7 +47,7 @@ cp /pfSense-repo.conf /temp/usb/
 
 if [ "$ENV" == 'prod' ]; then
   if [ -f "$PFSENSE_PACKAGES" ]; then
-    cp "$PFSENSE_PACKAGES" /temp/usb/
+    cp "$PFSENSE_PACKAGES" /temp/usb/repo.tar
   else
     cp /tmp/repo.tar /temp/usb/
     printf -v date '%(%Y-%m-%d-%H-%M)'
