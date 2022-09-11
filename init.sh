@@ -102,7 +102,7 @@ if [ "$ENV" == 'dev' ] || [ 'keep' == "$2" ]; then
   create_line+="--hvm "
   create_line+="--virt-type=kvm "
   create_line+="--name=pfsense "
-  create_line+="--memory=1000 "
+  create_line+="--memory=8000 "
   create_line+="--cpu=host-passthrough,cache.mode=passthrough "
   create_line+="--vcpus=8 "
   create_line+="--boot hd,menu=off,useserial=off "
