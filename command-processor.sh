@@ -12,5 +12,5 @@ done
 
 for arg in "${args[@]}"; do
   IFS=':' read -ra line_entry <<<"$arg"
-  printf "export %s=%s" "${line_entry[0]}" "${line_entry[1]}"
+  printf "export %s=%s\n" "${line_entry[0]}" "${line_entry[1]}"
 done
