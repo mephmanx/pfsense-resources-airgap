@@ -18,6 +18,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "Read cache value as -> $PFSENSE_PACKAGES"
+rm -rf /out/pfsense-build-"$ENV".log
 exec 1>/out/pfsense-build-"$ENV".log 2>&1
 source /functions.sh
 # shellcheck disable=SC1090
