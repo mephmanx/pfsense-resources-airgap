@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ENV="prod"
+KEEP=""
 while [[ $# -gt 0 ]]; do
   case $1 in
     -c|--cachelibs)
@@ -8,6 +9,10 @@ while [[ $# -gt 0 ]]; do
       shift
       shift
       ;;
+    -k|--keep)
+      KEEP="keep"
+      shift
+    ;;
     -p|--prepare)
       ENV="dev"
       shift # past argument
@@ -400,10 +405,8 @@ chmod +x /temp/wait2.sh
   rm -rf /tmp/transfer*
 fi
 
-if [ -n "$2" ]; then
-  if [ 'keep' == "$2" ]; then
-    exit 0
-  fi
+if [ 'keep' == "$KEEP" ]; then
+  exit 0
 fi
 
 if [ "$ENV" == 'dev' ]; then
