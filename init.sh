@@ -1,7 +1,5 @@
 #!/bin/bash
 
-exec 1>/out/pfsense-build-"$ENV".log 2>&1
-
 ENV="prod"
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -22,6 +20,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+exec 1>/out/pfsense-build-"$ENV".log 2>&1
 source /functions.sh
 # shellcheck disable=SC1090
 source /env/configuration
