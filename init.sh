@@ -3,14 +3,14 @@
 ENV="prod"
 while [[ $# -gt 0 ]]; do
   case $1 in
-    -p|--prepare)
-      ENV="dev"
-      shift # past argument
-      ;;
     -c|--cachelibs)
       PFSENSE_PACKAGES="$2"
       shift
       shift
+      ;;
+    -p|--prepare)
+      ENV="dev"
+      shift # past argument
       ;;
     -*)
       echo "Unknown option $1"
