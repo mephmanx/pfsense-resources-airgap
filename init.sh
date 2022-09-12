@@ -9,8 +9,6 @@ while [[ $# -gt 0 ]]; do
       ;;
     -c|--cachelibs)
       PFSENSE_PACKAGES="$2"
-      shift # past argument
-      shift # past value
       ;;
     -*)
       echo "Unknown option $1"
@@ -19,6 +17,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+echo "Read cache value as -> $PFSENSE_PACKAGES"
 exec 1>/out/pfsense-build-"$ENV".log 2>&1
 source /functions.sh
 # shellcheck disable=SC1090
