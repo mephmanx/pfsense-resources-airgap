@@ -307,7 +307,7 @@
         <reverse></reverse>
         <nentries>500</nentries>
         <logcompressiontype>bzip2</logcompressiontype>
-        <format>rfc3164</format>
+        <format>rfc5424</format>
         <rotatecount></rotatecount>
         <sourceip></sourceip>
         <ipproto>ipv4</ipproto>
