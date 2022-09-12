@@ -9,7 +9,7 @@ while [[ $# -gt 0 ]]; do
       shift # past value
       ;;
     -c|--cachelibs)
-      PFSENSE_PACKAGES="$1"
+      PFSENSE_PACKAGES="$2"
       shift # past argument
       shift # past value
       ;;
