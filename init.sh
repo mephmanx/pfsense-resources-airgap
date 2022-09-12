@@ -9,6 +9,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -c|--cachelibs)
       PFSENSE_PACKAGES="$2"
+      shift
       ;;
     -*)
       echo "Unknown option $1"
