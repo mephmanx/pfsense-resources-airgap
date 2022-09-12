@@ -21,6 +21,5 @@ COPY openstack-pfsense-test.xml /
 COPY pfsense-init.sh /
 COPY pfSense-repo.conf /
 COPY functions.sh /
-COPY command-processor.sh /
 
 ENTRYPOINT ["./init.sh"]
