@@ -6,7 +6,6 @@ while [[ $# -gt 0 ]]; do
     -p|--prepare)
       ENV="dev"
       shift # past argument
-      shift # past value
       ;;
     -c|--cachelibs)
       PFSENSE_PACKAGES="$2"
