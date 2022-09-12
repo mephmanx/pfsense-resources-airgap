@@ -1,21 +1,26 @@
 #!/bin/bash
 
-args=()
-for entry in "$@"; do
-  if ! grep -q ":" <<< "$entry"; then
-    echo "Arguments must be of the form <param name>:<param value>"
-    exit 1
-  fi
-  IFS=':' read -ra line_entry <<<"$entry"
-  args+=("${line_entry[0]}:${line_entry[1]}")
-done
-
-for arg in "${args[@]}"; do
-  IFS=':' read -ra line_entry <<<"$arg"
-  eval "export ${line_entry[0]}=${line_entry[1]}"
-done
-
 exec 1>/out/pfsense-build-"$ENV".log 2>&1
+
+ENV="prod"
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -p|--prepare)
+      ENV="dev"
+      shift # past argument
+      shift # past value
+      ;;
+    -c|--cachelibs)
+      PFSENSE_PACKAGES="$1"
+      shift # past argument
+      shift # past value
+      ;;
+    -*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+  esac
+done
 
 source /functions.sh
 # shellcheck disable=SC1090
