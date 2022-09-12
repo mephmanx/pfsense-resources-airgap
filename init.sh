@@ -12,7 +12,7 @@ done
 
 for arg in "${args[@]}"; do
   IFS=':' read -ra line_entry <<<"$arg"
-  bash -c "export ${line_entry[0]}=${line_entry[1]}"
+  eval "export ${line_entry[0]}=${line_entry[1]}"
 done
 
 exec 1>/out/pfsense-build-"$ENV".log 2>&1
