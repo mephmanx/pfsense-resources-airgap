@@ -220,8 +220,8 @@
             </range>
             <failover_peerip></failover_peerip>
             <dhcpleaseinlocaltime>yes</dhcpleaseinlocaltime>
-            <defaultleasetime>600</defaultleasetime>
-            <maxleasetime>2000</maxleasetime>
+            <defaultleasetime>7200</defaultleasetime>
+            <maxleasetime>8640</maxleasetime>
             <netmask></netmask>
             <gateway></gateway>
             <domain></domain>
@@ -255,8 +255,8 @@
             <enable></enable>
             <failover_peerip></failover_peerip>
             <dhcpleaseinlocaltime>yes</dhcpleaseinlocaltime>
-            <defaultleasetime>600</defaultleasetime>
-            <maxleasetime>2000</maxleasetime>
+            <defaultleasetime>7200</defaultleasetime>
+            <maxleasetime>8640</maxleasetime>
             <netmask></netmask>
             <gateway></gateway>
             <domain></domain>
