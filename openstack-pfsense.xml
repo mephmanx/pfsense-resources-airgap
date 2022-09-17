@@ -305,9 +305,9 @@
     <syslog>
         <filterdescriptions>1</filterdescriptions>
         <reverse></reverse>
-        <nentries>500</nentries>
+        <nentries>25</nentries>
         <logcompressiontype>bzip2</logcompressiontype>
-        <format>rfc5424</format>
+        <format>rfc3164</format>
         <rotatecount></rotatecount>
         <sourceip></sourceip>
         <ipproto>ipv4</ipproto>
@@ -316,6 +316,9 @@
         <remoteserver3></remoteserver3>
         <enable></enable>
         <logall></logall>
+        <logconfigchanges>enabled</logconfigchanges>
+        <nologbogons></nologbogons>
+        <nologprivatenets></nologprivatenets>
     </syslog>
     <nat>
         <outbound>
