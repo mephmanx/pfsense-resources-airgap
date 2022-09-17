@@ -3923,7 +3923,7 @@
                 <uri_whitespace>strip</uri_whitespace>
                 <disable_squidversion></disable_squidversion>
                 <custom_options></custom_options>
-                <custom_options_squid3></custom_options_squid3>
+                <custom_options_squid3>YWNjZXNzX2xvZyBzeXNsb2c6TE9HX0xPQ0FMNA==</custom_options_squid3>
                 <custom_options2_squid3></custom_options2_squid3>
                 <custom_options3_squid3></custom_options3_squid3>
             </config>
