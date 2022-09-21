@@ -202,14 +202,6 @@
             <subnetv6></subnetv6>
             <gatewayv6></gatewayv6>
         </lan>
-        <opt1>
-            <descr><![CDATA[LB_NET]]></descr>
-            <if>vtnet2</if>
-            <enable></enable>
-            <spoofmac></spoofmac>
-            <ipaddr>{LB_ROUTER_IP}</ipaddr>
-            <subnet>24</subnet>
-        </opt1>
     </interfaces>
     <staticroutes></staticroutes>
     <dhcpd>
@@ -247,42 +239,6 @@
             <numberoptions></numberoptions>
             <ntpserver>{GATEWAY_ROUTER_IP}</ntpserver>
         </lan>
-        <opt1>
-            <range>
-                <from>{LB_DHCP_START}</from>
-                <to>{LB_DHCP_END}</to>
-            </range>
-            <enable></enable>
-            <failover_peerip></failover_peerip>
-            <dhcpleaseinlocaltime>yes</dhcpleaseinlocaltime>
-            <defaultleasetime>7200</defaultleasetime>
-            <maxleasetime>8640</maxleasetime>
-            <netmask></netmask>
-            <gateway></gateway>
-            <domain></domain>
-            <domainsearchlist></domainsearchlist>
-            <ddnsdomain></ddnsdomain>
-            <ddnsdomainprimary></ddnsdomainprimary>
-            <ddnsdomainsecondary></ddnsdomainsecondary>
-            <ddnsdomainkeyname></ddnsdomainkeyname>
-            <ddnsdomainkeyalgorithm>hmac-md5</ddnsdomainkeyalgorithm>
-            <ddnsdomainkey></ddnsdomainkey>
-            <mac_allow></mac_allow>
-            <mac_deny></mac_deny>
-            <ddnsclientupdates>allow</ddnsclientupdates>
-            <tftp></tftp>
-            <ldap></ldap>
-            <nextserver></nextserver>
-            <filename></filename>
-            <filename32></filename32>
-            <filename64></filename64>
-            <filename32arm></filename32arm>
-            <filename64arm></filename64arm>
-            <rootpath></rootpath>
-            <numberoptions></numberoptions>
-            <dnsserver>{IDENTITY_VIP}</dnsserver>
-            <ntpserver>{LB_ROUTER_IP}</ntpserver>
-        </opt1>
     </dhcpd>
     <dhcpdv6>
         <lan>
@@ -560,71 +516,8 @@
                 <username><![CDATA[admin@192.168.0.133 (Local Database)]]></username>
             </created>
         </rule>
-        <rule>
-            <id></id>
-            <tracker>1628686523</tracker>
-            <type>pass</type>
-            <interface>opt1</interface>
-            <ipprotocol>inet6</ipprotocol>
-            <tag></tag>
-            <tagged></tagged>
-            <max></max>
-            <max-src-nodes></max-src-nodes>
-            <max-src-conn></max-src-conn>
-            <max-src-states></max-src-states>
-            <statetimeout></statetimeout>
-            <statetype><![CDATA[keep state]]></statetype>
-            <os></os>
-            <source>
-                <any></any>
-            </source>
-            <destination>
-                <any></any>
-            </destination>
-            <descr><![CDATA[Allow all ipv6]]></descr>
-            <updated>
-                <time>1628686523</time>
-                <username><![CDATA[osuser@10.0.9.2 (Local Database)]]></username>
-            </updated>
-            <created>
-                <time>1628686523</time>
-                <username><![CDATA[osuser@10.0.9.2 (Local Database)]]></username>
-            </created>
-        </rule>
-        <rule>
-            <id></id>
-            <tracker>1628686501</tracker>
-            <type>pass</type>
-            <interface>opt1</interface>
-            <ipprotocol>inet</ipprotocol>
-            <tag></tag>
-            <tagged></tagged>
-            <max></max>
-            <max-src-nodes></max-src-nodes>
-            <max-src-conn></max-src-conn>
-            <max-src-states></max-src-states>
-            <statetimeout></statetimeout>
-            <statetype><![CDATA[keep state]]></statetype>
-            <os></os>
-            <source>
-                <any></any>
-            </source>
-            <destination>
-                <any></any>
-            </destination>
-            <descr><![CDATA[Allow all ipv4]]></descr>
-            <updated>
-                <time>1628686501</time>
-                <username><![CDATA[osuser@10.0.9.2 (Local Database)]]></username>
-            </updated>
-            <created>
-                <time>1628686501</time>
-                <username><![CDATA[osuser@10.0.9.2 (Local Database)]]></username>
-            </created>
-        </rule>
         <separator>
             <wan></wan>
-            <opt1></opt1>
             <lan></lan>
             <openvpn></openvpn>
         </separator>
@@ -3887,7 +3780,7 @@
                 <keep_squid_data>on</keep_squid_data>
                 <listenproto>inet</listenproto>
                 <carpstatusvid>none</carpstatusvid>
-                <active_interface>lan,opt1</active_interface>
+                <active_interface>lan</active_interface>
                 <outgoing_interface>auto</outgoing_interface>
                 <proxy_port>3128</proxy_port>
                 <icp_port></icp_port>
@@ -3897,13 +3790,13 @@
                 <dns_nameservers></dns_nameservers>
                 <extraca>none</extraca>
                 <transparent_proxy>on</transparent_proxy>
-                <transparent_active_interface>lan,opt1</transparent_active_interface>
+                <transparent_active_interface>lan</transparent_active_interface>
                 <private_subnet_proxy_off>on</private_subnet_proxy_off>
                 <defined_ip_proxy_off></defined_ip_proxy_off>
                 <defined_ip_proxy_off_dest></defined_ip_proxy_off_dest>
                 <ssl_proxy>on</ssl_proxy>
                 <sslproxy_mitm_mode>splicewhitelist</sslproxy_mitm_mode>
-                <ssl_active_interface>lan,opt1</ssl_active_interface>
+                <ssl_active_interface>lan</ssl_active_interface>
                 <ssl_proxy_port>3129</ssl_proxy_port>
                 <sslproxy_compatibility_mode>modern</sslproxy_compatibility_mode>
                 <dhparams_size>4096</dhparams_size>
