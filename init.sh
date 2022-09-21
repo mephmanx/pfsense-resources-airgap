@@ -141,7 +141,7 @@ if [ "$ENV" == 'dev' ] || [ 'keep' == "$2" ]; then
   create_line+="--serial tcp,host=0.0.0.0:4567,mode=bind,protocol=telnet "
   create_line+="--serial tcp,host=0.0.0.0:4568,mode=bind,protocol=telnet "
   create_line+="--network type=direct,source=ext-con,model=virtio "
-  create_line+="--network type=direct,source=loc-static,model=virtio "
+  create_line+="--network network=default "
   create_line+="--os-variant=freebsd12.0 "
   create_line+="--graphics=vnc "
 
@@ -411,4 +411,5 @@ fi
 if [ "$ENV" == 'dev' ]; then
   virsh destroy pfsense
   virsh undefine --domain pfsense --remove-all-storage
+  sleep 10
 fi
