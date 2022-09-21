@@ -194,7 +194,7 @@
             <enable></enable>
             <if>vtnet1</if>
             <descr><![CDATA[LAN]]></descr>
-            <ipaddr>{GATEWAY_ROUTER_IP}</ipaddr>
+            <ipaddr>dhcp</ipaddr>
             <subnet>24</subnet>
             <spoofmac></spoofmac>
             <gateway></gateway>
@@ -210,6 +210,7 @@
                 <from>{GATEWAY_ROUTER_DHCP_START}</from>
                 <to>{GATEWAY_ROUTER_DHCP_END}</to>
             </range>
+            <enable></enable>
             <failover_peerip></failover_peerip>
             <dhcpleaseinlocaltime>yes</dhcpleaseinlocaltime>
             <defaultleasetime>7200</defaultleasetime>
