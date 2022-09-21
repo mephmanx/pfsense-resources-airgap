@@ -120,7 +120,7 @@ sed -i "s/{SUPPORT_HOST}/$SUPPORT_HOST/g" /temp/usb/config.xml
 sed -i "s/{IDENTITY_HOST}/$IDENTITY_HOST/g" /temp/usb/config.xml
 #######
 
-runuser -l root -c  'umount /temp/usb'
+umount /temp/usb
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$ENV".img
 #start pfsense vm to gather packages to build offline resources
