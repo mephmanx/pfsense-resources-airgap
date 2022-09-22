@@ -116,6 +116,7 @@ sed -i "s/{IDENTITY_HOST}/$IDENTITY_HOST/g" /temp/usb/config.xml
 #######
 
 umount /temp/usb
+losetup -d "$loop_Device"p3
 
 cp /temp/pfSense-CE-memstick-ADI.img /tmp/pfSense-CE-memstick-ADI-"$ENV".img
 #start pfsense vm to gather packages to build offline resources
