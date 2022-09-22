@@ -67,6 +67,7 @@
             <loginshowhost></loginshowhost>
             <nohttpreferercheck></nohttpreferercheck>
             <authmode>ipa-ldap</authmode>
+            <noantilockout></noantilockout>
             <althostnames>{EDGE_ROUTER_NAME}</althostnames>
         </webgui>
         <disablesegmentationoffloading></disablesegmentationoffloading>
