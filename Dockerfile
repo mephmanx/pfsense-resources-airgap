@@ -17,7 +17,6 @@ COPY init.sh /
 RUN chmod +x /init.sh
 
 COPY openstack-pfsense.xml /
-COPY openstack-pfsense-test.xml /
 COPY pfsense-init.sh /
 COPY pfSense-repo.conf /
 COPY functions.sh /
