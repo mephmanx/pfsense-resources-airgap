@@ -240,6 +240,7 @@
             <rootpath></rootpath>
             <numberoptions></numberoptions>
             <ntpserver>{GATEWAY_ROUTER_IP}</ntpserver>
+            <dnsserver>{IDENTITY_VIP}</dnsserver>
         </lan>
     </dhcpd>
     <dhcpdv6>
