@@ -21,7 +21,7 @@ echo "fin" > /tmp/init2.complete
 
 cat <<EOF >> /tmp/listen.sh
 while true; do
-  { printf "HTTP/1.0 200 OK\r\nContent-Length: 1\r\n\r\n"; } | nc -l 8080 ;
+  { printf "HTTP/1.0 200 OK\r\nContent-Length: 1\r\n\r\n"; } | nc -q 5 -l 8080 ;
   sleep 5;
 done
 EOF
