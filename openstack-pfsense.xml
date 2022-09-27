@@ -12,7 +12,6 @@
             <scope>system</scope>
             <gid>1999</gid>
             <member>0</member>
-            <member>2003</member>
             <priv>page-all</priv>
         </group>
         <group>
