@@ -21,9 +21,9 @@ echo "fin" > /tmp/init2.complete
 
 cat <<EOF >> /tmp/listen.sh
 while true; do
-  { echo -ne "HTTP/1.0 200 OK\r\nContent-Length: 1\r\n\r\n"; cat index.htm; } | nc -l 8080 ;
+  { printf "HTTP/1.0 200 OK\r\nContent-Length: 1\r\n\r\n"; } | nc -l 8080 ;
 done
 EOF
 chmod +x /tmp/listen.sh
-cd /tmp
+cd /tmp || exit
 ./listen.sh &
