@@ -24,7 +24,8 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-exec 1>/out/pfsense-build-"$ENV".log 2>&1
+rm -rf /var/log/pfsense-build-"$ENV".log
+exec 1>/var/log/pfsense-build-"$ENV".log 2>&1
 
 echo "Read cache value as -> $PFSENSE_PACKAGES"
 source /functions.sh
