@@ -20,10 +20,7 @@ yes | pkg install pfSense-pkg-Service_Watchdog
 echo "fin" > /tmp/init2.complete
 
 cat <<EOF >> /tmp/listen.sh
-while true; do
-  { printf "HTTP/1.0 200 OK\r\nContent-Length: 1\r\n\r\n"; } | nc -q 5 -l 8080 ;
-  sleep 5;
-done
+HOST=127.0.0.1; PORT=8080; CONTENT_TYPE=application/json; while true; do BODY=\$(printf "{\r\n  \"Date\": \"$(date)\"\r\n}\r\n");RESPONSE=\$(printf "HTTP/1.0 200 OK\r\nContent-Type: \${CONTENT_TYPE}\r\nContent-Length: \$((\${#BODY}+1))\r\nConnection: close\r\n\r\n\${BODY}"); echo "---\$((X=X+1))---"; echo "\$RESPONSE" | nc -N -l \$HOST \$PORT; done
 EOF
 chmod +x /tmp/listen.sh
 cd /tmp || exit
