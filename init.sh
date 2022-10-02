@@ -65,7 +65,7 @@ mv /openstack-pfsense.xml /temp/usb/config.xml
 cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
-cat > /tmp/pf-init-1.sh <<EOF
+cat > /temp/usb/pf-init-1.sh <<EOF
 mount -u -o rw /
 mkdir /tmp/test-mnt
 mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt
