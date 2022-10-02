@@ -16,5 +16,8 @@ yes | pkg install pfSense-pkg-haproxy-devel
 yes | pkg install pfSense-pkg-openvpn-client-export
 yes | pkg install pfSense-pkg-Service_Watchdog
 
+cd /usr/local/etc/rc.d/ || exit
+./haproxy.sh stop
+./haproxy.sh start
 ## important!  endless loop if below is removed!
 echo "fin" > /tmp/init2.complete
