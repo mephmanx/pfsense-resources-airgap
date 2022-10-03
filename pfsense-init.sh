@@ -14,6 +14,7 @@ yes | pkg install pfSense-pkg-squid
 yes | pkg install pfSense-pkg-telegraf
 yes | pkg install pfSense-pkg-haproxy-devel
 yes | pkg install pfSense-pkg-openvpn-client-export
+yes | pkg delete pfSense-pkg-Service_Watchdog
 yes | pkg install pfSense-pkg-Service_Watchdog
 
 cd /usr/local/etc/rc.d/ || exit
