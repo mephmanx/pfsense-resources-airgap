@@ -65,27 +65,6 @@ mv /openstack-pfsense.xml /temp/usb/config.xml
 cp /pfsense-init.sh /temp/usb/
 cp /pfSense-repo.conf /temp/usb/
 
-cat > /temp/usb/pf-init-1.sh <<EOF
-mount -u -o rw /
-mkdir /tmp/test-mnt
-mount -v -t msdosfs /dev/vtbd0s3 /tmp/test-mnt
-cp /tmp/test-mnt/* /mnt/root/
-chmod +x /mnt/root/*.sh
-cd /mnt/root
-yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pfSense-repo.conf;
-yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf;
-yes | cp /tmp/test-mnt/pfSense-repo.conf /mnt/etc/pkg/FreeBSD.conf;
-mkdir /mnt/tmp/repo-dir
-tar xf /mnt/root/repo.tar -C /mnt/tmp/repo-dir/
-./init.sh
-
-echo "dev" > /var/log/system_suffix.log
-
-sed -i -e "s/{HOSTNAME}/$ORGANIZATION-$EDGE_ROUTER_NAME-\$(cat /var/log/system_suffix.log)/g" /mnt/cf/conf/config.xml
-rm -rf init.sh
-rm -rf pf-init-1.sh
-EOF
-
 if [ "$ENV" == 'prod' ]; then
   if [ -f "$PFSENSE_PACKAGES" ]; then
     cp "$PFSENSE_PACKAGES" /temp/usb/repo.tar
