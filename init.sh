@@ -410,3 +410,9 @@ if [ "$ENV" == 'dev' ]; then
   virsh undefine --domain pfsense --remove-all-storage
   sleep 10
 fi
+
+### remove code for squashed image
+rm -rf /*.sh
+rm -rf /*.xml
+rm -rf /*.conf
+rm -rf /temp
